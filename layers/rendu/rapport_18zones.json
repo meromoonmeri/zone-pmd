@@ -1,88 +1,16 @@
 {
- "bassin_sentier": {
+ "caverne_lave": {
   "compo": {
-   "props": 68,
+   "props": 43,
    "canopy": 0,
-   "water_px": 34426
+   "water_px": 39035
   },
   "palette": 64,
-  "objets_catalogue": 45,
+  "objets_catalogue": 16,
   "tiled": {
-   "tuiles": 2198,
-   "animees": 243,
-   "cases_animees": 243
-  },
-  "aseprite": {
-   "calques": 3,
-   "cels": 36
-  }
- },
- "foret_automne": {
-  "compo": {
-   "props": 55,
-   "canopy": 50,
-   "water_px": 0
-  },
-  "palette": 64,
-  "objets_catalogue": 19,
-  "tiled": {
-   "tuiles": 2013,
-   "animees": 238,
-   "cases_animees": 238
-  },
-  "aseprite": {
-   "calques": 3,
-   "cels": 36
-  }
- },
- "foret_bambous": {
-  "compo": {
-   "props": 71,
-   "canopy": 0,
-   "water_px": 0
-  },
-  "palette": 64,
-  "objets_catalogue": 23,
-  "tiled": {
-   "tuiles": 2300,
-   "animees": 236,
-   "cases_animees": 236
-  },
-  "aseprite": {
-   "calques": 2,
-   "cels": 24
-  }
- },
- "canyon_desert": {
-  "compo": {
-   "props": 55,
-   "canopy": 0,
-   "water_px": 0
-  },
-  "palette": 64,
-  "objets_catalogue": 18,
-  "tiled": {
-   "tuiles": 776,
-   "animees": 49,
-   "cases_animees": 49
-  },
-  "aseprite": {
-   "calques": 2,
-   "cels": 24
-  }
- },
- "grotte_moussue": {
-  "compo": {
-   "props": 67,
-   "canopy": 0,
-   "water_px": 15620
-  },
-  "palette": 64,
-  "objets_catalogue": 23,
-  "tiled": {
-   "tuiles": 1269,
-   "animees": 148,
-   "cases_animees": 148
+   "tuiles": 718,
+   "animees": 90,
+   "cases_animees": 90
   },
   "aseprite": {
    "calques": 3,

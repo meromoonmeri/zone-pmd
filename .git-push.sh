@@ -14,7 +14,7 @@ TOK="${GH_TOKEN:?export GH_TOKEN=ghp_...}"
 MSG="${1:-maj}"
 MODE="${2:-additif}"
 W=/home/user/pmd
-T=/tmp/zp
+T=${TMPDIR:-/tmp}/zp
 EXCL='^ref_etude/|^ref/|^pmdo/ref_sprites/|^pmdo/methode/|__pycache__|\.pyc$|^\.git/'
 rm -rf "$T"
 git clone --depth 1 -q "https://meromoonmeri:${TOK}@github.com/meromoonmeri/zone-pmd.git" "$T"

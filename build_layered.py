@@ -124,7 +124,7 @@ def grade_terrain(rgb, tint_hex, strength=0.55, pad=0.20):
 # --------------------------------------------------------------------------- #
 
 def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
-           rules=None, water_ramp=None, foam=None, calm=1.0,
+           rules=None, water_ramp=None, foam=None, calm=1.0, eau_emissive=False,
            terrain_tint="#0a1c14", terrain_strength=0.55,
            seed=1, grade="jour"):
     rng = np.random.default_rng(seed)
@@ -227,10 +227,16 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
         # calque lumiere : c'est un effet d'ecran, pas de la donnee de tuile.
         # -> jeu "frames" (GIF/Aseprite) avec lumiere animee,
         #    jeu "frames_tiles" (Tiled) avec la meme lumiere figee sur t=0.
+        # une coulee de lave, une flaque phosphorescente : ca EMET de la lumiere,
+        # ca n'en recoit pas. On repose donc le calque d'eau par-dessus le grade.
         stat = apply_light(frame.copy(), 0, N, dap, vig, grade, seed)
+        if eau_emissive and wl is not None:
+            alpha_paste(stat, wl[t], 0, 0)
         stat[..., :3] = C.ds_quant(stat[..., :3])
         finals_tiles.append(stat[..., :3].copy())
         frame = apply_light(frame, t, N, dap, vig, grade, seed)
+        if eau_emissive and wl is not None:
+            alpha_paste(frame, wl[t], 0, 0)
         frame[..., :3] = C.ds_quant(frame[..., :3])
         finals.append(frame[..., :3].copy())
 

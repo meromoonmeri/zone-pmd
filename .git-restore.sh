@@ -5,7 +5,7 @@
 set -euo pipefail
 TOK="${GH_TOKEN:?export GH_TOKEN=ghp_...}"
 W=/home/user/pmd
-T=/tmp/zr
+T=${TMPDIR:-/tmp}/zr
 rm -rf "$T"
 git clone --depth 1 -q "https://meromoonmeri:${TOK}@github.com/meromoonmeri/zone-pmd.git" "$T"
 if [ $# -eq 0 ]; then set -- .; fi

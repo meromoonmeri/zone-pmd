@@ -201,7 +201,7 @@ ZONES = {
 
  "caverne_lave": dict(
     sheets=["lave_props_sheet"], canopy=None, eau="lave",
-    tint="#2a0c06", strength=0.60, grade="nuit", seed=1015,
+    tint="#2a0c06", strength=0.60, grade="nuit", seed=1015, emissive=True,
     rules=[R(["rock"], "midband", 10, 4, 38), R(["obsidian"], "ground", 14, 5, 28),
            R(["stump"], "ground", 5, 3, 46), R(["lava"], "shore", 8, 4, 32),
            R(["ember"], "ground", 8, 4, 30)]),
@@ -289,7 +289,8 @@ def construire(zone):
     m = B.render(zone, ter, cut, tagp, spec["canopy"],
                  rules=spec["rules"], water_ramp=ramp, foam=foam, calm=calm,
                  terrain_tint=spec["tint"], terrain_strength=spec["strength"],
-                 grade=spec.get("grade", "jour"), seed=spec["seed"])
+                 grade=spec.get("grade", "jour"), seed=spec["seed"],
+                 eau_emissive=spec.get("emissive", False))
     tr, av = export_tools(zone)
     return dict(compo=m["counts"], palette=m["palette"], objets_catalogue=n,
                 tiled=dict(tuiles=tr["tuiles_uniques"], animees=tr["tuiles_animees"],
