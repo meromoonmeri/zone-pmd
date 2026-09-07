@@ -1,0 +1,58 @@
+[
+ {
+  "file": "jcan_00.png",
+  "w": 90,
+  "h": 88,
+  "px": 5631,
+  "anchor_y": 88
+ },
+ {
+  "file": "jcan_01.png",
+  "w": 93,
+  "h": 77,
+  "px": 4265,
+  "anchor_y": 77
+ },
+ {
+  "file": "jcan_02.png",
+  "w": 82,
+  "h": 77,
+  "px": 3521,
+  "anchor_y": 77
+ },
+ {
+  "file": "jcan_03.png",
+  "w": 65,
+  "h": 63,
+  "px": 2886,
+  "anchor_y": 63
+ },
+ {
+  "file": "jcan_04.png",
+  "w": 64,
+  "h": 62,
+  "px": 2722,
+  "anchor_y": 62
+ },
+ {
+  "file": "jcan_05.png",
+  "w": 91,
+  "h": 115,
+  "px": 5336,
+  "anchor_y": 115
+ },
+ {
+  "file": "jcan_06.png",
+  "w": 89,
+  "h": 74,
+  "px": 4643,
+  "anchor_y": 74
+ },
+ {
+  "file": "jcan_07.png",
+  "w": 74,
+  "h": 79,
+  "px": 3784,
+  "anchor_y": 79
+ }
+]

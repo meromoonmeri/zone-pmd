@@ -1,0 +1,27 @@
+{
+ "prairie": {
+  "zone": "prairie",
+  "px": [
+   504,
+   456
+  ],
+  "cases": [
+   21.0,
+   19.0
+  ],
+  "cellules_8px": [
+   63,
+   57
+  ],
+  "multiple_de_8": true,
+  "multiple_de_24": true,
+  "sol_cases2": 213.8,
+  "sol_par_sprite": 215.3,
+  "largeur_locale_mediane": 1.89,
+  "plus_grand_vide": 6.15,
+  "occupation_decor": 35.8,
+  "part_eau": 10.6,
+  "ecrans": 2.99,
+  "eau_cellules": 380
+ }
+}

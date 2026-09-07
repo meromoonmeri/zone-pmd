@@ -1,0 +1,100 @@
+[
+ {
+  "file": "plage_00.png",
+  "w": 75,
+  "h": 65,
+  "px": 2482,
+  "anchor_y": 65
+ },
+ {
+  "file": "plage_01.png",
+  "w": 71,
+  "h": 47,
+  "px": 1563,
+  "anchor_y": 47
+ },
+ {
+  "file": "plage_02.png",
+  "w": 77,
+  "h": 64,
+  "px": 2317,
+  "anchor_y": 64
+ },
+ {
+  "file": "plage_03.png",
+  "w": 43,
+  "h": 34,
+  "px": 608,
+  "anchor_y": 34
+ },
+ {
+  "file": "plage_04.png",
+  "w": 71,
+  "h": 55,
+  "px": 2020,
+  "anchor_y": 55
+ },
+ {
+  "file": "plage_05.png",
+  "w": 60,
+  "h": 47,
+  "px": 1936,
+  "anchor_y": 47
+ },
+ {
+  "file": "plage_06.png",
+  "w": 46,
+  "h": 36,
+  "px": 1063,
+  "anchor_y": 36
+ },
+ {
+  "file": "plage_07.png",
+  "w": 34,
+  "h": 26,
+  "px": 556,
+  "anchor_y": 26
+ },
+ {
+  "file": "plage_08.png",
+  "w": 38,
+  "h": 42,
+  "px": 696,
+  "anchor_y": 42
+ },
+ {
+  "file": "plage_09.png",
+  "w": 33,
+  "h": 31,
+  "px": 484,
+  "anchor_y": 31
+ },
+ {
+  "file": "plage_10.png",
+  "w": 43,
+  "h": 39,
+  "px": 796,
+  "anchor_y": 39
+ },
+ {
+  "file": "plage_11.png",
+  "w": 41,
+  "h": 32,
+  "px": 726,
+  "anchor_y": 32
+ },
+ {
+  "file": "plage_12.png",
+  "w": 35,
+  "h": 27,
+  "px": 612,
+  "anchor_y": 27
+ },
+ {
+  "file": "plage_13.png",
+  "w": 28,
+  "h": 31,
+  "px": 408,
+  "anchor_y": 31
+ }
+]

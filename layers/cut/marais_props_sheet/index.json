@@ -1,0 +1,135 @@
+[
+ {
+  "file": "marai_00.png",
+  "w": 81,
+  "h": 114,
+  "px": 4259,
+  "anchor_y": 114
+ },
+ {
+  "file": "marai_01.png",
+  "w": 36,
+  "h": 24,
+  "px": 356,
+  "anchor_y": 24
+ },
+ {
+  "file": "marai_02.png",
+  "w": 73,
+  "h": 35,
+  "px": 1314,
+  "anchor_y": 35
+ },
+ {
+  "file": "marai_03.png",
+  "w": 72,
+  "h": 50,
+  "px": 632,
+  "anchor_y": 50
+ },
+ {
+  "file": "marai_04.png",
+  "w": 43,
+  "h": 16,
+  "px": 295,
+  "anchor_y": 16
+ },
+ {
+  "file": "marai_05.png",
+  "w": 31,
+  "h": 26,
+  "px": 347,
+  "anchor_y": 26
+ },
+ {
+  "file": "marai_06.png",
+  "w": 118,
+  "h": 61,
+  "px": 3031,
+  "anchor_y": 61
+ },
+ {
+  "file": "marai_07.png",
+  "w": 99,
+  "h": 97,
+  "px": 3605,
+  "anchor_y": 97
+ },
+ {
+  "file": "marai_08.png",
+  "w": 41,
+  "h": 16,
+  "px": 306,
+  "anchor_y": 16
+ },
+ {
+  "file": "marai_09.png",
+  "w": 18,
+  "h": 10,
+  "px": 103,
+  "anchor_y": 10
+ },
+ {
+  "file": "marai_10.png",
+  "w": 12,
+  "h": 10,
+  "px": 62,
+  "anchor_y": 10
+ },
+ {
+  "file": "marai_11.png",
+  "w": 79,
+  "h": 62,
+  "px": 2096,
+  "anchor_y": 62
+ },
+ {
+  "file": "marai_12.png",
+  "w": 22,
+  "h": 13,
+  "px": 161,
+  "anchor_y": 13
+ },
+ {
+  "file": "marai_13.png",
+  "w": 81,
+  "h": 45,
+  "px": 2312,
+  "anchor_y": 45
+ },
+ {
+  "file": "marai_14.png",
+  "w": 32,
+  "h": 22,
+  "px": 365,
+  "anchor_y": 22
+ },
+ {
+  "file": "marai_15.png",
+  "w": 46,
+  "h": 35,
+  "px": 575,
+  "anchor_y": 35
+ },
+ {
+  "file": "marai_16.png",
+  "w": 34,
+  "h": 30,
+  "px": 661,
+  "anchor_y": 30
+ },
+ {
+  "file": "marai_17.png",
+  "w": 45,
+  "h": 20,
+  "px": 454,
+  "anchor_y": 20
+ },
+ {
+  "file": "marai_18.png",
+  "w": 80,
+  "h": 56,
+  "px": 1979,
+  "anchor_y": 56
+ }
+]

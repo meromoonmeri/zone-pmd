@@ -1,0 +1,57 @@
+{
+ "zone": "prairie",
+ "size": [
+  504,
+  456
+ ],
+ "tile": 24,
+ "frames": 12,
+ "frame_ms": 110,
+ "palette": 63,
+ "grade": "jour",
+ "layers": [
+  {
+   "order": 0,
+   "name": "terrain",
+   "file": "00_terrain.png",
+   "animated": false
+  },
+  {
+   "order": 1,
+   "name": "water",
+   "dir": "01_water",
+   "animated": true,
+   "technique": "bandes sinusoidales + profondeur + ecume + sparkles"
+  },
+  {
+   "order": 2,
+   "name": "props",
+   "dir": "02_props",
+   "animated": true,
+   "technique": "cisaillement vertical, base fixe"
+  },
+  {
+   "order": 3,
+   "name": "canopy",
+   "dir": "03_canopy",
+   "animated": true,
+   "technique": "cisaillement lent, phase decalee"
+  },
+  {
+   "order": 4,
+   "name": "light",
+   "animated": true,
+   "technique": "taches de bruit derivantes + vignette",
+   "grades": [
+    "jour",
+    "crepuscule",
+    "nuit"
+   ]
+  }
+ ],
+ "counts": {
+  "props": 54,
+  "canopy": 50,
+  "water_px": 24780
+ }
+}

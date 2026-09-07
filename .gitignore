@@ -1,0 +1,12 @@
+# etudes de style : ce sont des rips Nintendo redimensionnes, jamais publies
+ref_etude/
+ref/
+
+# assets tiers utilises comme etalon de mesure, non redistribuables
+pmdo/ref_sprites/
+pmdo/methode/
+
+# caches
+__pycache__/
+*.pyc
+.DS_Store

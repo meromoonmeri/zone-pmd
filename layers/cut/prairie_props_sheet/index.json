@@ -1,0 +1,121 @@
+[
+ {
+  "file": "prair_00.png",
+  "w": 62,
+  "h": 62,
+  "px": 2305,
+  "anchor_y": 62
+ },
+ {
+  "file": "prair_01.png",
+  "w": 46,
+  "h": 38,
+  "px": 1188,
+  "anchor_y": 38
+ },
+ {
+  "file": "prair_02.png",
+  "w": 48,
+  "h": 41,
+  "px": 1366,
+  "anchor_y": 41
+ },
+ {
+  "file": "prair_03.png",
+  "w": 67,
+  "h": 71,
+  "px": 2858,
+  "anchor_y": 71
+ },
+ {
+  "file": "prair_04.png",
+  "w": 36,
+  "h": 30,
+  "px": 732,
+  "anchor_y": 30
+ },
+ {
+  "file": "prair_05.png",
+  "w": 53,
+  "h": 51,
+  "px": 1682,
+  "anchor_y": 51
+ },
+ {
+  "file": "prair_06.png",
+  "w": 44,
+  "h": 44,
+  "px": 1346,
+  "anchor_y": 44
+ },
+ {
+  "file": "prair_07.png",
+  "w": 36,
+  "h": 33,
+  "px": 720,
+  "anchor_y": 33
+ },
+ {
+  "file": "prair_08.png",
+  "w": 26,
+  "h": 15,
+  "px": 255,
+  "anchor_y": 15
+ },
+ {
+  "file": "prair_09.png",
+  "w": 35,
+  "h": 20,
+  "px": 495,
+  "anchor_y": 20
+ },
+ {
+  "file": "prair_10.png",
+  "w": 11,
+  "h": 12,
+  "px": 69,
+  "anchor_y": 12
+ },
+ {
+  "file": "prair_11.png",
+  "w": 12,
+  "h": 13,
+  "px": 82,
+  "anchor_y": 13
+ },
+ {
+  "file": "prair_12.png",
+  "w": 11,
+  "h": 11,
+  "px": 60,
+  "anchor_y": 11
+ },
+ {
+  "file": "prair_13.png",
+  "w": 10,
+  "h": 13,
+  "px": 55,
+  "anchor_y": 13
+ },
+ {
+  "file": "prair_14.png",
+  "w": 31,
+  "h": 19,
+  "px": 378,
+  "anchor_y": 19
+ },
+ {
+  "file": "prair_15.png",
+  "w": 23,
+  "h": 28,
+  "px": 214,
+  "anchor_y": 28
+ },
+ {
+  "file": "prair_16.png",
+  "w": 43,
+  "h": 38,
+  "px": 802,
+  "anchor_y": 38
+ }
+]

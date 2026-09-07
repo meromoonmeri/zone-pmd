@@ -1,0 +1,86 @@
+[
+ {
+  "file": "jprop_00.png",
+  "w": 39,
+  "h": 31,
+  "px": 577,
+  "anchor_y": 31
+ },
+ {
+  "file": "jprop_01.png",
+  "w": 32,
+  "h": 27,
+  "px": 568,
+  "anchor_y": 27
+ },
+ {
+  "file": "jprop_02.png",
+  "w": 29,
+  "h": 23,
+  "px": 289,
+  "anchor_y": 23
+ },
+ {
+  "file": "jprop_03.png",
+  "w": 23,
+  "h": 23,
+  "px": 319,
+  "anchor_y": 23
+ },
+ {
+  "file": "jprop_04.png",
+  "w": 51,
+  "h": 43,
+  "px": 1113,
+  "anchor_y": 43
+ },
+ {
+  "file": "jprop_05.png",
+  "w": 37,
+  "h": 36,
+  "px": 856,
+  "anchor_y": 36
+ },
+ {
+  "file": "jprop_06.png",
+  "w": 35,
+  "h": 28,
+  "px": 674,
+  "anchor_y": 28
+ },
+ {
+  "file": "jprop_07.png",
+  "w": 21,
+  "h": 21,
+  "px": 197,
+  "anchor_y": 21
+ },
+ {
+  "file": "jprop_08.png",
+  "w": 52,
+  "h": 38,
+  "px": 1350,
+  "anchor_y": 38
+ },
+ {
+  "file": "jprop_09.png",
+  "w": 48,
+  "h": 36,
+  "px": 1015,
+  "anchor_y": 36
+ },
+ {
+  "file": "jprop_10.png",
+  "w": 46,
+  "h": 26,
+  "px": 780,
+  "anchor_y": 26
+ },
+ {
+  "file": "jprop_11.png",
+  "w": 24,
+  "h": 20,
+  "px": 235,
+  "anchor_y": 20
+ }
+]

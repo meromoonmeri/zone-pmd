@@ -1,0 +1,219 @@
+# Zone Forge — fonds de zone style PMD (originaux)
+
+## Ce qui a été fait
+
+1. **Étude de style** — les 338 fonds de l'album *Map Backgrounds* (Project Pokémon,
+   rips PMD Explorers of Sky) ont été téléchargés dans `ref/` et analysés :
+   * grille de **24 × 24 px** confirmée (toutes les dimensions en sont multiples) ;
+   * **30 à 145 couleurs** par fond, toutes dans l'espace **DS 5 bits/canal**
+     (valeurs 0x07, 0x0f, 0x17… = `(v>>3)*8+7`) ;
+   * grammaire visuelle récurrente : cadre sombre de végétation/roche, bande de
+     terrain intermédiaire, clairière organique claire au centre, contours durs 1 px,
+     tramage ordonné entre les paliers de valeur.
+
+2. **Zones redessinées** — `assets/` contient 6 fonds **originaux** produits dans cette
+   esthétique, puis ramenés aux contraintes techniques du support :
+   * résolution native **504 × 456** = **21 × 19 tuiles** de 24 px ;
+   * palette indexée **≤ 64 couleurs**, quantifiée en espace DS 5 bits ;
+   * pas de flou, pas d'anti-aliasing parasite.
+
+## Contenu — 16 zones (`assets/`)
+
+| Fichier | Zone | Famille |
+|---|---|---|
+| `zone_jungle_clairiere.png` | Clairière de la Jungle | Extérieur |
+| `zone_prairie_ruisseau.png` | Prairie au Ruisseau | Extérieur |
+| `zone_champ_fleurs.png` | Champ de Fleurs | Extérieur |
+| `zone_foret_automne.png` | Forêt d'Automne | Extérieur |
+| `zone_foret_bambous.png` | Bosquet de Bambous | Extérieur |
+| `zone_cascade_foret.png` | Cascade Sylvestre | Eau |
+| `zone_marais_brumeux.png` | Marais Brumeux | Eau |
+| `zone_crique_plage.png` | Crique de Sable | Côte |
+| `zone_falaise_cotiere.png` | Falaise Côtière | Côte |
+| `zone_canyon_desert.png` | Canyon Aride | Aride |
+| `zone_sommet_montagne.png` | Sommet Rocheux | Aride |
+| `zone_banquise_glacier.png` | Banquise | Froid |
+| `zone_caverne_cristal.png` | Caverne de Cristal | Souterrain |
+| `zone_caverne_lave.png` | Caverne de Lave | Souterrain |
+| `zone_grotte_moussue.png` | Grotte Moussue | Souterrain |
+| `zone_ruines_englouties.png` | Ruines Englouties | Ruines |
+
+**En attente (limite de 10 images/tour atteinte)** : Lac Tranquille, Oasis des Dunes,
+Gorge et Pont, Temple Doré, Forêt Nocturne, Grottes Marines.
+
+* `assets/x3_apercu/` — les mêmes en ×3 plus proche voisin, pour vérifier le pixel.
+* `planche_zones.html` — planche contact à ouvrir dans le navigateur.
+* `ref/` — les 338 références (**étude uniquement**, à ne pas livrer avec ton jeu).
+
+## Le générateur procédural (`forge/`)
+
+En bonus, un moteur Python qui fabrique des zones **entièrement au code** — bruit fractal,
+Worley pour le grain des sols, rampes de palette, tramage Bayer, contours, props
+paramétriques (fougère, buisson, rocher, cristal, colonne, cactus…), placement en
+painter's algorithm.
+
+```python
+from forge.zone import build_zone
+from PIL import Image
+img = build_zone("jungle", tiles_w=21, tiles_h=19, seed=7, water_pool=True)
+Image.fromarray(img, "RGBA").save("ma_zone.png")
+```
+
+Biomes disponibles : `jungle`, `meadow`, `beach`, `cave`, `crystal`, `desert`, `ruins`.
+Il est encore un cran en dessous des zones de `assets/` côté finition — il sert à générer
+des **variantes infinies** d'une même zone (change juste `seed`), pas à remplacer la passe
+artistique.
+
+## Point important
+
+Les 338 références sont des rips d'un jeu Nintendo. Les réutiliser telles quelles dans un
+fan game te met en risque et, surtout, elles ne seraient pas « à toi ». Ce qui est dans
+`assets/` est original : même langage visuel, aucun pixel repris. C'est ça que tu peux
+revendiquer sans mentir.
+
+---
+
+## Pipeline par calques (nouvelle méthode)
+
+Animer une image **aplatie** oblige à deviner les masques — et ça rate : sur le premier
+lot, le canyon désertique se retrouvait classé « lave » sur 95 000 px et la forêt nocturne
+« eau » sur 230 000 px. La bonne méthode est de **produire les éléments séparément, puis
+de composer**.
+
+### Chaîne
+
+| Étape | Fichier | Ce qui se passe |
+|---|---|---|
+| 1. Génération séparée | `layers/src/` | terrain plein cadre + planches d'objets sur fond **magenta pur** |
+| 2. Détourage | `forge/chroma.py` | chroma key + suppression de frange + composantes connexes → un PNG RGBA par objet, mis à l'échelle native |
+| 3. Masques | `forge/compose.py` | le trou magenta du terrain **est** le masque d'eau, au pixel près ; herbe/sable/roche par seuillage HSV |
+| 4. Placement | `build_layered.py` | règles explicites : catégorie × surface × quota × plafond par objet (fini les 5 pontons) |
+| 5. Animation | `forge/compose.py` | eau procédurale, cisaillement végétal, dérive de lumière |
+| 6. Sortie | `layers/out/<zone>/` | un dossier PNG par calque et par frame + composite + GIF + `manifest.json` |
+
+### Techniques d'animation (époque DS/GBA uniquement)
+
+* **Eau** — bandes sinusoïdales + gradient de profondeur lissé + stries de reflet qui
+  glissent + écume qui ondule le long du rivage + sparkles isolés. Boucle exacte sur 12 frames.
+* **Végétation** — cisaillement vertical : la base du sprite reste clouée au sol, le sommet
+  se décale de ±1 à 2 px. Phase aléatoire par objet, donc pas d'effet « tout bouge ensemble ».
+* **Canopée** — même cisaillement, amplitude 1 px, phase deux fois plus lente.
+* **Lumière** — taches de bruit qui dérivent + respiration globale + vignette.
+  Trois layouts : `jour`, `crepuscule`, `nuit`.
+
+### Résultat
+
+`planche_calques.html` — vue éclatée des calques, les 3 layouts lumière, et le tableau
+des techniques pour chaque zone.
+
+Zones montées en calques : **Clairière de la Jungle** (59 props + 50 éléments de canopée)
+et **Lac Tranquille** (51 props, 95 991 px d'eau au masque exact).
+
+### Réexécuter / étendre
+
+```bash
+python3 build_layered.py          # recompose les deux zones
+```
+
+Pour une nouvelle zone : générer `layers/src/<zone>_terrain.png` (avec un aplat magenta
+là où il faut de l'eau) et `layers/src/<zone>_props_sheet.png` (objets isolés sur magenta),
+découper avec `forge.chroma.cut_objects`, taguer dans `layers/tags/`, puis appeler
+`render()` avec les règles de placement.
+
+---
+
+## Zone « Pic Fleuri » — DA imposée par la référence
+
+Montée en **7 calques séparés**, à partir d'éléments générés un par un sur fond magenta.
+
+| # | calque | état | technique |
+|---|---|---|---|
+| 0 | ciel | statique | dégradé procédural |
+| 1 | montagnes | **animé** | voile de brume qui glisse sur les sommets |
+| 2 | nuages | **animé** | dérive ping-pong ±5 px + houle + cycling des crêtes |
+| 3 | herbe | statique | bord supérieur organique (fbm) |
+| 4 | falaises | statique | chaînes verticales + ombres de contact |
+| 5 | fleurs | **animé** | cisaillement + bob 1 px, phase aléatoire par touffe |
+| 6 | touffes | **animé** | cisaillement, phase aléatoire |
+
+**Conformité DA** : la composition finale est reprojetée sur la palette *exacte* de la
+référence fournie — 117 couleurs, espace DS 5 bits — via une LUT sur le cube couleur.
+504 × 504, soit 21 × 21 tuiles de 24 px.
+
+### Exports outils
+
+* `tiled/pic_fleuri/pic_fleuri_tuiles.tmx` + `.tsx` + `.png`
+  → 3 567 tuiles uniques, **319 tuiles animées natives Tiled** (12 frames à 110 ms).
+  Chaque case dont le contenu bouge devient une `<animation>` : c'est la technique
+  tilemap DS/GBA, directement éditable.
+* `tiled/pic_fleuri/pic_fleuri_calques.tmx`
+  → un `<imagelayer>` par calque, avec propriétés (technique, dossier de frames).
+* `aseprite/pic_fleuri/pic_fleuri.aseprite`
+  → 7 calques × 12 frames = 84 cels, RGBA 32 bits, grille 24 px.
+  Écrit au format binaire v1.3 et **relu par un parseur de contrôle** (`forge/aseprite_export.verify`).
+* `aseprite/pic_fleuri/importer_pic_fleuri.lua`
+  → script d'import Aseprite, solution de repli si le binaire pose problème.
+
+### Reconstruire
+
+```bash
+python3 rebuild_pic.py        # recompose la zone et ses 7 calques
+```
+
+**Note** : le lien GitHub fourni (`meromoonmeri/guilde-treehouse-pmd`) renvoie un 404 —
+dépôt privé ou branche absente. La méthode ci-dessus est donc la mienne, pas celle de
+ton autre agent.
+
+---
+
+## Quatre zones supplémentaires en calques
+
+`plage`, `prairie`, `marais`, `cristal` — même chaîne que Pic Fleuri, pilotée par
+un seul script.
+
+```bash
+python3 build_zones4.py       # compose les 4 zones + exports Tiled et Aseprite
+python3 planche_4zones.py     # regénère la galerie HTML autonome
+```
+
+| zone | props | canopée | palette | tuiles Tiled | cases animées | cels Aseprite |
+|---|---|---|---|---|---|---|
+| Crique tropicale (`plage`) | 39 | – | 62 | 2 896 | 273 / 399 | 36 |
+| Prairie au ruisseau (`prairie`) | 54 | 50 | 63 | 2 659 | 280 / 399 | 48 |
+| Marais brumeux (`marais`) | 50 | 50 | 64 | 4 010 | 361 / 399 | 48 |
+| Caverne de cristal (`cristal`) | 46 | – | 64 | 859 | 50 / 399 | 36 |
+
+Chaque zone : 504 × 504 (21 × 19 tuiles de 24 px), 12 frames à 110 ms, quantification
+DS 5 bits par canal.
+
+### Trois décisions techniques de cette passe
+
+**La lumière n'est pas de la donnée de tuile.** La respiration lumineuse et les taches
+de soleil dérivantes modifient *tous* les pixels à chaque frame. Bakées dans le tileset,
+elles rendaient 399 cases sur 399 « animées » et gonflaient les tilesets jusqu'à 5 000
+tuiles. Le rendu produit donc deux jeux de frames : `frames/` (lumière animée → GIF et
+Aseprite) et un jeu à lumière figée qui sert de source à l'export Tiled. La caverne de
+cristal passe ainsi de 3 909 à **859 tuiles**, et seules les 50 cases de la flaque
+bougent réellement.
+
+**Les rayures d'eau.** Une houle en `sin(y·k + warp − φ)` produit des bandes horizontales
+pleine largeur : effet moquette côtelée, très visible sur l'océan de la plage. Deux
+termes en `x` de fréquences incommensurables ont été ajoutés dans le seuil de strie, ce
+qui casse les lignes en clapot sans toucher au dégradé de profondeur.
+
+**Le sentier de la caverne.** Le générateur sortait un sable chaud, incohérent sous
+terre. `build_zones4.cool_path()` isole les pixels de teinte 28°–72° et les rebascule
+vers un gris-bleu minéral **à luminance conservée** : la couleur change, la texture
+pixel par pixel reste intacte.
+
+### Répartition des props
+
+Dispersion sous contraintes plutôt que tirage uniforme — un tirage uniforme donne un
+tapis illisible et cinq pontons identiques. Chaque règle déclare sa surface d'accueil
+(`ground`, `shore`, `midband`, `water`, `inner`), une distance minimale, un plafond par
+objet et une amplitude de cisaillement.
+
+### Galerie
+
+`planche_4zones.html` — les quatre zones animées, leurs calques frame 0 (fond magenta
+visible : c'est la couleur-clé), rampes d'eau, catégories détourées et compteurs.
