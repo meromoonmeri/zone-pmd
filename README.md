@@ -164,6 +164,79 @@ ms_par_pas        : 330
 
 ---
 
+## L'eau, deuxieme passe : ce que montrent les vrais fonds
+
+Le premier jet mettait des **tirets clairs horizontaux** sur un aplat bleu. Vu
+sur la zone, ca faisait des traits blancs colles sur l'eau. J'ai repris les
+fonds originaux gardes dans `ref_etude/` pour mesurer au lieu de deviner.
+
+Ce que disent les mesures (luminance, 0-255) :
+
+| | corps de l'eau p5 / p50 / p95 | ecart des reflets |
+|---|---|---|
+| `D17P31A` (nappe pleine) | 59 / 95 / 196 | ~20 |
+| `D01P41A` (grotte de la plage) | 57 / 89 / 234 | ~20 |
+| moi, 1re version | **80 / 80 / 179** | **+99** |
+| moi, apres correction | 80 / 80 / 191 | ~20 |
+
+Trois erreurs, trois corrections :
+
+1. **Le corps etait un aplat parfait** (p5 = p50 = 80). Sur les vrais fonds la
+   surface est nuancee partout. → la profondeur est melangee a un grain fbm
+   avant tramage.
+2. **Les reflets etaient des tirets horizontaux.** Sur `D17P31A` ce sont des
+   **boucles fermees fines et irregulieres** qui se croisent. → les reflets sont
+   maintenant les **lignes de niveau** d'un champ fbm lisse : `|u - round(u)| <
+   epaisseur`. Chaque anneau demarre sur une phase differente, donc la crete de
+   lumiere traverse le reseau de boucle en boucle.
+3. **L'ecart de luminance etait cinq fois trop grand** (+99 au lieu de ~20).
+   → `CRETE` adoucie et amplitude ramenee de `0.30 + 0.16·calme` a
+   `0.11 + 0.07·calme`.
+
+Et le blanc vif ? Il existe bien dans EoS, mais **colle a la berge** : sur
+`D01P41A`, 22 % des pixels a 1 px du bord depassent L=200 contre 11 % au large.
+C'est l'ecume (entree 15) qui le porte, pas le corps de la nappe.
+
+### Le tramage ne doit pas se voir comme une grille
+
+Premiere correction faite, un damier regulier apparaissait sur toute la nappe :
+la valeur restait au milieu de la plage, donc Bayer 4x4 alternait un pixel sur
+deux partout. Deux ajustements :
+
+* la valeur est **saturee** (`0.5 + (v-0.5)·2.6`) : les tons sont pleins, la
+  trame n'apparait plus que dans la bande de transition entre deux tons ;
+* la trame est **bruitee** (`0.70·Bayer + 0.30·aleatoire`). Les fonds d'EoS sont
+  trames a la main, le motif n'y est pas mecaniquement regulier.
+
+Le principe n'a pas bouge : **aucun pixel ne se deplace**, seule la ligne de
+palette change au fil des pas.
+
+## Sommet, pied de montagne, entrees de donjon
+
+| Zone | Ce que c'est | Eau | Props | Tuiles | Cases animees |
+|---|---|---|---|---|---|
+| `sommet_montagne` | plateau mineral, a-pics, cairns | – | 66 | 669 | 46 |
+| `pied_montagne` | prairie montant vers la falaise, ruisseau | oui | 108 | 2 075 | 238 |
+| `entree_grotte` | clairiere, gueule de grotte au nord | – | 125 | 1 406 | 139 |
+| `entree_arbre` | creux d'un arbre colossal | – | 100 | 1 670 | 188 |
+| `entree_ruines` | escalier de pierre descendant dans le noir | – | 70 | 879 | 70 |
+| `entree_source` | terrasse a anneaux, source ronde | oui | 65 | 1 398 | 116 |
+| `cascade_foret` | vasque et ruisseau | oui | 54 + 50 | 2 349 | 322 |
+| `lac_foret` | grand lac et ilot | oui | 61 + 50 | 2 821 | 355 |
+| `gorge_pont` | chasme, riviere, ponts de planches | oui | 60 | 1 139 | 150 |
+| `falaise_cotiere` | falaise, greve, mer | oui | 56 | 1 559 | 196 |
+
+Les quatre entrees de donjon ont toutes le meme parti : le chemin entre par le
+**bord sud**, l'ouverture est au **nord**, l'interieur est noir plein. C'est
+directement jouable comme point d'entree PMDO.
+
+Densite relevee au passage (`DENSITE = 1.35` dans `build_zones18.py`, un seul
+reglage pour toutes les zones) apres l'audit qui donnait 3 a 5 % d'occupation.
+Un essai a 2.4 donnait un tapis de props illisible : 1.35 est le compromis.
+
+
+---
+
 ## Zone `bassin_sentier`
 
 Sentier qui entre par le **sud**, remonte vers le **nord** avec deux courbes, et

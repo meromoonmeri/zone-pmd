@@ -96,13 +96,23 @@ def champ_indices(mask, seed=0, bande=11.0, ondulation=6.0, rive=2,
     # surface est mouchetee partout. Un aplat + des traits clairs, c'est ce qui
     # faisait "pas PMD". On melange donc la profondeur avec un grain fbm avant
     # de tramer, pour que chaque coin de la nappe ait sa propre nuance.
-    grain = 0.55 * fbm(h, w, 5, 3, seed + 11) + 0.45 * fbm(h, w, 13, 2, seed + 12)
-    valeur = np.clip(0.70 * clair + 0.62 * (grain - 0.5) + 0.15, 0, 1)
+    grain = 0.62 * fbm(h, w, 4, 3, seed + 11) + 0.38 * fbm(h, w, 9, 2, seed + 12)
+    valeur = np.clip(0.70 * clair + 0.72 * (grain - 0.5) + 0.12, 0, 1)
+    # Sature : sans ca la valeur reste au milieu de la plage sur de grandes
+    # surfaces, et le tramage ordonne y dessine un damier regulier visible a
+    # l'oeil. Sur les vrais fonds les tons sont PLEINS, et la trame n'apparait
+    # que dans la bande de transition entre deux tons.
+    valeur = np.clip(0.5 + (valeur - 0.5) * 2.6, 0, 1)
 
     # --- trame ordonnee entre deux nuances voisines ------------------------ #
     x = valeur * (NIVEAUX - 1)
     bas = np.floor(x)
-    trame = np.tile(BAYER4, (h // 4 + 1, w // 4 + 1))[:h, :w]
+    # Les fonds d'EoS sont trames a la main : le motif n'est pas parfaitement
+    # regulier. On casse donc la grille de Bayer avec un peu de bruit, sinon on
+    # lit un damier mecanique la ou le jeu montre un moucheté organique.
+    rng = np.random.default_rng(seed + 77)
+    trame = (0.70 * np.tile(BAYER4, (h // 4 + 1, w // 4 + 1))[:h, :w]
+             + 0.30 * rng.random((h, w)).astype(np.float32))
     niv = np.clip(bas + ((x - bas) > trame), 0, NIVEAUX - 1).astype(np.int32)
 
     # --- reflets : un RESEAU de lignes de niveau, pas des tirets ------------ #
