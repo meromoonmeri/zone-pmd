@@ -88,6 +88,18 @@ def R(cats, surface, count, cap=4, min_dist=30, sway=0):
                 min_dist=min_dist, sway=sway)
 
 ZONES = {
+ # Zone demandee : sentier qui monte du sud vers un bassin au nord, rive animee.
+ # Pas de canopee en cadre : elle boucherait l'entree sud du sentier, qui doit
+ # rester une entree jouable pour PMDO.
+ "bassin_sentier": dict(
+    sheets=["lac_props_sheet", "prairie_props_sheet"], canopy=None, eau="lac",
+    tint="#12301c", strength=0.44, grade="jour", seed=1019,
+    rules=[R(["reeds"], "shore", 18, 6, 20, 2), R(["lilies"], "water", 14, 5, 26, 1),
+           R(["conifer"], "midband", 6, 3, 52, 1), R(["tree"], "midband", 8, 3, 46, 2),
+           R(["rock"], "shore", 9, 4, 32), R(["stone"], "water", 3, 2, 34),
+           R(["flower"], "ground", 16, 5, 22, 2), R(["grass"], "ground", 14, 6, 22, 2),
+           R(["jetty"], "shore", 1, 1)]),
+
  "jungle_clairiere": dict(
     sheets=["jungle_props_sheet"], canopy=JUNGLE_CANOPY, eau="jungle",
     tint="#123018", strength=0.50, grade="jour", seed=1001,

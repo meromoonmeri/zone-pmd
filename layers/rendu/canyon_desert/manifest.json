@@ -1,0 +1,58 @@
+{
+ "zone": "canyon_desert",
+ "size": [
+  504,
+  456
+ ],
+ "tile": 24,
+ "frames": 12,
+ "frame_ms": 110,
+ "palette": 64,
+ "grade": "crepuscule",
+ "layers": [
+  {
+   "order": 0,
+   "name": "terrain",
+   "file": "00_terrain.png",
+   "animated": false
+  },
+  {
+   "order": 1,
+   "name": "water",
+   "dir": "01_water",
+   "animated": false,
+   "technique": "palette cycling EoS : indices figes, 16 entrees (3 nuances plates + 12 reflets cycles + ecume), tramage ordonne 4x4, un pas toutes les 330 ms",
+   "palette_animee": null
+  },
+  {
+   "order": 2,
+   "name": "props",
+   "dir": "02_props",
+   "animated": true,
+   "technique": "cisaillement vertical, base fixe"
+  },
+  {
+   "order": 3,
+   "name": "canopy",
+   "dir": "03_canopy",
+   "animated": false,
+   "technique": "cisaillement lent, phase decalee"
+  },
+  {
+   "order": 4,
+   "name": "light",
+   "animated": true,
+   "technique": "taches de bruit derivantes + vignette",
+   "grades": [
+    "jour",
+    "crepuscule",
+    "nuit"
+   ]
+  }
+ ],
+ "counts": {
+  "props": 55,
+  "canopy": 0,
+  "water_px": 0
+ }
+}

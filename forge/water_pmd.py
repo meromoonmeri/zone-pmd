@@ -21,7 +21,7 @@ Budget palette : le DS donne 16 couleurs par tuile 8x8. Les 16 sont utilisees :
 
     index  0 ..  2  eau plate, 3 nuances de profondeur   (STATIQUE)
     index  3 .. 14  reflets animes = 3 nuances x 4 phases (CYCLE)
-    index 15        ecume de rive                         (STATIQUE)
+    index 15        ecume de rive                         (CYCLE aussi)
 
 La majeure partie de la nappe est donc un degrade tramé immobile ; seuls les
 tirets de reflet cyclent. C'est ce que donnent les fonds de map d'EoS. Pour
@@ -54,6 +54,10 @@ IDX_ECUME = 15    # 15     : ecume de rive
 # profil de crete : une bande vive, une tiede, deux eteintes.
 # En tournant d'un cran par pas, la bande vive traverse la nappe.
 CRETE = np.array([1.00, 0.45, 0.10, 0.00], np.float32)
+
+# la rive respire sur le meme cycle : l'ecume s'allume et s'eteint entre le ton
+# clair de l'eau et la couleur d'ecume. Une seule entree, quatre valeurs.
+RIVE = np.array([1.00, 0.62, 0.30, 0.62], np.float32)
 
 
 def champ_indices(mask, seed=0, bande=11.0, ondulation=6.0, rive=2,
@@ -131,7 +135,8 @@ def palette(ramp, ecume, pas, calme=1.0, depart=0.32):
     pal = np.zeros((16, 3), np.float32)
     for b in range(NIVEAUX):
         pal[IDX_PLAT + b] = tons[b]
-    pal[IDX_ECUME] = crete
+    clair = np.array(tons[-1], np.float32)
+    pal[IDX_ECUME] = clair + (crete - clair) * float(RIVE[pas % PHASES])
     amp = 0.30 + 0.16 * min(1.5, calme)
     for b in range(NIVEAUX):
         base = np.array(tons[b], np.float32)
