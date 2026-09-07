@@ -1,88 +1,88 @@
 {
- "entree_ruines": {
+ "banquise_glacier": {
   "compo": {
-   "props": 70,
+   "props": 84,
    "canopy": 0,
-   "water_px": 0
+   "water_px": 11446
   },
-  "palette": 64,
-  "objets_catalogue": 59,
+  "palette": 62,
+  "objets_catalogue": 22,
   "tiled": {
-   "tuiles": 578,
-   "animees": 52,
-   "cases_animees": 52
-  },
-  "aseprite": {
-   "calques": 2,
-   "cels": 24
-  }
- },
- "foret_automne": {
-  "compo": {
-   "props": 74,
-   "canopy": 50,
-   "water_px": 0
-  },
-  "palette": 64,
-  "objets_catalogue": 19,
-  "tiled": {
-   "tuiles": 1281,
-   "animees": 258,
-   "cases_animees": 258
+   "tuiles": 681,
+   "animees": 84,
+   "cases_animees": 84
   },
   "aseprite": {
    "calques": 3,
    "cels": 36
   }
  },
- "foret_bambous": {
+ "caverne_lave": {
   "compo": {
-   "props": 96,
+   "props": 57,
+   "canopy": 0,
+   "water_px": 39035
+  },
+  "palette": 64,
+  "objets_catalogue": 16,
+  "tiled": {
+   "tuiles": 739,
+   "animees": 86,
+   "cases_animees": 86
+  },
+  "aseprite": {
+   "calques": 3,
+   "cels": 36
+  }
+ },
+ "temple_dore": {
+  "compo": {
+   "props": 53,
    "canopy": 0,
    "water_px": 0
   },
   "palette": 64,
   "objets_catalogue": 23,
   "tiled": {
-   "tuiles": 1160,
-   "animees": 216,
-   "cases_animees": 216
+   "tuiles": 397,
+   "animees": 0,
+   "cases_animees": 0
   },
   "aseprite": {
    "calques": 2,
    "cels": 24
   }
  },
- "canyon_desert": {
+ "ruines_englouties": {
   "compo": {
-   "props": 74,
+   "props": 73,
    "canopy": 0,
-   "water_px": 0
+   "water_px": 54671
   },
   "palette": 64,
-  "objets_catalogue": 18,
+  "objets_catalogue": 41,
   "tiled": {
-   "tuiles": 577,
-   "animees": 52,
-   "cases_animees": 52
+   "tuiles": 812,
+   "animees": 107,
+   "cases_animees": 107
   },
   "aseprite": {
-   "calques": 2,
-   "cels": 24
+   "calques": 3,
+   "cels": 36
   }
  },
- "grotte_moussue": {
+ "grottes_marines": {
   "compo": {
-   "props": 87,
+   "props": 63,
    "canopy": 0,
-   "water_px": 15620
+   "water_px": 28074
   },
   "palette": 64,
-  "objets_catalogue": 23,
+  "objets_catalogue": 22,
   "tiled": {
-   "tuiles": 766,
-   "animees": 111,
-   "cases_animees": 111
+   "tuiles": 665,
+   "animees": 73,
+   "cases_animees": 73
   },
   "aseprite": {
    "calques": 3,

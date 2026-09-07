@@ -23,7 +23,7 @@
  "frames": "fond_frames.png",
  "frame_ms": 110,
  "nb_frames": 12,
- "palette": 63,
+ "palette": 62,
  "calques": [
   {
    "ordre": 0,
@@ -53,8 +53,8 @@
  "collision": {
   "fichier": "obstacles.json",
   "masque": "collision.png",
-  "libres": 3262,
-  "bloquees": 329,
+  "libres": 3269,
+  "bloquees": 322,
   "eau": 175
  },
  "entrees": {
@@ -124,11 +124,11 @@
   ],
   "multiple_de_8": true,
   "multiple_de_24": true,
-  "sol_cases2": 362.4,
-  "sol_par_sprite": 365.0,
-  "largeur_locale_mediane": 5.37,
-  "plus_grand_vide": 27.43,
-  "occupation_decor": 4.3,
+  "sol_cases2": 363.2,
+  "sol_par_sprite": 365.8,
+  "largeur_locale_mediane": 6.29,
+  "plus_grand_vide": 25.02,
+  "occupation_decor": 4.1,
   "part_eau": 4.9,
   "ecrans": 2.99,
   "eau_cellules": 175

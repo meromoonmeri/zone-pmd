@@ -7,6 +7,104 @@
  "tile": 24,
  "frames": 12,
  "frame_ms": 110,
+ "calques_halcyon": [
+  {
+   "ordre": 0,
+   "nom": "Base",
+   "dossier": "00_base",
+   "sheet": "grottes_marines_Base.png",
+   "periode_px": 504,
+   "tuiles_posees": 3591,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 12,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 1,
+   "nom": "River",
+   "dossier": "01_river",
+   "sheet": "grottes_marines_River.png",
+   "periode_px": 504,
+   "tuiles_posees": 484,
+   "tuiles_animees": 360,
+   "frames": 4,
+   "tenue_frames": 3,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 2,
+   "nom": "Cliffs",
+   "dossier": "02_cliffs",
+   "sheet": null,
+   "periode_px": null,
+   "tuiles_posees": 0,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 12,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 3,
+   "nom": "Shadows",
+   "dossier": "03_shadows",
+   "sheet": "grottes_marines_Shadows.png",
+   "periode_px": 504,
+   "tuiles_posees": 411,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 12,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 4,
+   "nom": "Objects Under",
+   "dossier": "04_objects_under",
+   "sheet": "grottes_marines_Objects_Under.png",
+   "periode_px": 504,
+   "tuiles_posees": 444,
+   "tuiles_animees": 137,
+   "frames": 4,
+   "tenue_frames": 3,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 5,
+   "nom": "Objects",
+   "dossier": "05_objects",
+   "sheet": "grottes_marines_Objects.png",
+   "periode_px": 504,
+   "tuiles_posees": 509,
+   "tuiles_animees": 105,
+   "frames": 4,
+   "tenue_frames": 3,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 6,
+   "nom": "Objects Over",
+   "dossier": "06_objects_over",
+   "sheet": null,
+   "periode_px": null,
+   "tuiles_posees": 0,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 4,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 7,
+   "nom": "Fringe",
+   "dossier": "07_fringe",
+   "sheet": "grottes_marines_Fringe.png",
+   "periode_px": 504,
+   "tuiles_posees": 104,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 12,
+   "tenue_reguliere": true
+  }
+ ],
  "palette": 64,
  "grade": "nuit",
  "layers": [
@@ -23,365 +121,18 @@
    "animated": true,
    "technique": "palette cycling EoS : indices figes, 16 entrees (3 nuances plates + 12 reflets cycles + ecume), tramage ordonne 4x4, un pas toutes les 330 ms",
    "palette_animee": {
-    "infos": {
-     "niveaux": 3,
-     "phases": 4,
-     "entrees": 16,
-     "portee_px": 40.0,
-     "index_ecume": 15,
-     "index_reflet": 3,
-     "bande_px": 11.0,
-     "densite_reflets": 0.16588302343805655,
-     "tout_anime": false
-    },
-    "palettes": [
-     [
-      [
-       23,
-       55,
-       95
-      ],
-      [
-       31,
-       87,
-       143
-      ],
-      [
-       47,
-       135,
-       199
-      ],
-      [
-       87,
-       135,
-       175
-      ],
-      [
-       47,
-       87,
-       127
-      ],
-      [
-       23,
-       63,
-       103
-      ],
-      [
-       23,
-       55,
-       95
-      ],
-      [
-       87,
-       151,
-       199
-      ],
-      [
-       55,
-       119,
-       167
-      ],
-      [
-       39,
-       95,
-       151
-      ],
-      [
-       31,
-       87,
-       143
-      ],
-      [
-       103,
-       175,
-       223
-      ],
-      [
-       71,
-       151,
-       215
-      ],
-      [
-       55,
-       135,
-       199
-      ],
-      [
-       47,
-       135,
-       199
-      ],
-      [
-       159,
-       231,
-       255
-      ]
-     ],
-     [
-      [
-       23,
-       55,
-       95
-      ],
-      [
-       31,
-       87,
-       143
-      ],
-      [
-       47,
-       135,
-       199
-      ],
-      [
-       47,
-       87,
-       127
-      ],
-      [
-       23,
-       63,
-       103
-      ],
-      [
-       23,
-       55,
-       95
-      ],
-      [
-       87,
-       135,
-       175
-      ],
-      [
-       55,
-       119,
-       167
-      ],
-      [
-       39,
-       95,
-       151
-      ],
-      [
-       31,
-       87,
-       143
-      ],
-      [
-       87,
-       151,
-       199
-      ],
-      [
-       71,
-       151,
-       215
-      ],
-      [
-       55,
-       135,
-       199
-      ],
-      [
-       47,
-       135,
-       199
-      ],
-      [
-       103,
-       175,
-       223
-      ],
-      [
-       119,
-       191,
-       239
-      ]
-     ],
-     [
-      [
-       23,
-       55,
-       95
-      ],
-      [
-       31,
-       87,
-       143
-      ],
-      [
-       47,
-       135,
-       199
-      ],
-      [
-       23,
-       63,
-       103
-      ],
-      [
-       23,
-       55,
-       95
-      ],
-      [
-       87,
-       135,
-       175
-      ],
-      [
-       47,
-       87,
-       127
-      ],
-      [
-       39,
-       95,
-       151
-      ],
-      [
-       31,
-       87,
-       143
-      ],
-      [
-       87,
-       151,
-       199
-      ],
-      [
-       55,
-       119,
-       167
-      ],
-      [
-       55,
-       135,
-       199
-      ],
-      [
-       47,
-       135,
-       199
-      ],
-      [
-       103,
-       175,
-       223
-      ],
-      [
-       71,
-       151,
-       215
-      ],
-      [
-       87,
-       159,
-       215
-      ]
-     ],
-     [
-      [
-       23,
-       55,
-       95
-      ],
-      [
-       31,
-       87,
-       143
-      ],
-      [
-       47,
-       135,
-       199
-      ],
-      [
-       23,
-       55,
-       95
-      ],
-      [
-       87,
-       135,
-       175
-      ],
-      [
-       47,
-       87,
-       127
-      ],
-      [
-       23,
-       63,
-       103
-      ],
-      [
-       31,
-       87,
-       143
-      ],
-      [
-       87,
-       151,
-       199
-      ],
-      [
-       55,
-       119,
-       167
-      ],
-      [
-       39,
-       95,
-       151
-      ],
-      [
-       47,
-       135,
-       199
-      ],
-      [
-       103,
-       175,
-       223
-      ],
-      [
-       71,
-       151,
-       215
-      ],
-      [
-       55,
-       135,
-       199
-      ],
-      [
-       119,
-       191,
-       239
-      ]
-     ]
+    "methode": "frames redessinees (Palika / Halcyon)",
+    "frames_du_cycle": 4,
+    "dessins_distincts": 4,
+    "couleurs_totales": 8,
+    "part_de_l_aplat": 0.803,
+    "px_changes_par_frame": [
+     3388,
+     3458,
+     3494
     ],
-    "indices_constants": true,
-    "entrees_utilisees": 16,
-    "couleurs_par_frame": [
-     13,
-     13,
-     13,
-     13,
-     13,
-     13,
-     13,
-     13,
-     13,
-     13,
-     13,
-     13
-    ],
-    "etats_distincts": 4,
-    "ms_par_pas": 330
+    "liser\u00e9_px": 4,
+    "ms_par_dessin": null
    }
   },
   {
@@ -411,7 +162,7 @@
   }
  ],
  "counts": {
-  "props": 47,
+  "props": 63,
   "canopy": 0,
   "water_px": 28074
  }
