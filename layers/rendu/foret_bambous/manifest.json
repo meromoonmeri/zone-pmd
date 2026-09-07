@@ -7,6 +7,104 @@
  "tile": 24,
  "frames": 12,
  "frame_ms": 110,
+ "calques_halcyon": [
+  {
+   "ordre": 0,
+   "nom": "Base",
+   "dossier": "00_base",
+   "sheet": "foret_bambous_Base.png",
+   "periode_px": 504,
+   "tuiles_posees": 3591,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 12,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 1,
+   "nom": "River",
+   "dossier": "01_river",
+   "sheet": null,
+   "periode_px": null,
+   "tuiles_posees": 0,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 3,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 2,
+   "nom": "Cliffs",
+   "dossier": "02_cliffs",
+   "sheet": null,
+   "periode_px": null,
+   "tuiles_posees": 0,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 12,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 3,
+   "nom": "Shadows",
+   "dossier": "03_shadows",
+   "sheet": "foret_bambous_Shadows.png",
+   "periode_px": 504,
+   "tuiles_posees": 649,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 12,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 4,
+   "nom": "Objects Under",
+   "dossier": "04_objects_under",
+   "sheet": null,
+   "periode_px": null,
+   "tuiles_posees": 0,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 3,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 5,
+   "nom": "Objects",
+   "dossier": "05_objects",
+   "sheet": "foret_bambous_Objects.png",
+   "periode_px": 504,
+   "tuiles_posees": 1536,
+   "tuiles_animees": 1101,
+   "frames": 4,
+   "tenue_frames": 3,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 6,
+   "nom": "Objects Over",
+   "dossier": "06_objects_over",
+   "sheet": null,
+   "periode_px": null,
+   "tuiles_posees": 0,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 4,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 7,
+   "nom": "Fringe",
+   "dossier": "07_fringe",
+   "sheet": "foret_bambous_Fringe.png",
+   "periode_px": 504,
+   "tuiles_posees": 0,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 12,
+   "tenue_reguliere": true
+  }
+ ],
  "palette": 64,
  "grade": "jour",
  "layers": [
@@ -51,7 +149,7 @@
   }
  ],
  "counts": {
-  "props": 71,
+  "props": 96,
   "canopy": 0,
   "water_px": 0
  }
