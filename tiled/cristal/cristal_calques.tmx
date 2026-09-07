@@ -10,7 +10,7 @@
  <imagelayer id="2" name="1_water">
   <properties>
    <property name="anime" value="oui"/>
-   <property name="technique" value="bandes sinusoidales + profondeur + ecume + sparkles"/>
+   <property name="technique" value="palette cycling EoS : indices figes, 16 entrees (3 nuances plates + 12 reflets cycles + ecume), tramage ordonne 4x4, un pas toutes les 330 ms"/>
   </properties>
   <image source="calques/water.png" width="504" height="456"/>
  </imagelayer>

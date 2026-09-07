@@ -94,6 +94,76 @@ plus une grille de collision. Le tileset 24 px animé, lui, reste produit dans `
 
 ---
 
+## L'eau : la technique d'Explorers of Sky, à la lettre
+
+**Aucun pixel de l'eau ne bouge.** C'est le point que j'avais raté au premier jet,
+et c'est tout le sujet.
+
+> « Les tuiles ne changent jamais de graphisme pour s'animer. L'eau donne l'illusion
+> de bouger parce que sa **ligne de palette change de couleur**. Pour Beach Cave,
+> l'eau change de couleur toutes les **20 frames**. »
+> — SilverDeoxys563, qui a rippé les tilesets d'EoS
+
+TCRF confirme pour les fonds de map : *« palette animation for the water as well as
+dithering between water color shades »*. Et le wiki SkyTemple, pour les fonds de
+donjon : *« they can not have animated chunks but they can have animated palettes »*.
+
+`forge/water_pmd.py` implémente exactement ça.
+
+### Les 16 entrées de la ligne de palette
+
+| Index | Rôle | Animé |
+|---|---|---|
+| 0 – 2 | eau plate, 3 nuances de profondeur | non |
+| 3 – 14 | reflets = 3 nuances × 4 phases | **oui** |
+| 15 | écume de rive | non |
+
+À chaque pas, la couleur de la phase `a` devient celle de la phase `(a + s) % 4`.
+La crête de lumière saute de tiret en tiret sans qu'un seul pixel ait changé d'index.
+
+### Cadence
+
+Un pas toutes les **3 frames de sortie**, soit 3 × 110 = **330 ms** — la cadence
+relevée sur Beach Cave (20 frames moteur à 60 Hz = 333 ms). Sur une boucle de 12
+frames, l'eau n'a donc que **4 états distincts**, tenus 3 frames chacun. Pas
+d'interpolation : le jeu ne fait pas de fondu, il change la couleur d'un coup.
+
+### Les demi-teintes
+
+Pas de dégradé continu — le DS n'a pas les couleurs pour. **Tramage ordonné 4 × 4**
+entre deux nuances voisines. J'avais d'abord pris du Bayer 8 × 8 : sur une grande
+nappe la grille se voit à l'œil nu, ce que le jeu ne fait jamais.
+
+### Portée de la bande de rive
+
+Proportionnelle à la nappe (85 % du 92ᵉ centile de la distance au rivage, bornée à
+5–40 px). En fixe, un ruisseau ressortait entièrement clair et un océan entièrement
+sombre.
+
+### La palette de l'eau est réservée
+
+Le DS donne à chaque tuile 8 × 8 sa propre palette de 16 couleurs. Quantifier toute
+l'image sur une seule palette de 64 écrasait les bleus sous le sable et faisait
+**virer les reflets au jaune**. Les couleurs de l'eau sont donc protégées, et seul le
+reste passe au median-cut.
+
+### Preuve
+
+`preuve_eau_pmd.png` : le champ d'indices en fausses couleurs, les 4 pas de la
+palette, et les 4 états rendus. `preuve_eau_pmd.json` contient la vérification
+automatique — les frames sont re-rendues avec une palette de debug figée et comparées
+deux à deux :
+
+```
+indices_constants : true      # aucun pixel n'a changé d'index
+entrees_utilisees : 16        # la ligne de palette est pleine
+couleurs_par_frame: 13        # ≤ 16, la limite matérielle
+etats_distincts   : 4
+ms_par_pas        : 330
+```
+
+---
+
 ## Zones livrées
 
 | Zone | Toile | Cases | Cellules 8 px | Calques | Frames |

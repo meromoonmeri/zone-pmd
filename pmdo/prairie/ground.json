@@ -23,7 +23,7 @@
  "frames": "fond_frames.png",
  "frame_ms": 110,
  "nb_frames": 12,
- "palette": 63,
+ "palette": 64,
  "calques": [
   {
    "ordre": 0,
@@ -39,7 +39,7 @@
    "chemin": "calques/01_water.png",
    "anime": true,
    "frames": 12,
-   "technique": "bandes sinusoidales + profondeur + ecume + sparkles"
+   "technique": "palette cycling EoS : indices figes, 16 entrees (3 nuances plates + 12 reflets cycles + ecume), tramage ordonne 4x4, un pas toutes les 330 ms"
   },
   {
    "ordre": 2,

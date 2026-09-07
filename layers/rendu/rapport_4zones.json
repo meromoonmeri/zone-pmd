@@ -5,11 +5,11 @@
    "canopy": 0,
    "water_px": 69928
   },
-  "palette": 62,
+  "palette": 64,
   "tiled": {
-   "tuiles": 2896,
-   "animees": 273,
-   "cases_animees": 273
+   "tuiles": 1817,
+   "animees": 238,
+   "cases_animees": 238
   },
   "aseprite": {
    "calques": 3,
@@ -22,11 +22,11 @@
    "canopy": 50,
    "water_px": 24780
   },
-  "palette": 63,
+  "palette": 64,
   "tiled": {
-   "tuiles": 2659,
-   "animees": 280,
-   "cases_animees": 280
+   "tuiles": 2149,
+   "animees": 248,
+   "cases_animees": 248
   },
   "aseprite": {
    "calques": 4,
@@ -41,9 +41,9 @@
   },
   "palette": 64,
   "tiled": {
-   "tuiles": 4010,
-   "animees": 361,
-   "cases_animees": 361
+   "tuiles": 2715,
+   "animees": 341,
+   "cases_animees": 341
   },
   "aseprite": {
    "calques": 4,
@@ -58,9 +58,9 @@
   },
   "palette": 64,
   "tiled": {
-   "tuiles": 859,
-   "animees": 50,
-   "cases_animees": 50
+   "tuiles": 578,
+   "animees": 38,
+   "cases_animees": 38
   },
   "aseprite": {
    "calques": 3,

@@ -20,7 +20,8 @@ import numpy as np
 from PIL import Image
 
 from forge import core as C
-from forge.compose import (W, H, N, MS, load_terrain, hsv_mask, water_layer,
+from forge.water_pmd import water_layer, preuve as preuve_eau
+from forge.compose import (W, H, N, MS, load_terrain, hsv_mask,
                            load_objects, shear_sway, alpha_paste, contact_shadow,
                            apply_light, LIGHT_GRADES, enrich_terrain)
 from forge.animate import fbm, build_lut, palette_of, snap
@@ -190,9 +191,15 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
         os.makedirs(f"{out_dir}/{sub}", exist_ok=True)
     Image.fromarray(terrain_g, "RGB").save(f"{out_dir}/00_terrain.png")
 
-    wl = (water_layer(water_mask, water_ramp or RAMP_LAKE, N, seed + 3,
-                      foam_color=foam or FOAM_LAKE, calm=calm)
-          if water_mask is not None else None)
+    # Eau : palette cycling a la maniere d'Explorers of Sky. Le champ d'indices
+    # est fige, seules les 12 entrees de reflet changent de couleur, un pas
+    # toutes les 3 frames (330 ms, la cadence relevee sur Beach Cave).
+    wl = pr = None
+    if water_mask is not None:
+        wl = water_layer(water_mask, water_ramp or RAMP_LAKE, N, seed + 3,
+                         foam_color=foam or FOAM_LAKE, calm=calm, maintien=3)
+        pr = preuve_eau(water_mask, water_ramp or RAMP_LAKE,
+                        foam or FOAM_LAKE, seed=seed + 3, maintien=3, n=N)
 
     finals, finals_tiles = [], []
     for t in range(N):
@@ -227,9 +234,29 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
         frame[..., :3] = C.ds_quant(frame[..., :3])
         finals.append(frame[..., :3].copy())
 
-    ref = Image.fromarray(finals[0], "RGB").quantize(colors=64, method=Image.MEDIANCUT,
-                                                     dither=Image.Dither.NONE).convert("RGB")
-    pal = palette_of(np.array(ref)); lut = build_lut(pal)
+    # --- palette finale : la ligne de l'eau est RESERVEE ------------------- #
+    # Le DS attribue une palette de 16 couleurs par tuile 8x8 ; l'eau a la
+    # sienne. Quantifier toute l'image d'un bloc ecrasait les bleus sous le
+    # sable et faisait virer les reflets au jaune. On protege donc les couleurs
+    # de l'eau (elles sont peu nombreuses et connues d'avance) et on ne
+    # median-cut que le reste.
+    pal_eau = np.zeros((0, 3), np.uint8)
+    if wl is not None:
+        tous = np.concatenate([f[..., :3][f[..., 3] > 0] for f in wl], 0)
+        pal_eau = np.unique(C.ds_quant(tous.reshape(1, -1, 3)).reshape(-1, 3), axis=0)
+    reste = max(16, 64 - len(pal_eau))
+    src = finals[0].copy()
+    if wl is not None:
+        # on retire l'eau du calcul pour ne pas lui depenser de slots en double
+        trou = wl[0][..., 3] > 0
+        if (~trou).any():
+            src[trou] = np.median(src[~trou].reshape(-1, 3), 0).astype(np.uint8)
+    ref = Image.fromarray(src, "RGB").quantize(colors=reste, method=Image.MEDIANCUT,
+                                               dither=Image.Dither.NONE).convert("RGB")
+    pal = palette_of(np.array(ref))
+    if len(pal_eau):
+        pal = np.unique(np.concatenate([pal_eau, pal], 0), axis=0)
+    lut = build_lut(pal)
     imgs = []
     for t, f in enumerate(finals):
         im = Image.fromarray(snap(f, pal, lut).astype(np.uint8), "RGB")
@@ -249,7 +276,10 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
                  dict(order=0, name="terrain", file="00_terrain.png", animated=False),
                  dict(order=1, name="water", dir="01_water",
                       animated=water_mask is not None,
-                      technique="bandes sinusoidales + profondeur + ecume + sparkles"),
+                      technique=("palette cycling EoS : indices figes, 16 entrees "
+                                 "(3 nuances plates + 12 reflets cycles + ecume), "
+                                 "tramage ordonne 4x4, un pas toutes les 330 ms"),
+                      palette_animee=pr),
                  dict(order=2, name="props", dir="02_props", animated=True,
                       technique="cisaillement vertical, base fixe"),
                  dict(order=3, name="canopy", dir="03_canopy",
