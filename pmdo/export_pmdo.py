@@ -256,6 +256,8 @@ def export_zone(zone, tuiles_8px=True):
         note=("Toile multiple de 8 et de 24 : la grille de collision PMDO tombe "
               "sur l'art sans reechantillonnage. Aucun pixel n'a ete redimensionne."),
     )
+    g["calques_halcyon"] = man.get("calques_halcyon")
+    g["sheets_dir"] = "sheets"
     json.dump(g, open(f"{dst}/ground.json", "w"), indent=1)
     return g
 

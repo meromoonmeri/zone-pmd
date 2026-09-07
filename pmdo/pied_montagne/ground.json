@@ -146,5 +146,104 @@
    "eau"
   ]
  },
- "note": "Toile multiple de 8 et de 24 : la grille de collision PMDO tombe sur l'art sans reechantillonnage. Aucun pixel n'a ete redimensionne."
+ "note": "Toile multiple de 8 et de 24 : la grille de collision PMDO tombe sur l'art sans reechantillonnage. Aucun pixel n'a ete redimensionne.",
+ "calques_halcyon": [
+  {
+   "ordre": 0,
+   "nom": "Base",
+   "dossier": "00_base",
+   "sheet": "pied_montagne_Base.png",
+   "periode_px": 504,
+   "tuiles_posees": 3591,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 12,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 1,
+   "nom": "River",
+   "dossier": "01_river",
+   "sheet": "pied_montagne_River.png",
+   "periode_px": 504,
+   "tuiles_posees": 542,
+   "tuiles_animees": 393,
+   "frames": 4,
+   "tenue_frames": 3,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 2,
+   "nom": "Cliffs",
+   "dossier": "02_cliffs",
+   "sheet": null,
+   "periode_px": null,
+   "tuiles_posees": 0,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 12,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 3,
+   "nom": "Shadows",
+   "dossier": "03_shadows",
+   "sheet": "pied_montagne_Shadows.png",
+   "periode_px": 504,
+   "tuiles_posees": 683,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 12,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 4,
+   "nom": "Objects Under",
+   "dossier": "04_objects_under",
+   "sheet": "pied_montagne_Objects_Under.png",
+   "periode_px": 504,
+   "tuiles_posees": 47,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 3,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 5,
+   "nom": "Objects",
+   "dossier": "05_objects",
+   "sheet": "pied_montagne_Objects.png",
+   "periode_px": 504,
+   "tuiles_posees": 1523,
+   "tuiles_animees": 610,
+   "frames": 4,
+   "tenue_frames": 3,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 6,
+   "nom": "Objects Over",
+   "dossier": "06_objects_over",
+   "sheet": null,
+   "periode_px": null,
+   "tuiles_posees": 0,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 4,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 7,
+   "nom": "Fringe",
+   "dossier": "07_fringe",
+   "sheet": "pied_montagne_Fringe.png",
+   "periode_px": 504,
+   "tuiles_posees": 135,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 12,
+   "tenue_reguliere": true
+  }
+ ],
+ "sheets_dir": "sheets"
 }

@@ -164,6 +164,86 @@ ms_par_pas        : 330
 
 ---
 
+## Les zones montees sur sa structure de calques
+
+Releve sur `Data/Ground/altere_pond.rsground` : son ground map compte **huit
+calques nommes, dans un ordre fixe**, chacun avec **son propre tilesheet**
+baptise `<Carte>_<Calque>`.
+
+| # | Calque | Lui, Altere Pond | Ce que j'y mets |
+|---|---|---|---|
+| 0 | Base | 10 251 tuiles, 1 frame | le terrain |
+| 1 | River | 1 036 tuiles, **toutes** en 4 frames | la nappe d'eau |
+| 2 | Cliffs | 1 840 tuiles, 1 frame | falaises, colonnes, stalagmites, piliers |
+| 3 | Shadows | 56 tuiles, 1 frame | les ombres de contact, **en calque a part** |
+| 4 | Objects Under | 841 tuiles, 232 en 4 frames | ce sur quoi on marche : nenuphars, mousse, litiere, dalles |
+| 5 | Objects | 4 604 tuiles, 592 en 4 et 8 frames | les props principaux |
+| 6 | Objects Over | 150 tuiles, 74 en **3 frames** | la canopee, ce qui recouvre le joueur |
+| 7 | Fringe | 2 075 tuiles, 1 frame | les raccords, dessines **en dernier** |
+
+Trois choses que j'ai reprises et qui changent le montage :
+
+1. **Les ombres portees deviennent un calque.** Elles etaient cuites sous les
+   props ; elles sont maintenant extraites et empilees a part, entre Cliffs et
+   Objects Under. Controle sur `bassin_sentier` : 86 taches pour 91 props.
+2. **Fringe passe apres tout le monde**, donc par-dessus le joueur.
+3. **Le nombre de dessins distincts d'un calque anime est petit et fixe** : 4
+   pour River, Objects Under et Objects, **3** pour Objects Over. Avant, la
+   houle etait echantillonnee sur les 12 frames de sortie, ce qui faisait 12
+   dessins la ou il en a 4. La boucle rend toujours 12 frames, mais elles ne
+   piochent que dans K dessins.
+
+Le tilesheet d'un calque anime est le calque **dessine K fois de suite
+horizontalement sur fond magenta**, exactement comme sa
+`Altere_Pond_River_Animations` (4 copies, periode 336 px). Chez moi :
+`pmdo/<zone>/sheets/<zone>_River.png`, 2016 x 456, periode 504 px.
+
+`ground.json` porte la table complete sous `calques_halcyon` : par calque,
+l'ordre, le nom, le dossier, le sheet, la periode, les tuiles posees, les
+tuiles reellement animees et la tenue en frames.
+
+### 20 zones montees
+
+| Zone | Calques utilises | Tuiles 8 px | Animees |
+|---|---|---|---|
+| `lac_foret` | 7 | 8 861 | 2 691 |
+| `foret_automne` | 5 | 7 969 | 1 779 |
+| `cascade_foret` | 8 | 7 583 | 1 813 |
+| `falaise_cotiere` | 7 | 7 096 | 1 023 |
+| `gorge_pont` | 7 | 7 084 | 730 |
+| `entree_grotte` | 5 | 6 623 | 489 |
+| `entree_arbre` | 4 | 6 503 | 730 |
+| `ruines_englouties` | 7 | 6 485 | 1 035 |
+| `bassin_sentier` | 6 | 6 443 | 1 359 |
+| `caverne_lave` | 7 | 6 548 | 582 |
+| `pied_montagne` | 6 | 6 521 | 1 003 |
+| `banquise_glacier` | 7 | 6 375 | 353 |
+| `grotte_moussue` | 7 | 6 203 | 558 |
+| `forest_bambous` | 3 | 5 776 | 1 101 |
+| `canyon_desert` | 4 | 5 693 | 221 |
+| `grottes_marines` | 6 | 5 543 | 602 |
+| `entree_source` | 7 | 5 369 | 647 |
+| `temple_dore` | 5 | 5 365 | 0 |
+| `entree_ruines` | 4 | 5 187 | 179 |
+| `sommet_montagne` | 4 | 5 145 | 140 |
+
+Une zone n'utilise que les calques dont elle a besoin : `temple_dore` n'a ni
+riviere ni canopee, `foret_bambous` n'en remplit que trois.
+
+### Ce qui reste en dessous de lui
+
+Mon **Fringe est pauvre** : 102 tuiles la ou il en a 2 075. Chez lui c'est un
+vrai tileset de raccords, dessine a la main, avec des debords d'herbe et de
+roche qui recouvrent le joueur. Chez moi ce n'est qu'un liseré de contact d'un
+pixel. Le combler demande de dessiner des tuiles de transition, pas de changer
+le montage.
+
+Et ses **props a 8 frames** (160 tuiles chez lui) sont ramenes a 4 : avec une
+boucle de 12 frames, 8 ne tombe pas juste. Il faudrait passer la boucle a 24.
+
+
+---
+
 ## L'eau a la maniere de Palika (Halcyon)
 
 Releve fait directement sur ses fichiers, pas de memoire :
