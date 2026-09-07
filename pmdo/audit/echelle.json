@@ -1,0 +1,127 @@
+{
+ "cristal": {
+  "zone": "cristal",
+  "px": [
+   504,
+   456
+  ],
+  "cases": [
+   21.0,
+   19.0
+  ],
+  "cellules_8px": [
+   63,
+   57
+  ],
+  "multiple_de_8": true,
+  "multiple_de_24": true,
+  "sol_cases2": 358.8,
+  "sol_par_sprite": 361.3,
+  "largeur_locale_mediane": 3.59,
+  "plus_grand_vide": 18.86,
+  "occupation_decor": 4.6,
+  "part_eau": 5.5,
+  "ecrans": 2.99,
+  "eau_cellules": 197
+ },
+ "marais": {
+  "zone": "marais",
+  "px": [
+   504,
+   456
+  ],
+  "cases": [
+   21.0,
+   19.0
+  ],
+  "cellules_8px": [
+   63,
+   57
+  ],
+  "multiple_de_8": true,
+  "multiple_de_24": true,
+  "sol_cases2": 72.3,
+  "sol_par_sprite": 72.8,
+  "largeur_locale_mediane": 0.94,
+  "plus_grand_vide": 3.33,
+  "occupation_decor": 32.1,
+  "part_eau": 49.7,
+  "ecrans": 2.99,
+  "eau_cellules": 1786
+ },
+ "pic_fleuri": {
+  "zone": "pic_fleuri",
+  "px": [
+   504,
+   504
+  ],
+  "cases": [
+   21.0,
+   21.0
+  ],
+  "cellules_8px": [
+   63,
+   63
+  ],
+  "multiple_de_8": true,
+  "multiple_de_24": true,
+  "sol_cases2": 268.2,
+  "sol_par_sprite": 270.1,
+  "largeur_locale_mediane": 2.4,
+  "plus_grand_vide": 10.99,
+  "occupation_decor": 39.2,
+  "part_eau": 0.0,
+  "ecrans": 3.31,
+  "eau_cellules": 0
+ },
+ "plage": {
+  "zone": "plage",
+  "px": [
+   504,
+   456
+  ],
+  "cases": [
+   21.0,
+   19.0
+  ],
+  "cellules_8px": [
+   63,
+   57
+  ],
+  "multiple_de_8": true,
+  "multiple_de_24": true,
+  "sol_cases2": 258.6,
+  "sol_par_sprite": 260.4,
+  "largeur_locale_mediane": 2.98,
+  "plus_grand_vide": 10.0,
+  "occupation_decor": 4.8,
+  "part_eau": 30.4,
+  "ecrans": 2.99,
+  "eau_cellules": 1090
+ },
+ "prairie": {
+  "zone": "prairie",
+  "px": [
+   504,
+   456
+  ],
+  "cases": [
+   21.0,
+   19.0
+  ],
+  "cellules_8px": [
+   63,
+   57
+  ],
+  "multiple_de_8": true,
+  "multiple_de_24": true,
+  "sol_cases2": 213.8,
+  "sol_par_sprite": 215.3,
+  "largeur_locale_mediane": 1.89,
+  "plus_grand_vide": 6.15,
+  "occupation_decor": 35.8,
+  "part_eau": 10.6,
+  "ecrans": 2.99,
+  "eau_cellules": 380
+ }
+}

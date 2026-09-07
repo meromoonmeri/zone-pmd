@@ -1,0 +1,70 @@
+{
+ "plage": {
+  "compo": {
+   "props": 39,
+   "canopy": 0,
+   "water_px": 69928
+  },
+  "palette": 64,
+  "tiled": {
+   "tuiles": 1817,
+   "animees": 238,
+   "cases_animees": 238
+  },
+  "aseprite": {
+   "calques": 3,
+   "cels": 36
+  }
+ },
+ "prairie": {
+  "compo": {
+   "props": 54,
+   "canopy": 50,
+   "water_px": 24780
+  },
+  "palette": 64,
+  "tiled": {
+   "tuiles": 2149,
+   "animees": 248,
+   "cases_animees": 248
+  },
+  "aseprite": {
+   "calques": 4,
+   "cels": 48
+  }
+ },
+ "marais": {
+  "compo": {
+   "props": 50,
+   "canopy": 50,
+   "water_px": 114943
+  },
+  "palette": 64,
+  "tiled": {
+   "tuiles": 2715,
+   "animees": 341,
+   "cases_animees": 341
+  },
+  "aseprite": {
+   "calques": 4,
+   "cels": 48
+  }
+ },
+ "cristal": {
+  "compo": {
+   "props": 46,
+   "canopy": 0,
+   "water_px": 12816
+  },
+  "palette": 64,
+  "tiled": {
+   "tuiles": 578,
+   "animees": 38,
+   "cases_animees": 38
+  },
+  "aseprite": {
+   "calques": 3,
+   "cels": 36
+  }
+ }
+}
