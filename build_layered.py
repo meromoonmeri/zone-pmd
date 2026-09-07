@@ -21,6 +21,8 @@ from PIL import Image
 
 from forge import core as C
 from forge.water_pmd import water_layer, preuve as preuve_eau
+from forge.water_halcyon import (water_layer as water_layer_hal,
+                                 preuve as preuve_eau_hal)
 from forge.compose import (W, H, N, MS, load_terrain, hsv_mask,
                            load_objects, shear_sway, alpha_paste, contact_shadow,
                            apply_light, LIGHT_GRADES, enrich_terrain)
@@ -125,6 +127,7 @@ def grade_terrain(rgb, tint_hex, strength=0.55, pad=0.20):
 
 def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
            rules=None, water_ramp=None, foam=None, calm=1.0, eau_emissive=False,
+           style_eau="sky",
            terrain_tint="#0a1c14", terrain_strength=0.55,
            seed=1, grade="jour"):
     rng = np.random.default_rng(seed)
@@ -196,10 +199,14 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
     # toutes les 3 frames (330 ms, la cadence relevee sur Beach Cave).
     wl = pr = None
     if water_mask is not None:
-        wl = water_layer(water_mask, water_ramp or RAMP_LAKE, N, seed + 3,
-                         foam_color=foam or FOAM_LAKE, calm=calm, maintien=3)
-        pr = preuve_eau(water_mask, water_ramp or RAMP_LAKE,
-                        foam or FOAM_LAKE, seed=seed + 3, maintien=3, n=N)
+        # "sky"     : palette cycling d'Explorers of Sky, aucun pixel ne bouge
+        # "halcyon" : 4 frames redessinees, a la maniere de Palika
+        _wl = water_layer_hal if style_eau == "halcyon" else water_layer
+        _pr = preuve_eau_hal if style_eau == "halcyon" else preuve_eau
+        wl = _wl(water_mask, water_ramp or RAMP_LAKE, N, seed + 3,
+                 foam_color=foam or FOAM_LAKE, calm=calm, maintien=3)
+        pr = _pr(water_mask, water_ramp or RAMP_LAKE,
+                 foam or FOAM_LAKE, seed=seed + 3, maintien=3, n=N)
 
     finals, finals_tiles = [], []
     for t in range(N):

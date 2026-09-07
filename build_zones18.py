@@ -89,6 +89,11 @@ JUNGLE_CANOPY = f"{CUT}/jungle_canopy_sheet"
 # densite d'un coup, en un seul endroit.
 DENSITE = 1.35
 
+# "sky"     : palette cycling d'Explorers of Sky (forge/water_pmd.py)
+# "halcyon" : 4 frames redessinees, methode relevee sur les fichiers de Palika
+#             (forge/water_halcyon.py). C'est ce qui est demande maintenant.
+STYLE_EAU = "halcyon"
+
 
 def R(cats, surface, count, cap=4, min_dist=30, sway=0):
     return dict(cats=cats, surface=surface,
@@ -347,7 +352,8 @@ def construire(zone):
                  rules=spec["rules"], water_ramp=ramp, foam=foam, calm=calm,
                  terrain_tint=spec["tint"], terrain_strength=spec["strength"],
                  grade=spec.get("grade", "jour"), seed=spec["seed"],
-                 eau_emissive=spec.get("emissive", False))
+                 eau_emissive=spec.get("emissive", False),
+                 style_eau=spec.get("style_eau", STYLE_EAU))
     tr, av = export_tools(zone)
     return dict(compo=m["counts"], palette=m["palette"], objets_catalogue=n,
                 tiled=dict(tuiles=tr["tuiles_uniques"], animees=tr["tuiles_animees"],
