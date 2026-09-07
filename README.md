@@ -164,6 +164,74 @@ ms_par_pas        : 330
 
 ---
 
+## L'eau a la maniere de Palika (Halcyon)
+
+Releve fait directement sur ses fichiers, pas de memoire :
+`Content/Tile/Altere_Pond_River_Animations.tile` decode en planche, et
+`Data/Ground/altere_pond.rsground` lu pour la structure d'animation.
+
+Le `.tile` de RogueEssence est une banque de tuiles 8x8 : entete
+`int32 taille, int32 nombre`, puis `nombre` x `(int64 cle, int64 offset)`, et a
+chaque offset un `int64 longueur` suivi du PNG. La cle encode la position :
+`y = cle >> 32`, `x = cle & 0xffffffff`. Recomposee, la planche fait
+1368 x 480 px.
+
+**Et la, tout devient clair : il n'y a pas de palette cycling.** Sa planche
+contient **la meme mare quatre fois de suite**, periode 336 px, sur fond
+magenta. Le ground map pointe des listes `Frames` de longueur 4 (1 700 tuiles)
+et 8 (160 tuiles). Ce sont de **vraies frames redessinees**.
+
+Ce que mesure sa nappe :
+
+| | Palika, Altere Pond |
+|---|---|
+| Corps de l'eau | **un aplat**, `#83dae6` sur 78,6 % des pixels |
+| Couleurs totales | 15 |
+| Liseré de berge | 4 px, trois valeurs (`#5787bf`, `#5291c5`, …) |
+| Px changeant par frame | ~6 600, dont **84 % a l'interieur** |
+| Frames | 4 |
+
+Autrement dit : le contour ne bouge presque pas, ce sont les petits **traits
+clairs en virgule** plaques dans la nappe qui sont redessines.
+
+### Ce que ca change chez moi
+
+`forge/water_halcyon.py` reprend sa structure et ses rapports de valeurs, mais
+tire les teintes de la rampe de la zone : une mare de village reste cyan clair,
+une coulee de lave resterait orange. **Sa methode, pas ses pixels.**
+
+Controle sur `bassin_sentier` :
+
+| | Palika | moi |
+|---|---|---|
+| Part de l'aplat | 78,6 % | **79,3 %** |
+| Couleurs dans l'eau | 15 | 8 |
+| Px changeant par frame | ~6 600 | 1 400 – 4 800 |
+
+Zones repassees a sa methode : `bassin_sentier`, `lac_foret`, `cascade_foret`,
+`entree_source`, `gorge_pont`, `falaise_cotiere`, `pied_montagne`.
+
+### Attention, les deux methodes se contredisent
+
+La consigne precedente etait « l'eau exactement comme dans PMD Sky », c'est-a-dire
+**palette cycling, aucun pixel ne bouge**. Palika fait l'inverse : il redessine.
+Les deux sont justes, mais pour des cibles differentes — le palette cycling est
+la contrainte du **fond de donjon DS**, les frames redessinees sont ce que
+permet **RogueEssence sur un ground map**.
+
+Les deux restent dans le depot :
+
+* `forge/water_pmd.py` → `style_eau="sky"` (palette cycling, 16 entrees)
+* `forge/water_halcyon.py` → `style_eau="halcyon"` (4 frames) — **defaut actuel**,
+  regle par `STYLE_EAU` en tete de `build_zones18.py`.
+
+Les fichiers de Palika servent de **reference d'etude uniquement** : ils sont
+dans `ref_etude/halcyon/`, qui est exclu du depot. Aucun de ses pixels n'est
+livre ici.
+
+
+---
+
 ## L'eau, deuxieme passe : ce que montrent les vrais fonds
 
 Le premier jet mettait des **tirets clairs horizontaux** sur un aplat bleu. Vu
