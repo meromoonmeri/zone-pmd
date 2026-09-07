@@ -1,0 +1,163 @@
+{
+ "nom": "cascade_foret",
+ "moteur": "RogueEssence / PMDO",
+ "taille_px": [
+  504,
+  456
+ ],
+ "cellules_8px": [
+  63,
+  57
+ ],
+ "cases_24px": [
+  21,
+  19
+ ],
+ "cellule": 8,
+ "case": 24,
+ "viewport": [
+  320,
+  240
+ ],
+ "fond": "fond.png",
+ "frames": "fond_frames.png",
+ "frame_ms": 110,
+ "nb_frames": 12,
+ "palette": 64,
+ "calques": [
+  {
+   "ordre": 0,
+   "nom": "terrain",
+   "chemin": "calques/00_terrain.png",
+   "anime": false,
+   "frames": 1,
+   "technique": ""
+  },
+  {
+   "ordre": 1,
+   "nom": "water",
+   "chemin": "calques/01_water.png",
+   "anime": true,
+   "frames": 12,
+   "technique": "palette cycling EoS : indices figes, 16 entrees (3 nuances plates + 12 reflets cycles + ecume), tramage ordonne 4x4, un pas toutes les 330 ms"
+  },
+  {
+   "ordre": 2,
+   "nom": "props",
+   "chemin": "calques/02_props.png",
+   "anime": true,
+   "frames": 12,
+   "technique": "cisaillement vertical, base fixe"
+  },
+  {
+   "ordre": 3,
+   "nom": "canopy",
+   "chemin": "calques/03_canopy.png",
+   "anime": true,
+   "frames": 12,
+   "technique": "cisaillement lent, phase decalee"
+  }
+ ],
+ "collision": {
+  "fichier": "obstacles.json",
+  "masque": "collision.png",
+  "libres": 1493,
+  "bloquees": 2098,
+  "eau": 884
+ },
+ "entrees": {
+  "nord": {
+   "cellule": [
+    31,
+    3
+   ],
+   "px": [
+    252,
+    28
+   ],
+   "profondeur_cellules": 3,
+   "sur_bordure": false
+  },
+  "sud": {
+   "cellule": [
+    39,
+    50
+   ],
+   "px": [
+    316,
+    404
+   ],
+   "profondeur_cellules": 6,
+   "sur_bordure": false
+  },
+  "ouest": {
+   "cellule": [
+    4,
+    18
+   ],
+   "px": [
+    36,
+    148
+   ],
+   "profondeur_cellules": 4,
+   "sur_bordure": false
+  },
+  "est": {
+   "cellule": [
+    58,
+    30
+   ],
+   "px": [
+    468,
+    244
+   ],
+   "profondeur_cellules": 4,
+   "sur_bordure": false
+  }
+ },
+ "bordure_fermee": [
+  "nord",
+  "sud",
+  "ouest",
+  "est"
+ ],
+ "echelle": {
+  "zone": "cascade_foret",
+  "px": [
+   504,
+   456
+  ],
+  "cases": [
+   21.0,
+   19.0
+  ],
+  "cellules_8px": [
+   63,
+   57
+  ],
+  "multiple_de_8": true,
+  "multiple_de_24": true,
+  "sol_cases2": 165.9,
+  "sol_par_sprite": 167.0,
+  "largeur_locale_mediane": 1.49,
+  "plus_grand_vide": 5.33,
+  "occupation_decor": 33.8,
+  "part_eau": 24.6,
+  "ecrans": 2.99,
+  "eau_cellules": 884
+ },
+ "collision_tiled": {
+  "tmx": "collision.tmx",
+  "tsx": "brosse_collision.tsx",
+  "cellules": [
+   63,
+   57
+  ],
+  "pinceaux": [
+   "libre",
+   "bloque",
+   "eau"
+  ]
+ },
+ "note": "Toile multiple de 8 et de 24 : la grille de collision PMDO tombe sur l'art sans reechantillonnage. Aucun pixel n'a ete redimensionne."
+}

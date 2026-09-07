@@ -1,20 +1,56 @@
 {
- "sommet_montagne": {
+ "entree_ruines": {
   "compo": {
-   "props": 84,
+   "props": 81,
    "canopy": 0,
    "water_px": 0
   },
   "palette": 64,
-  "objets_catalogue": 30,
+  "objets_catalogue": 59,
   "tiled": {
-   "tuiles": 774,
-   "animees": 59,
-   "cases_animees": 59
+   "tuiles": 872,
+   "animees": 72,
+   "cases_animees": 72
   },
   "aseprite": {
    "calques": 2,
    "cels": 24
+  }
+ },
+ "entree_source": {
+  "compo": {
+   "props": 86,
+   "canopy": 0,
+   "water_px": 13887
+  },
+  "palette": 64,
+  "objets_catalogue": 68,
+  "tiled": {
+   "tuiles": 1383,
+   "animees": 132,
+   "cases_animees": 132
+  },
+  "aseprite": {
+   "calques": 3,
+   "cels": 36
+  }
+ },
+ "cascade_foret": {
+  "compo": {
+   "props": 54,
+   "canopy": 50,
+   "water_px": 57150
+  },
+  "palette": 64,
+  "objets_catalogue": 35,
+  "tiled": {
+   "tuiles": 2354,
+   "animees": 322,
+   "cases_animees": 322
+  },
+  "aseprite": {
+   "calques": 4,
+   "cels": 48
   }
  }
 }
