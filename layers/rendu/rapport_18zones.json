@@ -1,20 +1,20 @@
 {
- "caverne_lave": {
+ "sommet_montagne": {
   "compo": {
-   "props": 43,
+   "props": 84,
    "canopy": 0,
-   "water_px": 39035
+   "water_px": 0
   },
   "palette": 64,
-  "objets_catalogue": 16,
+  "objets_catalogue": 30,
   "tiled": {
-   "tuiles": 718,
-   "animees": 90,
-   "cases_animees": 90
+   "tuiles": 774,
+   "animees": 59,
+   "cases_animees": 59
   },
   "aseprite": {
-   "calques": 3,
-   "cels": 36
+   "calques": 2,
+   "cels": 24
   }
  }
 }

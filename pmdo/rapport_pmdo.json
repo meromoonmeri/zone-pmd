@@ -1,5 +1,5 @@
 {
- "grottes_marines": {
+ "bassin_sentier": {
   "cellules": [
    63,
    57
@@ -11,9 +11,153 @@
   "collision": {
    "fichier": "obstacles.json",
    "masque": "collision.png",
-   "libres": 3064,
-   "bloquees": 527,
-   "eau": 432
+   "libres": 2881,
+   "bloquees": 710,
+   "eau": 533
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
+ "sommet_montagne": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 3435,
+   "bloquees": 156,
+   "eau": 0
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
+ "pied_montagne": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 3013,
+   "bloquees": 578,
+   "eau": 417
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
+ "entree_grotte": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 3418,
+   "bloquees": 173,
+   "eau": 0
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
+ "entree_arbre": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 3419,
+   "bloquees": 172,
+   "eau": 0
   },
   "tmx": {
    "tmx": "collision.tmx",

@@ -53,16 +53,24 @@ IDX_ECUME = 15    # 15     : ecume de rive
 
 # profil de crete : une bande vive, une tiede, deux eteintes.
 # En tournant d'un cran par pas, la bande vive traverse la nappe.
-CRETE = np.array([1.00, 0.45, 0.10, 0.00], np.float32)
+# Mesure faite sur les vrais fonds du jeu (ref_etude/D17P31A) : entre le bleu de
+# fond et une ligne de reseau il n'y a qu'une VINGTAINE de niveaux de luminance.
+# La crete precedente en mettait 99 : ca donnait des traits blancs colles sur un
+# aplat, ce qui ne ressemble a rien de ce que fait EoS.
+CRETE = np.array([1.00, 0.55, 0.15, 0.00], np.float32)
 
 # la rive respire sur le meme cycle : l'ecume s'allume et s'eteint entre le ton
 # clair de l'eau et la couleur d'ecume. Une seule entree, quatre valeurs.
 RIVE = np.array([1.00, 0.62, 0.30, 0.62], np.float32)
 
+# Le blanc vif existe bien dans EoS, mais UNIQUEMENT colle a la berge : sur
+# D01P41A, 22 % des pixels a 1 px du bord depassent L=200, contre 11 % au large.
+# C'est l'ecume (index 15) qui le porte, pas le corps de la nappe.
+
 
 def champ_indices(mask, seed=0, bande=11.0, ondulation=6.0, rive=2,
                   portee=None, durcissement=1.9, densite=0.46,
-                  tout_anime=False):
+                  tout_anime=False, finesse=0.085, epaisseur_reseau=0.17):
     """Champ d'indices de palette, calcule UNE FOIS. Ne bougera plus jamais.
 
     Renvoie (idx, infos) avec idx : uint8, 255 = hors de l'eau.
@@ -83,31 +91,39 @@ def champ_indices(mask, seed=0, bande=11.0, ondulation=6.0, rive=2,
         portee = float(np.clip(large * 0.85, 5.0, 40.0))
     clair = (1.0 - np.clip(dist / portee, 0, 1)) ** durcissement
 
+    # --- le corps de la nappe n'est JAMAIS un aplat -------------------------- #
+    # Sur D17P31A la luminance de l'eau va de 56 (p5) a 199 (p95) sans trou : la
+    # surface est mouchetee partout. Un aplat + des traits clairs, c'est ce qui
+    # faisait "pas PMD". On melange donc la profondeur avec un grain fbm avant
+    # de tramer, pour que chaque coin de la nappe ait sa propre nuance.
+    grain = 0.55 * fbm(h, w, 5, 3, seed + 11) + 0.45 * fbm(h, w, 13, 2, seed + 12)
+    valeur = np.clip(0.70 * clair + 0.62 * (grain - 0.5) + 0.15, 0, 1)
+
     # --- trame ordonnee entre deux nuances voisines ------------------------ #
-    x = clair * (NIVEAUX - 1)
+    x = valeur * (NIVEAUX - 1)
     bas = np.floor(x)
     trame = np.tile(BAYER4, (h // 4 + 1, w // 4 + 1))[:h, :w]
     niv = np.clip(bas + ((x - bas) > trame), 0, NIVEAUX - 1).astype(np.int32)
 
-    # --- reflets : lignes molles BRISEES, geometrie statique --------------- #
-    gauchissement = (ondulation * np.sin(xx * 0.031 + 0.6)
-                     + 0.55 * ondulation * np.sin(xx * 0.079 - 2.1)
-                     + 7.0 * (fbm(h, w, 4, 3, seed + 21) - 0.5))
-    u = (yy + gauchissement) / bande
-    bandes = np.floor(u).astype(np.int32)
-    coeur = np.abs(u - bandes - 0.5)               # 0 au centre de la bande
-
-    gros = fbm(h, w, 3, 3, seed + 31)
-    fin = fbm(h, w, 10, 3, seed + 32)
-    rupture = 0.68 * gros + 0.32 * fin
-    epaisseur = 0.13 + 0.17 * gros                 # tirets d'epaisseur variable
-    tiret = dedans & (coeur < epaisseur) & (rupture > (1.0 - densite))
+    # --- reflets : un RESEAU de lignes de niveau, pas des tirets ------------ #
+    # C'est la forme exacte qu'on lit sur D17P31A : des boucles fermees, fines,
+    # irregulieres, qui se croisent. On les obtient comme lignes de niveau d'un
+    # champ fbm lisse : |u - round(u)| petit => on est sur un contour.
+    lisse = fbm(h, w, 4, 4, seed + 21) + 0.35 * fbm(h, w, 8, 3, seed + 23)
+    lisse = (lisse - lisse.min()) / max(1e-6, np.ptp(lisse))
+    u = lisse / max(1e-4, finesse)
+    anneau = np.round(u).astype(np.int32)
+    ecart = np.abs(u - anneau)                     # 0 exactement sur la ligne
+    # epaisseur modulee : les lignes s'amincissent et se coupent, comme dans le jeu
+    ep = epaisseur_reseau * (0.45 + 1.10 * fbm(h, w, 9, 2, seed + 22))
+    tiret = dedans & (ecart < ep)
     if tout_anime:                                 # mode eau de donjon
         tiret = dedans
-
     idx = np.full((h, w), 255, np.uint8)
     idx[dedans] = (IDX_PLAT + niv[dedans]).astype(np.uint8)
-    phase = np.mod(bandes, PHASES)
+    # chaque anneau du reseau demarre sur une phase differente : au fil des pas,
+    # la crete de lumiere traverse le reseau de boucle en boucle.
+    phase = np.mod(anneau + (3.0 * fbm(h, w, 6, 2, seed + 24)).astype(np.int32), PHASES)
     idx[tiret] = (IDX_REFLET + niv[tiret] * PHASES + phase[tiret]).astype(np.uint8)
 
     # --- ecume de rive, tramee : le DS ne peut pas faire de degrade -------- #
@@ -137,7 +153,7 @@ def palette(ramp, ecume, pas, calme=1.0, depart=0.32):
         pal[IDX_PLAT + b] = tons[b]
     clair = np.array(tons[-1], np.float32)
     pal[IDX_ECUME] = clair + (crete - clair) * float(RIVE[pas % PHASES])
-    amp = 0.30 + 0.16 * min(1.5, calme)
+    amp = 0.11 + 0.07 * min(1.5, calme)
     for b in range(NIVEAUX):
         base = np.array(tons[b], np.float32)
         for a in range(PHASES):
