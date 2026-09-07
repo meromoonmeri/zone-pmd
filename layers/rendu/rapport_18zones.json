@@ -8,9 +8,9 @@
   "palette": 64,
   "objets_catalogue": 28,
   "tiled": {
-   "tuiles": 2576,
-   "animees": 324,
-   "cases_animees": 324
+   "tuiles": 1512,
+   "animees": 316,
+   "cases_animees": 316
   },
   "aseprite": {
    "calques": 4,
@@ -26,9 +26,9 @@
   "palette": 64,
   "objets_catalogue": 35,
   "tiled": {
-   "tuiles": 2263,
-   "animees": 304,
-   "cases_animees": 304
+   "tuiles": 1409,
+   "animees": 293,
+   "cases_animees": 293
   },
   "aseprite": {
    "calques": 4,
@@ -44,45 +44,9 @@
   "palette": 64,
   "objets_catalogue": 68,
   "tiled": {
-   "tuiles": 1392,
-   "animees": 116,
-   "cases_animees": 116
-  },
-  "aseprite": {
-   "calques": 3,
-   "cels": 36
-  }
- },
- "gorge_pont": {
-  "compo": {
-   "props": 60,
-   "canopy": 0,
-   "water_px": 46083
-  },
-  "palette": 64,
-  "objets_catalogue": 30,
-  "tiled": {
-   "tuiles": 1053,
-   "animees": 133,
-   "cases_animees": 133
-  },
-  "aseprite": {
-   "calques": 3,
-   "cels": 36
-  }
- },
- "falaise_cotiere": {
-  "compo": {
-   "props": 56,
-   "canopy": 0,
-   "water_px": 33381
-  },
-  "palette": 64,
-  "objets_catalogue": 27,
-  "tiled": {
-   "tuiles": 1513,
-   "animees": 188,
-   "cases_animees": 188
+   "tuiles": 769,
+   "animees": 105,
+   "cases_animees": 105
   },
   "aseprite": {
    "calques": 3,
@@ -98,9 +62,9 @@
   "palette": 64,
   "objets_catalogue": 51,
   "tiled": {
-   "tuiles": 2069,
-   "animees": 237,
-   "cases_animees": 237
+   "tuiles": 1153,
+   "animees": 212,
+   "cases_animees": 212
   },
   "aseprite": {
    "calques": 3,

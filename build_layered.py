@@ -16,6 +16,7 @@ Sortie par zone dans layers/rendu/<zone>/ :
 """
 import sys, os, json, glob
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import glob
 import numpy as np
 from PIL import Image
 
@@ -23,6 +24,7 @@ from forge import core as C
 from forge.water_pmd import water_layer, preuve as preuve_eau
 from forge.water_halcyon import (water_layer as water_layer_hal,
                                  preuve as preuve_eau_hal)
+from forge import calques_halcyon as CH
 from forge.compose import (W, H, N, MS, load_terrain, hsv_mask,
                            load_objects, shear_sway, alpha_paste, contact_shadow,
                            apply_light, LIGHT_GRADES, enrich_terrain)
@@ -176,13 +178,14 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
         got = place(surf, pool, r["count"], rng, r.get("min_dist", 0), taken)
         for y, x, o in got:
             placed.append((y, x, o, r.get("sway", 2 if o["veg"] > 0.5 else 0),
-                           float(rng.random() * 2 * np.pi)))
+                           float(rng.random() * 2 * np.pi), tuple(r["cats"])))
     placed.sort(key=lambda p: p[0] + p[2]["h"])
 
     canopy_placed = []
     if canopy:
         for y, x, o in ring_positions(canopy, rng):
-            canopy_placed.append((y, x, o, 1, float(rng.random() * 2 * np.pi)))
+            canopy_placed.append((y, x, o, 1, float(rng.random() * 2 * np.pi),
+                                  ("canopy",)))
         canopy_placed.sort(key=lambda p: p[0] + p[2]["h"])
 
     # --- calques ----------------------------------------------------------- #
@@ -190,9 +193,33 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
     terrain_g = grade_terrain(terrain, terrain_tint, terrain_strength)
     dap = fbm(H, W, 5, 4, seed + 40)
     vig = C.frame_falloff(H, W, 0.15)
-    for sub in ("01_water", "02_props", "03_canopy", "frames"):
+    # Structure de calques de Palika : Base / River / Cliffs / Shadows /
+    # Objects Under / Objects / Objects Over / Fringe, dans cet ordre.
+    for sub in (list(CH.DOSSIERS.values())
+                + ["frames", "01_water", "02_props", "03_canopy"]):
         os.makedirs(f"{out_dir}/{sub}", exist_ok=True)
+    Image.fromarray(terrain_g, "RGB").save(
+        f"{out_dir}/{CH.DOSSIERS['Base']}/f00.png")
     Image.fromarray(terrain_g, "RGB").save(f"{out_dir}/00_terrain.png")
+
+    # Repartition des props sur ses trois calques d'objets.
+    seaux = {"Cliffs": [], "Objects Under": [], "Objects": []}
+    for p_ in placed:
+        seaux[CH.calque_de(p_[5])].append(p_)
+    # Fringe : le liseré de raccord entre terrains, dessine PAR-DESSUS tout.
+    fringe = np.zeros((H, W, 4), np.uint8)
+    bord = C.dilate(ground, 1) & ~ground
+    if water_mask is not None:
+        bord |= C.dilate(water_mask, 1) & ~water_mask
+    fringe[bord] = (0, 0, 0, 70)
+    Image.fromarray(fringe, "RGBA").save(f"{out_dir}/{CH.DOSSIERS['Fringe']}/f00.png")
+
+    # Nombre de dessins distincts par calque anime, comme chez lui.
+    d_river, _ = CH.dessins(N, 4)
+    d_under, _ = CH.dessins(N, 4)
+    d_obj, _ = CH.dessins(N, 4)
+    d_over, _ = CH.dessins(N, 3)
+    cache = {}
 
     # Eau : palette cycling a la maniere d'Explorers of Sky. Le champ d'indices
     # est fige, seules les 12 entrees de reflet changent de couleur, un pas
@@ -212,24 +239,71 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
     for t in range(N):
         frame = np.zeros((H, W, 4), np.uint8)
         frame[..., :3] = terrain_g; frame[..., 3] = 255
+        # --- 1 River : 4 dessins, comme sa Altere_Pond_River_Animations
         if water_mask is not None:
             alpha_paste(frame, wl[t], 0, 0)
+            Image.fromarray(wl[t], "RGBA").save(
+                f"{out_dir}/{CH.DOSSIERS['River']}/f{t:02d}.png")
             Image.fromarray(wl[t], "RGBA").save(f"{out_dir}/01_water/f{t:02d}.png")
 
+        def _bucket(nom, lot, dsn, ralenti=1.0):
+            """Rend un calque de props avec un nombre FIXE de dessins."""
+            cle = (nom, dsn[t])
+            if cle not in cache:
+                buf = np.zeros((H, W, 4), np.uint8)
+                # on echantillonne la houle sur le dessin, pas sur la frame :
+                # 4 dessins distincts dans la boucle, pas douze.
+                tt = dsn[t] * (N / max(1, max(dsn) + 1))
+                for y, x, o, sw, phz, *_ in lot:
+                    alpha_paste(buf, shear_sway(o["img"], sw, phz * ralenti, tt, N), y, x)
+                cache[cle] = buf
+            return cache[cle]
+
+        # --- 3 Shadows : chez lui c'est un calque a part entiere
+        sh = np.zeros((H, W, 4), np.uint8)
+        base_sh = np.zeros((H, W, 3), np.uint8)
+        base_sh[:] = 255
+        tmp = np.dstack([base_sh, np.full((H, W, 1), 255, np.uint8)])
+        for y, x, o, sw, phz, *_ in placed:
+            contact_shadow(tmp, shear_sway(o["img"], sw, phz, t, N), y, x, 0.36)
+        manque = 255 - tmp[..., 0]
+        sh[..., 3] = manque
+        if t == 0:
+            Image.fromarray(sh, "RGBA").save(f"{out_dir}/{CH.DOSSIERS['Shadows']}/f00.png")
+        alpha_paste(frame, sh, 0, 0)
+
+        # --- 2 Cliffs, 4 Objects Under, 5 Objects
         lp = np.zeros((H, W, 4), np.uint8)
-        for y, x, o, sw, phz in placed:
-            spr = shear_sway(o["img"], sw, phz, t, N)
-            contact_shadow(frame, spr, y, x, 0.36)
-            alpha_paste(lp, spr, y, x)
-        alpha_paste(frame, lp, 0, 0)
+        for nom, dsn in (("Cliffs", None), ("Objects Under", d_under), ("Objects", d_obj)):
+            lot = seaux[nom]
+            if not lot:
+                continue
+            if dsn is None:
+                cle = (nom, 0)
+                if cle not in cache:
+                    buf = np.zeros((H, W, 4), np.uint8)
+                    for y, x, o, sw, phz, *_ in lot:
+                        alpha_paste(buf, o["img"], y, x)
+                    cache[cle] = buf
+                b = cache[cle]
+            else:
+                b = _bucket(nom, lot, dsn)
+            alpha_paste(frame, b, 0, 0)
+            alpha_paste(lp, b, 0, 0)
+            Image.fromarray(b, "RGBA").save(
+                f"{out_dir}/{CH.DOSSIERS[nom]}/f{t:02d}.png")
         Image.fromarray(lp, "RGBA").save(f"{out_dir}/02_props/f{t:02d}.png")
 
+        # --- 6 Objects Over : 3 dessins, sa valeur pour ce calque
         if canopy_placed:
-            lc = np.zeros((H, W, 4), np.uint8)
-            for y, x, o, sw, phz in canopy_placed:
-                alpha_paste(lc, shear_sway(o["img"], sw, phz * 0.5, t, N), y, x)
+            lc = _bucket("Objects Over", canopy_placed, d_over, ralenti=0.5)
             alpha_paste(frame, lc, 0, 0)
+            Image.fromarray(lc, "RGBA").save(
+                f"{out_dir}/{CH.DOSSIERS['Objects Over']}/f{t:02d}.png")
             Image.fromarray(lc, "RGBA").save(f"{out_dir}/03_canopy/f{t:02d}.png")
+
+        # --- 7 Fringe : en dernier, par-dessus le joueur
+        alpha_paste(frame, fringe, 0, 0)
 
         # calque lumiere : c'est un effet d'ecran, pas de la donnee de tuile.
         # -> jeu "frames" (GIF/Aseprite) avec lumiere animee,
@@ -283,7 +357,45 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
     gif[0].save(f"{out_dir}/{zone}.gif", save_all=True, append_images=gif[1:],
                 duration=MS, loop=0, optimize=True, disposal=1)
 
+    # --- planches par calque, a sa mise en page : K dessins bout a bout ----- #
+    dossier_sheets = f"pmdo/{zone}/sheets"
+    planches, compte, animes = {}, {}, {}
+    for nom, ordre, k in CH.CALQUES:
+        d = f"{out_dir}/{CH.DOSSIERS[nom]}"
+        fs = sorted(glob.glob(f"{d}/*.png"))
+        if not fs:
+            continue
+        idx, _ = CH.dessins(N, k)
+        vus, ims = [], []
+        for t, i in enumerate(idx):
+            if i in vus or t >= len(fs):
+                continue
+            vus.append(i)
+            ims.append(np.array(Image.open(fs[min(t, len(fs) - 1)]).convert("RGBA")))
+        if len(fs) == 1:
+            ims = [np.array(Image.open(fs[0]).convert("RGBA"))]
+        chemin, larg, per = CH.ecrire_planche(zone, nom, ims, dossier_sheets)
+        planches[nom] = dict(sheet=os.path.basename(chemin), periode=per,
+                             dessins=len(ims), largeur=larg)
+        a0 = ims[0]
+        occ = (a0[..., 3] > 8) if a0.shape[2] == 4 else np.ones(a0.shape[:2], bool)
+        tw = 8
+        gh, gw = H // tw, W // tw
+
+        def _cases(m):
+            return m[:gh * tw, :gw * tw].reshape(gh, tw, gw, tw).any((1, 3))
+
+        compte[nom] = int(_cases(occ).sum())
+        # Une tuile n'est "animee" que si elle CHANGE reellement d'un dessin a
+        # l'autre. Chez lui, Objects pose 4 604 tuiles dont seulement 592
+        # bougent : la plupart des props sont immobiles.
+        bouge = np.zeros((H, W), bool)
+        for a in ims[1:]:
+            bouge |= (a != a0).any(-1)
+        animes[nom] = int(_cases(bouge).sum()) if len(ims) > 1 else 0
+
     man = dict(zone=zone, size=[W, H], tile=24, frames=N, frame_ms=MS,
+               calques_halcyon=CH.table(compte, animes, planches, N),
                palette=int(len(pal)), grade=grade,
                layers=[
                  dict(order=0, name="terrain", file="00_terrain.png", animated=False),
