@@ -129,10 +129,10 @@ ZONES = {
 
  "entree_ruines": dict(
     sheets=["ruines_props_sheet", "temple_props_sheet", "prairie_props_sheet"],
-    canopy=None, eau=None, tint="#2a2418", strength=0.38, grade="crepuscule", seed=1022,
+    canopy=None, eau=None, tint="#2a2a1e", strength=0.30, grade="jour", seed=1022,
     rules=[R(["column"], "midband", 8, 3, 46), R(["arch"], "midband", 4, 2, 60),
-           R(["block"], "ground", 12, 4, 30), R(["urn"], "ground", 8, 3, 30),
-           R(["pillar"], "midband", 5, 2, 52), R(["rock"], "ground", 10, 4, 28),
+           R(["block"], "ground", 9, 3, 34), R(["urn"], "ground", 3, 2, 46),
+           R(["pillar"], "midband", 4, 2, 56), R(["rock"], "ground", 10, 4, 28),
            R(["grass"], "ground", 18, 6, 20, 2), R(["flower"], "ground", 10, 4, 24, 2)]),
 
  "entree_arbre": dict(
@@ -147,8 +147,10 @@ ZONES = {
  "entree_source": dict(
     sheets=["temple_props_sheet", "lac_props_sheet", "prairie_props_sheet"],
     canopy=None, eau="lac", tint="#1a2632", strength=0.36, grade="jour", seed=1024,
-    rules=[R(["pillar"], "midband", 8, 3, 44), R(["brazier"], "ground", 6, 3, 40),
-           R(["tile"], "ground", 10, 4, 28), R(["urn"], "ground", 6, 3, 32),
+    # pas de "tile" : dans temple_props_sheet ce sont des plaques de bois, elles
+    # flottaient comme des cartons poses sur la terrasse.
+    rules=[R(["pillar"], "midband", 5, 2, 52), R(["brazier"], "ground", 5, 2, 44),
+           R(["urn"], "ground", 3, 2, 44),
            R(["lilies"], "water", 8, 4, 24, 1), R(["reeds"], "shore", 10, 4, 22, 2),
            R(["grass"], "ground", 16, 6, 22, 2), R(["flower"], "ground", 12, 5, 22, 2)]),
 

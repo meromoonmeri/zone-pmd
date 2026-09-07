@@ -8,7 +8,7 @@
  "frames": 12,
  "frame_ms": 110,
  "palette": 64,
- "grade": "crepuscule",
+ "grade": "jour",
  "layers": [
   {
    "order": 0,
@@ -51,7 +51,7 @@
   }
  ],
  "counts": {
-  "props": 81,
+  "props": 70,
   "canopy": 0,
   "water_px": 0
  }

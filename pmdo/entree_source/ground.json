@@ -53,8 +53,8 @@
  "collision": {
   "fichier": "obstacles.json",
   "masque": "collision.png",
-  "libres": 3234,
-  "bloquees": 357,
+  "libres": 3251,
+  "bloquees": 340,
   "eau": 212
  },
  "entrees": {
@@ -124,11 +124,11 @@
   ],
   "multiple_de_8": true,
   "multiple_de_24": true,
-  "sol_cases2": 359.3,
-  "sol_par_sprite": 361.8,
-  "largeur_locale_mediane": 3.59,
-  "plus_grand_vide": 19.52,
-  "occupation_decor": 4.0,
+  "sol_cases2": 361.2,
+  "sol_par_sprite": 363.7,
+  "largeur_locale_mediane": 3.33,
+  "plus_grand_vide": 16.11,
+  "occupation_decor": 3.6,
   "part_eau": 5.9,
   "ecrans": 2.99,
   "eau_cellules": 212
