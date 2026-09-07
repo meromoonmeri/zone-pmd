@@ -1,5 +1,5 @@
 {
- "lac_foret": {
+ "gorge_pont": {
   "cellules": [
    63,
    57
@@ -11,9 +11,9 @@
   "collision": {
    "fichier": "obstacles.json",
    "masque": "collision.png",
-   "libres": 670,
-   "bloquees": 2921,
-   "eau": 1935
+   "libres": 2764,
+   "bloquees": 827,
+   "eau": 701
   },
   "tmx": {
    "tmx": "collision.tmx",
@@ -35,7 +35,7 @@
    "est"
   ]
  },
- "cascade_foret": {
+ "falaise_cotiere": {
   "cellules": [
    63,
    57
@@ -47,9 +47,9 @@
   "collision": {
    "fichier": "obstacles.json",
    "masque": "collision.png",
-   "libres": 1493,
-   "bloquees": 2098,
-   "eau": 884
+   "libres": 2905,
+   "bloquees": 686,
+   "eau": 518
   },
   "tmx": {
    "tmx": "collision.tmx",
@@ -71,7 +71,7 @@
    "est"
   ]
  },
- "entree_source": {
+ "sommet_montagne": {
   "cellules": [
    63,
    57
@@ -83,9 +83,9 @@
   "collision": {
    "fichier": "obstacles.json",
    "masque": "collision.png",
-   "libres": 3251,
-   "bloquees": 340,
-   "eau": 212
+   "libres": 3435,
+   "bloquees": 156,
+   "eau": 0
   },
   "tmx": {
    "tmx": "collision.tmx",
@@ -107,7 +107,7 @@
    "est"
   ]
  },
- "pied_montagne": {
+ "entree_grotte": {
   "cellules": [
    63,
    57
@@ -119,9 +119,45 @@
   "collision": {
    "fichier": "obstacles.json",
    "masque": "collision.png",
-   "libres": 3013,
-   "bloquees": 578,
-   "eau": 417
+   "libres": 3418,
+   "bloquees": 173,
+   "eau": 0
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
+ "entree_arbre": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 3419,
+   "bloquees": 172,
+   "eau": 0
   },
   "tmx": {
    "tmx": "collision.tmx",

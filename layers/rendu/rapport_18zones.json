@@ -1,74 +1,92 @@
 {
- "lac_foret": {
+ "gorge_pont": {
   "compo": {
-   "props": 61,
-   "canopy": 50,
-   "water_px": 124340
-  },
-  "palette": 64,
-  "objets_catalogue": 28,
-  "tiled": {
-   "tuiles": 1512,
-   "animees": 316,
-   "cases_animees": 316
-  },
-  "aseprite": {
-   "calques": 4,
-   "cels": 48
-  }
- },
- "cascade_foret": {
-  "compo": {
-   "props": 54,
-   "canopy": 50,
-   "water_px": 57150
-  },
-  "palette": 64,
-  "objets_catalogue": 35,
-  "tiled": {
-   "tuiles": 1409,
-   "animees": 293,
-   "cases_animees": 293
-  },
-  "aseprite": {
-   "calques": 4,
-   "cels": 48
-  }
- },
- "entree_source": {
-  "compo": {
-   "props": 65,
+   "props": 60,
    "canopy": 0,
-   "water_px": 13887
+   "water_px": 46083
   },
   "palette": 64,
-  "objets_catalogue": 68,
+  "objets_catalogue": 30,
   "tiled": {
-   "tuiles": 769,
-   "animees": 105,
-   "cases_animees": 105
+   "tuiles": 871,
+   "animees": 133,
+   "cases_animees": 133
   },
   "aseprite": {
    "calques": 3,
    "cels": 36
   }
  },
- "pied_montagne": {
+ "falaise_cotiere": {
   "compo": {
-   "props": 108,
+   "props": 56,
    "canopy": 0,
-   "water_px": 27974
+   "water_px": 33381
   },
   "palette": 64,
-  "objets_catalogue": 51,
+  "objets_catalogue": 27,
   "tiled": {
-   "tuiles": 1153,
-   "animees": 212,
-   "cases_animees": 212
+   "tuiles": 1042,
+   "animees": 187,
+   "cases_animees": 187
   },
   "aseprite": {
    "calques": 3,
    "cels": 36
+  }
+ },
+ "sommet_montagne": {
+  "compo": {
+   "props": 84,
+   "canopy": 0,
+   "water_px": 0
+  },
+  "palette": 64,
+  "objets_catalogue": 30,
+  "tiled": {
+   "tuiles": 557,
+   "animees": 50,
+   "cases_animees": 50
+  },
+  "aseprite": {
+   "calques": 2,
+   "cels": 24
+  }
+ },
+ "entree_grotte": {
+  "compo": {
+   "props": 125,
+   "canopy": 0,
+   "water_px": 0
+  },
+  "palette": 64,
+  "objets_catalogue": 40,
+  "tiled": {
+   "tuiles": 809,
+   "animees": 121,
+   "cases_animees": 121
+  },
+  "aseprite": {
+   "calques": 2,
+   "cels": 24
+  }
+ },
+ "entree_arbre": {
+  "compo": {
+   "props": 100,
+   "canopy": 0,
+   "water_px": 0
+  },
+  "palette": 64,
+  "objets_catalogue": 42,
+  "tiled": {
+   "tuiles": 909,
+   "animees": 154,
+   "cases_animees": 154
+  },
+  "aseprite": {
+   "calques": 2,
+   "cels": 24
   }
  }
 }
