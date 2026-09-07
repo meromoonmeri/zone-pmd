@@ -217,7 +217,12 @@ def points(free, n):
 
 def planche(zone, sprites, out):
     d = os.path.join(RENDU, zone)
-    bg = Image.open(sorted(glob.glob(f"{d}/frames/*.png"))[0]).convert("RGBA")
+    fs = sorted(glob.glob(f"{d}/frames/*.png"))
+    if not fs:                       # workspace allege : on retombe sur le pack PMDO
+        fs = [os.path.join(ROOT, "pmdo", zone, "fond.png")]
+    if not os.path.exists(fs[0]):
+        return None
+    bg = Image.open(fs[0]).convert("RGBA")
     block, (W, H), _w = masque_obstacles(zone)
     free = ~block
 
@@ -263,7 +268,10 @@ if __name__ == "__main__":
     for z in zones:
         a = audit(z)
         rep[z] = a
-        planche(z, spr, os.path.join(ROOT, "pmdo", "audit", f"{z}_echelle.png"))
+        try:
+            planche(z, spr, os.path.join(ROOT, "pmdo", "audit", f"{z}_echelle.png"))
+        except Exception as e:
+            print("   (planche non generee :", e, ")")
         print(f"\n== {z}  {a['px'][0]}x{a['px'][1]} px | {a['cases'][0]}x{a['cases'][1]} cases "
               f"| {a['cellules_8px'][0]}x{a['cellules_8px'][1]} cellules 8px")
         for nom, ok, txt in verdict(a):

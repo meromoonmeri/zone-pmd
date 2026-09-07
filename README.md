@@ -164,6 +164,64 @@ ms_par_pas        : 330
 
 ---
 
+## Zone `bassin_sentier`
+
+Sentier qui entre par le **sud**, remonte vers le **nord** avec deux courbes, et
+débouche sur un **bassin** bordé d'une rive de terre caillouteuse. Pas de canopée
+en cadre : elle boucherait l'entrée sud, qui doit rester une entrée jouable.
+
+La rive est animée. À l'entrée 15 de la palette près, tout est comme décrit plus
+haut ; cette entrée-là cycle désormais aussi, entre le ton clair de l'eau et
+l'écume : `#e7ffff → #b7e7f7 → #8fd7ef → #b7e7f7`. Le bord du bassin respire sans
+qu'un pixel bouge.
+
+68 props : roseaux et rochers sur la rive, nénuphars sur l'eau, conifères et arbres
+en fond, fleurs et touffes sur l'herbe, un ponton.
+
+## Les 10 nouvelles zones
+
+| Zone | Props | Palette | Tuiles | Cases animées | Cellules eau |
+|---|---|---|---|---|---|
+| `bassin_sentier` | 68 | 64 | 2 198 | 243 | 533 |
+| `foret_automne` | 55 + 50 canopée | 64 | 2 013 | 238 | – |
+| `foret_bambous` | 71 | 64 | 2 300 | 236 | – |
+| `canyon_desert` | 55 | 64 | 776 | 49 | – |
+| `grotte_moussue` | 67 | 64 | 1 269 | 148 | 242 |
+| `banquise_glacier` | 62 | 63 | 812 | 83 | 175 |
+| `caverne_lave` | 43 | 64 | 718 | 90 | 603 |
+| `temple_dore` | 40 | 64 | 395 | 0 | – |
+| `ruines_englouties` | 52 | 64 | 1 132 | 102 | 852 |
+| `grottes_marines` | 47 | 64 | 944 | 77 | 432 |
+
+### Eau émissive
+
+Une coulée de lave **émet** de la lumière, elle n'en reçoit pas. Sur
+`caverne_lave` le grade « nuit » (×0,44 ×0,54 ×0,88) l'écrasait en brun terne. Le
+calque d'eau est maintenant reposé par-dessus l'éclairage quand
+`emissive=True`.
+
+### Défaut connu : les nouvelles zones sont trop vides
+
+L'audit d'échelle est net et je ne le maquille pas :
+
+| Critère | Nouvelles zones | Cible (méthode) |
+|---|---|---|
+| Occupation du décor | **2,6 – 4,9 %** (sauf `foret_automne` à 36,8 %) | 18 – 45 % |
+| Largeur locale médiane | **3,0 – 5,4 cases** | 1,0 – 3,0 |
+
+Traduction : on peut marcher 4 à 5 cases sans que rien ne change à l'écran, ce que
+la méthode interdit explicitement. Seule `foret_automne` passe, parce qu'elle a une
+canopée. Le correctif est un réglage, pas une reprise : monter les `count` dans
+`build_zones18.ZONES` et rejouer. À faire avant de considérer ces zones finies.
+
+### Reste à faire
+
+8 zones sur 18 : `jungle_clairiere`, `champ_fleurs`, `foret_nocturne`,
+`cascade_foret`, `lac_foret`, `falaise_cotiere`, `sommet_montagne`, `oasis_dunes`,
+`gorge_pont`. Leurs catalogues d'objets sont prêts, il ne manque que les terrains.
+
+---
+
 ## Zones livrées
 
 | Zone | Toile | Cases | Cellules 8 px | Calques | Frames |
