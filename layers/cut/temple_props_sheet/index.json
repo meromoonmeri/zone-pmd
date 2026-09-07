@@ -1,0 +1,163 @@
+[
+ {
+  "file": "obj_00.png",
+  "w": 35,
+  "h": 43,
+  "px": 902,
+  "anchor_y": 43
+ },
+ {
+  "file": "obj_01.png",
+  "w": 34,
+  "h": 43,
+  "px": 764,
+  "anchor_y": 43
+ },
+ {
+  "file": "obj_02.png",
+  "w": 25,
+  "h": 35,
+  "px": 444,
+  "anchor_y": 35
+ },
+ {
+  "file": "obj_03.png",
+  "w": 36,
+  "h": 43,
+  "px": 903,
+  "anchor_y": 43
+ },
+ {
+  "file": "obj_04.png",
+  "w": 32,
+  "h": 38,
+  "px": 845,
+  "anchor_y": 38
+ },
+ {
+  "file": "obj_05.png",
+  "w": 25,
+  "h": 35,
+  "px": 453,
+  "anchor_y": 35
+ },
+ {
+  "file": "obj_06.png",
+  "w": 24,
+  "h": 7,
+  "px": 100,
+  "anchor_y": 7
+ },
+ {
+  "file": "obj_07.png",
+  "w": 23,
+  "h": 7,
+  "px": 94,
+  "anchor_y": 7
+ },
+ {
+  "file": "obj_08.png",
+  "w": 31,
+  "h": 41,
+  "px": 867,
+  "anchor_y": 41
+ },
+ {
+  "file": "obj_09.png",
+  "w": 23,
+  "h": 86,
+  "px": 1344,
+  "anchor_y": 86
+ },
+ {
+  "file": "obj_10.png",
+  "w": 20,
+  "h": 7,
+  "px": 85,
+  "anchor_y": 7
+ },
+ {
+  "file": "obj_11.png",
+  "w": 31,
+  "h": 41,
+  "px": 870,
+  "anchor_y": 41
+ },
+ {
+  "file": "obj_12.png",
+  "w": 20,
+  "h": 7,
+  "px": 84,
+  "anchor_y": 7
+ },
+ {
+  "file": "obj_13.png",
+  "w": 19,
+  "h": 7,
+  "px": 79,
+  "anchor_y": 7
+ },
+ {
+  "file": "obj_14.png",
+  "w": 27,
+  "h": 86,
+  "px": 1638,
+  "anchor_y": 86
+ },
+ {
+  "file": "obj_15.png",
+  "w": 25,
+  "h": 86,
+  "px": 1390,
+  "anchor_y": 86
+ },
+ {
+  "file": "obj_16.png",
+  "w": 42,
+  "h": 42,
+  "px": 1585,
+  "anchor_y": 42
+ },
+ {
+  "file": "obj_17.png",
+  "w": 43,
+  "h": 42,
+  "px": 1615,
+  "anchor_y": 42
+ },
+ {
+  "file": "obj_18.png",
+  "w": 87,
+  "h": 9,
+  "px": 569,
+  "anchor_y": 9
+ },
+ {
+  "file": "obj_19.png",
+  "w": 44,
+  "h": 42,
+  "px": 1666,
+  "anchor_y": 42
+ },
+ {
+  "file": "obj_20.png",
+  "w": 30,
+  "h": 20,
+  "px": 299,
+  "anchor_y": 20
+ },
+ {
+  "file": "obj_21.png",
+  "w": 54,
+  "h": 42,
+  "px": 1585,
+  "anchor_y": 42
+ },
+ {
+  "file": "obj_22.png",
+  "w": 41,
+  "h": 25,
+  "px": 551,
+  "anchor_y": 25
+ }
+]
