@@ -1,74 +1,20 @@
 {
- "foret_bambous": {
+ "bassin_sentier": {
   "compo": {
-   "props": 96,
+   "props": 91,
    "canopy": 0,
-   "water_px": 0
+   "water_px": 34426
   },
   "palette": 64,
-  "objets_catalogue": 23,
+  "objets_catalogue": 45,
   "tiled": {
-   "tuiles": 1633,
-   "animees": 196,
-   "cases_animees": 196
+   "tuiles": 1748,
+   "animees": 234,
+   "cases_animees": 234
   },
   "aseprite": {
-   "calques": 4,
-   "cels": 96
-  }
- },
- "canyon_desert": {
-  "compo": {
-   "props": 74,
-   "canopy": 0,
-   "water_px": 0
-  },
-  "palette": 64,
-  "objets_catalogue": 18,
-  "tiled": {
-   "tuiles": 604,
-   "animees": 51,
-   "cases_animees": 51
-  },
-  "aseprite": {
-   "calques": 5,
-   "cels": 120
-  }
- },
- "grotte_moussue": {
-  "compo": {
-   "props": 87,
-   "canopy": 0,
-   "water_px": 15620
-  },
-  "palette": 64,
-  "objets_catalogue": 23,
-  "tiled": {
-   "tuiles": 884,
-   "animees": 100,
-   "cases_animees": 100
-  },
-  "aseprite": {
-   "calques": 7,
-   "cels": 168
-  }
- },
- "banquise_glacier": {
-  "compo": {
-   "props": 84,
-   "canopy": 0,
-   "water_px": 11446
-  },
-  "palette": 62,
-  "objets_catalogue": 22,
-  "tiled": {
-   "tuiles": 681,
-   "animees": 84,
-   "cases_animees": 84
-  },
-  "aseprite": {
-   "calques": 7,
-   "cels": 168
+   "calques": 6,
+   "cels": 144
   }
  }
 }
