@@ -5,7 +5,7 @@
   456
  ],
  "tile": 24,
- "frames": 12,
+ "frames": 24,
  "frame_ms": 110,
  "calques_halcyon": [
   {
@@ -17,7 +17,7 @@
    "tuiles_posees": 3591,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -27,9 +27,9 @@
    "sheet": "gorge_pont_River.png",
    "periode_px": 504,
    "tuiles_posees": 811,
-   "tuiles_animees": 588,
+   "tuiles_animees": 505,
    "frames": 4,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -41,7 +41,7 @@
    "tuiles_posees": 1204,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -53,7 +53,7 @@
    "tuiles_posees": 610,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -65,7 +65,7 @@
    "tuiles_posees": 129,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -75,8 +75,8 @@
    "sheet": "gorge_pont_Objects.png",
    "periode_px": 504,
    "tuiles_posees": 541,
-   "tuiles_animees": 142,
-   "frames": 4,
+   "tuiles_animees": 143,
+   "frames": 8,
    "tenue_frames": 3,
    "tenue_reguliere": true
   },
@@ -89,7 +89,7 @@
    "tuiles_posees": 0,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 4,
+   "tenue_frames": 8,
    "tenue_reguliere": true
   },
   {
@@ -98,10 +98,10 @@
    "dossier": "07_fringe",
    "sheet": "gorge_pont_Fringe.png",
    "periode_px": 504,
-   "tuiles_posees": 198,
+   "tuiles_posees": 725,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   }
  ],

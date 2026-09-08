@@ -1,56 +1,74 @@
 {
- "lac_foret": {
+ "pied_montagne": {
   "compo": {
-   "props": 61,
-   "canopy": 58,
-   "water_px": 124340
-  },
-  "palette": 64,
-  "objets_catalogue": 28,
-  "tiled": {
-   "tuiles": 1831,
-   "animees": 321,
-   "cases_animees": 321
-  },
-  "aseprite": {
-   "calques": 7,
-   "cels": 168
-  }
- },
- "cascade_foret": {
-  "compo": {
-   "props": 54,
-   "canopy": 58,
-   "water_px": 57150
-  },
-  "palette": 64,
-  "objets_catalogue": 35,
-  "tiled": {
-   "tuiles": 1660,
-   "animees": 290,
-   "cases_animees": 290
-  },
-  "aseprite": {
-   "calques": 8,
-   "cels": 192
-  }
- },
- "entree_source": {
-  "compo": {
-   "props": 65,
+   "props": 108,
    "canopy": 0,
-   "water_px": 13887
+   "water_px": 27974
   },
   "palette": 64,
-  "objets_catalogue": 68,
+  "objets_catalogue": 51,
   "tiled": {
-   "tuiles": 1047,
-   "animees": 105,
-   "cases_animees": 105
+   "tuiles": 1518,
+   "animees": 207,
+   "cases_animees": 207
+  },
+  "aseprite": {
+   "calques": 6,
+   "cels": 144
+  }
+ },
+ "gorge_pont": {
+  "compo": {
+   "props": 60,
+   "canopy": 0,
+   "water_px": 46083
+  },
+  "palette": 64,
+  "objets_catalogue": 30,
+  "tiled": {
+   "tuiles": 948,
+   "animees": 132,
+   "cases_animees": 132
   },
   "aseprite": {
    "calques": 7,
    "cels": 168
+  }
+ },
+ "falaise_cotiere": {
+  "compo": {
+   "props": 56,
+   "canopy": 0,
+   "water_px": 33381
+  },
+  "palette": 64,
+  "objets_catalogue": 27,
+  "tiled": {
+   "tuiles": 1357,
+   "animees": 189,
+   "cases_animees": 189
+  },
+  "aseprite": {
+   "calques": 7,
+   "cels": 168
+  }
+ },
+ "sommet_montagne": {
+  "compo": {
+   "props": 84,
+   "canopy": 0,
+   "water_px": 0
+  },
+  "palette": 64,
+  "objets_catalogue": 30,
+  "tiled": {
+   "tuiles": 663,
+   "animees": 51,
+   "cases_animees": 51
+  },
+  "aseprite": {
+   "calques": 5,
+   "cels": 120
   }
  }
 }
