@@ -353,18 +353,6 @@ FLOORS = {
     ),
 }
 
-# LA carte definitive : la clairiere demandee sur la reference, en UNE map.
-# C'est la reponse au faux export PMDO de la branche parallele : peinte
-# NATIVEMENT en 504x456 (aucun passage par un master 1120x960, donc aucun
-# reechantillonnage), avec le pack complet — collision 8 px comprise.
-CLAIRIERE = dict(
-    titre="La Clairiere", grade="jour",
-    pad=0.175, cadre_thr=0.26, wobble_cadre=0.17,
-    clair=dict(cx=0.50, cy=0.55, rx=0.295, ry=0.255, wobble=0.52),
-    chemin_sinus=10, chemin_larg=20,
-    mare=dict(cx=0.68, cy=0.36, rx=0.115, ry=0.100, wobble=0.62), seed=2100,
-)
-
 
 def R(cats, surface, count, cap=4, min_dist=30, sway=0):
     """Regle de pose locale, sans le DENSITE global : les comptes ci-dessous
@@ -376,27 +364,6 @@ def R(cats, surface, count, cap=4, min_dist=30, sway=0):
 def specs_clairiere():
     """Les specs injectees dans build_zones18.ZONES, une par etage."""
     s = {}
-    s["clairiere"] = dict(           # LA carte definitive, jour, bassin compris
-        titre="La Clairiere — carte corrigee",
-        sheets=["prairie_props_sheet", "pic_flowers_sheet", "mousse_props_sheet",
-                "lac_props_sheet", "bordure_feuillue_sheet"],
-        canopy=BZ.JUNGLE_CANOPY, eau="lac",
-        tint="#1c3a22", strength=0.40, grade="jour", seed=2100, couloir=COULOIR,
-        rules=[
-            R(["bordure"], "midband", 12, 3, 48, 1),
-            R(["tree"], "midband", 15, 4, 36, 2),      # la couronne d'arbres
-            R(["conifer"], "midband", 4, 2, 44, 1),
-            R(["flower"], "ground", 30, 8, 16, 2),     # la clairiere fleurie
-            R(["grass"], "ground", 18, 6, 18, 2),
-            R(["stone"], "midband", 10, 3, 28),        # pierres du bosquet
-            R(["stone"], "inner", 2, 1, 60),
-            R(["reeds"], "shore", 12, 4, 20, 2),       # le bassin
-            R(["lilies"], "water", 10, 4, 24, 1),
-            R(["rock"], "shore", 6, 3, 30),
-            R(["moss"], "ground", 12, 4, 24),
-            R(["fern"], "ground", 8, 4, 26, 2),
-            R(["mushroom"], "inner", 6, 3, 24, 1),
-        ])
     s["clairiere_b1f"] = dict(
         titre="Lisiere du Bosquet — B1F",
         sheets=["prairie_props_sheet", "pic_flowers_sheet", "mousse_props_sheet",
@@ -621,35 +588,6 @@ def planche(doc):
     ref = _b64("layers/src/recup_reference.png")
     v3 = _b64("layers/src/recup_clairiere_v3.png")
     b1f = _b64("pmdo/clairiere_b1f/fond.png")
-
-    # la carte definitive, avec son audit d'echelle (sprites 1:1 + viewport)
-    carte_def = ""
-    if os.path.exists("pmdo/clairiere/fond.png"):
-        g = json.load(open("pmdo/clairiere/ground.json")) \
-            if os.path.exists("pmdo/clairiere/ground.json") else {}
-        e = g.get("echelle", {})
-        fond = _b64("pmdo/clairiere/fond.png", x2=True)
-        aud = _b64("pmdo/audit/clairiere_echelle.png") \
-            if os.path.exists("pmdo/audit/clairiere_echelle.png") else None
-        aud_cell = cell(aud, "audit d'&eacute;chelle : sprites &eacute;talon 1:1, "
-                             "viewport 320&times;240, grille 8 px") if aud else ""
-        occ = _fmt_pct(e.get("occupation_decor"))
-        lar = e.get("largeur_locale_mediane", "-")
-        eau = _fmt_pct(e.get("part_eau"))
-        carte_def = f"""
-  <section class="etage">
-    <h2>LA carte — <code>clairiere</code> <span class="grade">jour · pack PMDO complet</span></h2>
-    <div class="duo">{cell(fond, "fond &times;2 — peint NATIVEMENT en 504&times;456, z&eacute;ro r&eacute;&eacute;chantillonnage")}
-    {aud_cell}</div>
-    <table>
-      <tr><th>occupation</th><td>{occ}</td><th>largeur locale</th><td>{lar} cases</td>
-          <th>part d'eau</th><td>{eau}</td></tr>
-      <tr><th>pack</th><td colspan="5"><code>pmdo/clairiere/</code> : fond, frames,
-          calques (Base/River/Shadows/Objects/Fringe), sheets,
-          obstacles.json + collision.tmx 8 px, brosse, ground.json ·
-          <code>tiled/clairiere/</code> : tuiles 24 px anim&eacute;es natives</td></tr>
-    </table>
-  </section>"""
     html = f"""<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8">
 <title>Le Bosquet Sacr&eacute; — clairi&egrave;re corrig&eacute;e, 3 layouts</title>
 <style>
@@ -695,7 +633,6 @@ conserv&eacute;s — la bordure est m&ecirc;me pos&eacute;e sur le cadre.</p>
   <div class="arrow">&rarr;</div>
   <div class="box">B3F<br/>C&oelig;ur du Bosquet<br/><small>nuit + mare</small></div>
 </div>
-{carte_def}
 {''.join(cartes)}
 <p class="sous">Descripteur du donjon : <code>layouts/clairiere_sacree.json</code> —
 &eacute;tages, entr&eacute;es relev&eacute;es sur la grille 8 px, liens, packs. Les 5 variantes
@@ -707,14 +644,13 @@ d'ar&egrave;ne bosquet existantes restent inchang&eacute;es.</p>
 
 if __name__ == "__main__":
     noms = list(FLOORS)
-    definitive = "clairiere"
 
     print("== rampes extraites de la reference")
     rampes = extraire_rampes()
     for nom, r in rampes.items():
         tons = " ".join(f"#{int(c[0]):02x}{int(c[1]):02x}{int(c[2]):02x}" for c in r)
         print(f"  {nom:6s} {tons}")
-    for z, spec in list(FLOORS.items()) + [(definitive, CLAIRIERE)]:
+    for z, spec in FLOORS.items():
         img = peindre_terrain(rampes, spec)
         Image.fromarray(img).save(f"layers/src/{z}_terrain.png")
         mag = ((img[..., 0] > 150) & (img[..., 2] > 150) & (img[..., 1] < 130))
@@ -726,21 +662,13 @@ if __name__ == "__main__":
     n = couper_bordures()
     print(f"  catalogue : {n} morceaux -> layers/cut/bordure_feuillue_sheet/")
 
-    print("== construction : la carte definitive + les 3 etages")
-    rap = construire_etages([definitive] + noms)
+    print("== construction des 3 etages")
+    rap = construire_etages(noms)
     if not rap:
         sys.exit(1)
 
     print("== export PMDO")
-    exporter_pmdo(list(rap))
-
-    print("== audit d'echelle (sprites 1:1 + viewport + grille)")
-    from pmdo.audit_echelle import sprites_ref, planche as planche_audit
-    spr = sprites_ref()
-    os.makedirs("pmdo/audit", exist_ok=True)
-    for z in rap:
-        planche_audit(z, spr, f"pmdo/audit/{z}_echelle.png")
-        print(f"  pmdo/audit/{z}_echelle.png")
+    exporter_pmdo([z for z in noms if z in rap])
 
     doc = ecrire_layouts([z for z in noms if z in rap], rap)
     planche(doc)
