@@ -1,10 +1,13 @@
 -- entree_ruines : reconstruit le document en calques dans Aseprite
 -- Aseprite > File > Scripts > Open Scripts Folder, y déposer ce fichier, puis l'exécuter.
 local base = app.fs.filePath(app.fs.normalizePath(debug.getinfo(1).source:sub(2)))
-local W, H, NF, MS = 504, 456, 12, 110
+local W, H, NF, MS = 504, 456, 24, 110
 local defs = {
-  { name = "0_terrain", dir = ".", static = true },
-  { name = "2_props", dir = "02_props", static = false }
+  { name = "0_Base", dir = "00_base", static = true },
+  { name = "2_Cliffs", dir = "02_cliffs", static = true },
+  { name = "3_Shadows", dir = "03_shadows", static = true },
+  { name = "5_Objects", dir = "05_objects", static = false },
+  { name = "7_Fringe", dir = "07_fringe", static = true }
 }
 
 local spr = Sprite(W, H, ColorMode.RGB)

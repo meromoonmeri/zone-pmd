@@ -22,7 +22,7 @@
  "fond": "fond.png",
  "frames": "fond_frames.png",
  "frame_ms": 110,
- "nb_frames": 12,
+ "nb_frames": 24,
  "palette": 64,
  "calques": [
   {
@@ -38,7 +38,7 @@
    "nom": "props",
    "chemin": "calques/02_props.png",
    "anime": true,
-   "frames": 12,
+   "frames": 24,
    "technique": "cisaillement vertical, base fixe"
   },
   {
@@ -46,15 +46,15 @@
    "nom": "canopy",
    "chemin": "calques/03_canopy.png",
    "anime": true,
-   "frames": 12,
+   "frames": 24,
    "technique": "cisaillement lent, phase decalee"
   }
  ],
  "collision": {
   "fichier": "obstacles.json",
   "masque": "collision.png",
-  "libres": 2216,
-  "bloquees": 1375,
+  "libres": 2211,
+  "bloquees": 1380,
   "eau": 0
  },
  "entrees": {
@@ -128,11 +128,11 @@
   ],
   "multiple_de_8": true,
   "multiple_de_24": true,
-  "sol_cases2": 246.2,
-  "sol_par_sprite": 247.9,
+  "sol_cases2": 245.7,
+  "sol_par_sprite": 247.4,
   "largeur_locale_mediane": 3.33,
   "plus_grand_vide": 12.02,
-  "occupation_decor": 38.3,
+  "occupation_decor": 38.4,
   "part_eau": 0.0,
   "ecrans": 2.99,
   "eau_cellules": 0
@@ -161,7 +161,7 @@
    "tuiles_posees": 3591,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -173,7 +173,7 @@
    "tuiles_posees": 0,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -185,7 +185,7 @@
    "tuiles_posees": 0,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -197,7 +197,7 @@
    "tuiles_posees": 865,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -209,7 +209,7 @@
    "tuiles_posees": 597,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -219,8 +219,8 @@
    "sheet": "foret_automne_Objects.png",
    "periode_px": 504,
    "tuiles_posees": 1554,
-   "tuiles_animees": 1105,
-   "frames": 4,
+   "tuiles_animees": 1171,
+   "frames": 8,
    "tenue_frames": 3,
    "tenue_reguliere": true
   },
@@ -230,10 +230,10 @@
    "dossier": "06_objects_over",
    "sheet": "foret_automne_Objects_Over.png",
    "periode_px": 504,
-   "tuiles_posees": 1362,
-   "tuiles_animees": 674,
+   "tuiles_posees": 1367,
+   "tuiles_animees": 702,
    "frames": 3,
-   "tenue_frames": 4,
+   "tenue_frames": 8,
    "tenue_reguliere": true
   },
   {
@@ -242,10 +242,10 @@
    "dossier": "07_fringe",
    "sheet": "foret_automne_Fringe.png",
    "periode_px": 504,
-   "tuiles_posees": 0,
+   "tuiles_posees": 63,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   }
  ],

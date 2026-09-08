@@ -1,74 +1,74 @@
 {
- "pied_montagne": {
+ "entree_grotte": {
   "compo": {
-   "props": 108,
+   "props": 125,
    "canopy": 0,
-   "water_px": 27974
+   "water_px": 0
   },
   "palette": 64,
-  "objets_catalogue": 51,
+  "objets_catalogue": 40,
   "tiled": {
-   "tuiles": 1518,
-   "animees": 207,
-   "cases_animees": 207
+   "tuiles": 1102,
+   "animees": 118,
+   "cases_animees": 118
   },
   "aseprite": {
    "calques": 6,
    "cels": 144
   }
  },
- "gorge_pont": {
+ "entree_arbre": {
   "compo": {
-   "props": 60,
-   "canopy": 0,
-   "water_px": 46083
-  },
-  "palette": 64,
-  "objets_catalogue": 30,
-  "tiled": {
-   "tuiles": 948,
-   "animees": 132,
-   "cases_animees": 132
-  },
-  "aseprite": {
-   "calques": 7,
-   "cels": 168
-  }
- },
- "falaise_cotiere": {
-  "compo": {
-   "props": 56,
-   "canopy": 0,
-   "water_px": 33381
-  },
-  "palette": 64,
-  "objets_catalogue": 27,
-  "tiled": {
-   "tuiles": 1357,
-   "animees": 189,
-   "cases_animees": 189
-  },
-  "aseprite": {
-   "calques": 7,
-   "cels": 168
-  }
- },
- "sommet_montagne": {
-  "compo": {
-   "props": 84,
+   "props": 100,
    "canopy": 0,
    "water_px": 0
   },
   "palette": 64,
-  "objets_catalogue": 30,
+  "objets_catalogue": 42,
   "tiled": {
-   "tuiles": 663,
-   "animees": 51,
-   "cases_animees": 51
+   "tuiles": 1129,
+   "animees": 139,
+   "cases_animees": 139
   },
   "aseprite": {
    "calques": 5,
    "cels": 120
+  }
+ },
+ "entree_ruines": {
+  "compo": {
+   "props": 70,
+   "canopy": 0,
+   "water_px": 0
+  },
+  "palette": 64,
+  "objets_catalogue": 59,
+  "tiled": {
+   "tuiles": 713,
+   "animees": 55,
+   "cases_animees": 55
+  },
+  "aseprite": {
+   "calques": 5,
+   "cels": 120
+  }
+ },
+ "foret_automne": {
+  "compo": {
+   "props": 74,
+   "canopy": 58,
+   "water_px": 0
+  },
+  "palette": 64,
+  "objets_catalogue": 19,
+  "tiled": {
+   "tuiles": 1753,
+   "animees": 265,
+   "cases_animees": 265
+  },
+  "aseprite": {
+   "calques": 6,
+   "cels": 144
   }
  }
 }

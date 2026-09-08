@@ -5,7 +5,7 @@
   456
  ],
  "tile": 24,
- "frames": 12,
+ "frames": 24,
  "frame_ms": 110,
  "calques_halcyon": [
   {
@@ -17,7 +17,7 @@
    "tuiles_posees": 3591,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -29,7 +29,7 @@
    "tuiles_posees": 0,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -41,7 +41,7 @@
    "tuiles_posees": 0,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -53,7 +53,7 @@
    "tuiles_posees": 892,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -65,7 +65,7 @@
    "tuiles_posees": 695,
    "tuiles_animees": 61,
    "frames": 4,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -75,8 +75,8 @@
    "sheet": "entree_arbre_Objects.png",
    "periode_px": 504,
    "tuiles_posees": 1325,
-   "tuiles_animees": 669,
-   "frames": 4,
+   "tuiles_animees": 691,
+   "frames": 8,
    "tenue_frames": 3,
    "tenue_reguliere": true
   },
@@ -89,7 +89,7 @@
    "tuiles_posees": 0,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 4,
+   "tenue_frames": 8,
    "tenue_reguliere": true
   },
   {
@@ -98,10 +98,10 @@
    "dossier": "07_fringe",
    "sheet": "entree_arbre_Fringe.png",
    "periode_px": 504,
-   "tuiles_posees": 0,
+   "tuiles_posees": 1553,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   }
  ],

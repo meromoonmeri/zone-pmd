@@ -22,7 +22,7 @@
  "fond": "fond.png",
  "frames": "fond_frames.png",
  "frame_ms": 110,
- "nb_frames": 12,
+ "nb_frames": 24,
  "palette": 64,
  "calques": [
   {
@@ -38,7 +38,7 @@
    "nom": "props",
    "chemin": "calques/02_props.png",
    "anime": true,
-   "frames": 12,
+   "frames": 24,
    "technique": "cisaillement vertical, base fixe"
   }
  ],
@@ -149,7 +149,7 @@
    "tuiles_posees": 3591,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -161,7 +161,7 @@
    "tuiles_posees": 0,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -173,7 +173,7 @@
    "tuiles_posees": 469,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -185,7 +185,7 @@
    "tuiles_posees": 869,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -197,7 +197,7 @@
    "tuiles_posees": 483,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -207,8 +207,8 @@
    "sheet": "entree_grotte_Objects.png",
    "periode_px": 504,
    "tuiles_posees": 1211,
-   "tuiles_animees": 489,
-   "frames": 4,
+   "tuiles_animees": 499,
+   "frames": 8,
    "tenue_frames": 3,
    "tenue_reguliere": true
   },
@@ -221,7 +221,7 @@
    "tuiles_posees": 0,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 4,
+   "tenue_frames": 8,
    "tenue_reguliere": true
   },
   {
@@ -230,10 +230,10 @@
    "dossier": "07_fringe",
    "sheet": "entree_grotte_Fringe.png",
    "periode_px": 504,
-   "tuiles_posees": 0,
+   "tuiles_posees": 537,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   }
  ],
