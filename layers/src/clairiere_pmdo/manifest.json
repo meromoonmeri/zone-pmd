@@ -1,0 +1,18 @@
+{
+  "zone": "clairiere",
+  "canvas_px": [1120, 960],
+  "cellule_pmdo_px": 8,
+  "grille": [140, 120],
+  "resampling": "none",
+  "format": "PNG RGBA lossless",
+  "frames": 8,
+  "layers": {
+    "base": "base/clairiere_base_a.png",
+    "eau": "eau/f01.png..f08.png",
+    "lumiere_simple": "lumiere_simple/f01.png..f08.png",
+    "lumiere_evolution": "lumiere_evolution/f01.png..f08.png",
+    "lumiere_validee": "lumiere_validee/f01.png..f08.png"
+  },
+  "composition": ["base", "eau", "lumiere_simple", "lumiere_evolution"],
+  "note": "Les originaux sont conserves a leur resolution native; aucune interpolation ni perte de detail."
+}
