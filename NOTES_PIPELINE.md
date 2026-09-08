@@ -217,3 +217,55 @@ objet et une amplitude de cisaillement.
 
 `planche_4zones.html` — les quatre zones animées, leurs calques frame 0 (fond magenta
 visible : c'est la couleur-clé), rampes d'eau, catégories détourées et compteurs.
+
+## Le ground PMDO de la clairière à l'arbre ancien — critères Luminous Spring
+
+**La demande.** La zone en frames 1/2/3/4/5/6/7/8, aux mêmes critères
+PMDO que le Luminous Spring de Palika (mod Halcyon) : dimension,
+viewport, grille, etc. La zone avait déjà ses planches `.tile` 8 px —
+il manquait les deux fichiers que le moteur charge réellement.
+
+**Rétro-ingénierie depuis les sources RogueEssence (RogueCollab).** Le
+`.rsground` est un JSON `GroundMap` : `TexSize` donne la taille de case
+(1→8 px, 3→24 px), `obstacles` est `[l×TexSize][h×TexSize]` murs de
+8 px en **pixels**, `Tags` est un bitmask où 0 = libre et tout le reste
+bloque (`SlideResponse`) — l'eau de Luminous Spring et les murs de la
+guilde sont tous `1`. Les calques sont `Tiles[x][y]` d'`AutoTile`, dont
+la liste `Layers` de `TileLayer` anime `Frames[]` toutes les
+`FrameLength` frames de 120 ticks ; l'animation par case, pas par
+plancher. Le `.tile` est un binaire : entête `TileIndexNode`
+[ int32 tailleTuile ][ int32 nombre ] puis `nombre × (int32 x, int32 y,
+int64 position)` et les entrées `[ int64 longueur ][ PNG 8×8 ]` —
+l'encodage d'index de notre `forge/tile_rogue.py` (`clé = y<<32|x`)
+est byte-à-byte celui du moteur en little-endian. L'`index.idx` est un
+`TileGuide` : [ int32 nombre ] puis par planche une chaîne .NET
+(longueur 7 bits + UTF-8) et son `TileIndexNode` ; le moteur les
+fusionne en fallforth, clé par clé — d'où la fusion additive avec
+l'index du mod cible (181 + 6 = 187 planches).
+
+**La construction.** TexSize 1 (nos planches sont en 8 px, comme
+`illuminant_riverbed`/`Altere_Pond` chez Palika ; Luminous Spring est
+en 24 px — les deux sont des cartes moteur valides, la taille suit
+l'art). Obstacles dérivés de `collision.png` (2445 solides). Calque
+Base (statique, FrameLength 60) + calque River : les 292 cases d'eau
+avec **8 frames** (4 dessins × maintien 2, FrameLength 10 = 165 ms, le
+`frame_ms` du manifest), chaque frame pointant la planche de son
+dessin. `South_Exit` en entité sur l'entrée sud (collider 72×8 px).
+Les ombres sont déjà cuites dans la base — le calque `Shadows` n'est
+pas référencé par la carte (il serait doublé), il reste indexé et
+disponible.
+
+**La preuve.** `ground_pmdo.py` relit tout et re-rend la carte comme le
+moteur : les 8 frames re-rendues depuis les binaires == les frames
+livrées, **écart max 0** ; obstacles == collision.png ; l'index
+round-trip ; et le code de lecture valide sur les vrais fichiers
+Halcyon (leur `index.idx` de 181 planches, les positions
+`Illuminant_Riverbed_River_Animations` pointent des PNG 8×8 valides).
+Le schéma du `.rsground` est comparé clé par clé à celui de
+`luminous_spring.rsground` — seules manquent les clés des NPC/spawners,
+vides ici.
+
+**Livraison.** `pmdo/clairiere_arbre/ground/` : `Content/Tile/`
+(6 planches + index fusionné), `Data/Ground/clairiere_arbre.rsground`,
+`frames/frame_1..8.png` + `viewport.gif` (320×240 sur le bassin),
+`apercu_ground.png`, README d'installation drop-in.

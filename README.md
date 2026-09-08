@@ -542,3 +542,33 @@ python3 build_zones4.py       # plage, prairie, marais, cristal + exports
 python3 pmdo/export_pmdo.py   # pack PMDO
 python3 planche_4zones.py     # galerie
 ```
+
+---
+
+## La clairière à l'arbre ancien — ground PMDO complet, critères Luminous Spring
+
+`clairiere_arbre` (576×504 = 24×21 cases de 24 = 72×63 cellules de 8,
+viewport 320×240) est livrée en **vrai ground PMDO** — le format que
+charge RogueEssence — aux critères exacts du Luminous Spring de Palika
+(mod Halcyon) :
+
+- **`Data/Ground/clairiere_arbre.rsground`** : la carte GroundMap, champ
+  pour champ comme `luminous_spring.rsground` — TexSize, obstacles
+  72×63 (`Tags` 0 libre / 1 solide, comme l'eau de Luminous Spring et
+  les murs de la guilde), calques de tuiles, sortie sud en entité ;
+- **`Content/Tile/`** : les 6 planches `.tile` de la zone (format
+  binaire moteur) + `index.idx` **fusionné avec l'index du mod** (187
+  planches) — drop-in direct ;
+- **l'eau en frames 1/2/3/4/5/6/7/8** : 4 dessins, maintien 2,
+  `FrameLength` 10 = 165 ms — la séquence exacte du GIF, dans le
+  format d'animation du moteur (`Frames[]` par case) ;
+- **`frames/` et `apercu_ground.png`** : les 8 frames, le viewport
+  320×240 sur le bassin, et la preuve — la carte **re-rendue depuis
+  les fichiers binaires**, identique aux frames au pixel près
+  (écart max 0).
+
+Le format a été retro-ingenieré depuis les sources RogueEssence et
+**validé sur les vrais fichiers de Halcyon** (leur `index.idx` de 181
+planches et leurs `.tile` se relisent avec le même code). Tout est
+rejouable : `python3 ground_pmdo.py` reconstruit et re-vérifie tout
+(TOUT EST EXACT). Détails : `pmdo/clairiere_arbre/ground/README.md`.
