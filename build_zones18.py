@@ -94,6 +94,11 @@ DENSITE = 1.35
 #             (forge/water_halcyon.py). C'est ce qui est demande maintenant.
 STYLE_EAU = "halcyon"
 
+# "libre"   : median-cut a 64 couleurs, ma palette
+# "halcyon" : sa palette exacte (654 couleurs relevees sur ses .tile) + sa
+#             contrainte de 16 couleurs par tuile de 8 px.
+COLORIMETRIE = "halcyon"
+
 
 def R(cats, surface, count, cap=4, min_dist=30, sway=0):
     return dict(cats=cats, surface=surface,
@@ -353,7 +358,8 @@ def construire(zone):
                  terrain_tint=spec["tint"], terrain_strength=spec["strength"],
                  grade=spec.get("grade", "jour"), seed=spec["seed"],
                  eau_emissive=spec.get("emissive", False),
-                 style_eau=spec.get("style_eau", STYLE_EAU))
+                 style_eau=spec.get("style_eau", STYLE_EAU),
+                 colorimetrie=spec.get("colorimetrie", COLORIMETRIE))
     tr, av = export_tools(zone)
     return dict(compo=m["counts"], palette=m["palette"], objets_catalogue=n,
                 tiled=dict(tuiles=tr["tuiles_uniques"], animees=tr["tuiles_animees"],

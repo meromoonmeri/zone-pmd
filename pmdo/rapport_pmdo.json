@@ -34,5 +34,77 @@
    "ouest",
    "est"
   ]
+ },
+ "foret_automne": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 2211,
+   "bloquees": 1380,
+   "eau": 0
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
+ "lac_foret": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 641,
+   "bloquees": 2950,
+   "eau": 1935
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
  }
 }

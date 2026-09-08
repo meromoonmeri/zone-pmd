@@ -26,6 +26,7 @@ from forge.water_halcyon import (water_layer as water_layer_hal,
                                  preuve as preuve_eau_hal)
 from forge import calques_halcyon as CH
 from forge import fringe as FR
+from forge import palette_halcyon as PH
 from forge.compose import (W, H, N, MS, load_terrain, hsv_mask,
                            load_objects, shear_sway, alpha_paste, contact_shadow,
                            apply_light, LIGHT_GRADES, enrich_terrain)
@@ -130,7 +131,7 @@ def grade_terrain(rgb, tint_hex, strength=0.55, pad=0.20):
 
 def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
            rules=None, water_ramp=None, foam=None, calm=1.0, eau_emissive=False,
-           style_eau="sky",
+           style_eau="sky", colorimetrie="libre",
            terrain_tint="#0a1c14", terrain_strength=0.55,
            seed=1, grade="jour"):
     rng = np.random.default_rng(seed)
@@ -396,15 +397,32 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
     if len(pal_eau):
         pal = np.unique(np.concatenate([pal_eau, pal], 0), axis=0)
     lut = build_lut(pal)
+    # colorimetrie "halcyon" : on abandonne le median-cut a 64 et on tombe sur
+    # SA palette (654 couleurs relevees sur ses .tile), puis on force sa
+    # contrainte de 16 couleurs par tuile de 8 px.
+    hal = (colorimetrie == "halcyon")
+
+    def _rendu(f):
+        if hal:
+            # 1. on remonte l'exposition sur la sienne, 2. on tombe sur sa
+            # palette, 3. on force ses 16 couleurs par tuile.
+            return PH.contraindre_tuiles(PH.snap(PH.exposer(f[..., :3])), maxi=8)
+        return snap(f, pal, lut).astype(np.uint8)
+
     imgs = []
     for t, f in enumerate(finals):
-        im = Image.fromarray(snap(f, pal, lut).astype(np.uint8), "RGB")
+        im = Image.fromarray(_rendu(f), "RGB")
         im.save(f"{out_dir}/frames/f{t:02d}.png"); imgs.append(im)
     os.makedirs(f"{out_dir}/frames_tiles", exist_ok=True)
     for t, f in enumerate(finals_tiles):
-        Image.fromarray(snap(f, pal, lut).astype(np.uint8), "RGB").save(
+        Image.fromarray(_rendu(f), "RGB").save(
             f"{out_dir}/frames_tiles/f{t:02d}.png")
-    gif = [im.quantize(colors=len(pal), method=Image.MEDIANCUT, dither=Image.Dither.NONE)
+    if hal:
+        pal = np.unique(np.concatenate(
+            [np.array(i).reshape(-1, 3) for i in imgs], 0), axis=0)
+    # le GIF plafonne a 256 entrees ; sa palette en compte 654.
+    ngif = int(min(256, max(2, len(pal))))
+    gif = [im.quantize(colors=ngif, method=Image.MEDIANCUT, dither=Image.Dither.NONE)
            for im in imgs]
     gif[0].save(f"{out_dir}/{zone}.gif", save_all=True, append_images=gif[1:],
                 duration=MS, loop=0, optimize=True, disposal=1)
@@ -447,6 +465,9 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
         animes[nom] = int(_cases(bouge).sum()) if len(ims) > 1 else 0
 
     man = dict(zone=zone, size=[W, H], tile=24, frames=N, frame_ms=MS,
+               colorimetrie=colorimetrie,
+               mesures_couleur=PH.mesures(np.array(imgs[0])),
+               ecart_palette_halcyon=PH.couverture(np.array(imgs[0])),
                calques_halcyon=CH.table(compte, animes, planches, N),
                palette=int(len(pal)), grade=grade,
                layers=[

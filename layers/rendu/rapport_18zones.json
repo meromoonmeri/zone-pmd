@@ -5,16 +5,52 @@
    "canopy": 0,
    "water_px": 34426
   },
-  "palette": 64,
+  "palette": 416,
   "objets_catalogue": 45,
   "tiled": {
-   "tuiles": 1748,
-   "animees": 234,
-   "cases_animees": 234
+   "tuiles": 2149,
+   "animees": 337,
+   "cases_animees": 337
   },
   "aseprite": {
    "calques": 6,
    "cels": 144
+  }
+ },
+ "foret_automne": {
+  "compo": {
+   "props": 74,
+   "canopy": 58,
+   "water_px": 0
+  },
+  "palette": 245,
+  "objets_catalogue": 19,
+  "tiled": {
+   "tuiles": 2337,
+   "animees": 344,
+   "cases_animees": 344
+  },
+  "aseprite": {
+   "calques": 6,
+   "cels": 144
+  }
+ },
+ "lac_foret": {
+  "compo": {
+   "props": 61,
+   "canopy": 58,
+   "water_px": 124340
+  },
+  "palette": 407,
+  "objets_catalogue": 28,
+  "tiled": {
+   "tuiles": 2468,
+   "animees": 343,
+   "cases_animees": 343
+  },
+  "aseprite": {
+   "calques": 7,
+   "cels": 168
   }
  }
 }
