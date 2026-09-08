@@ -1,0 +1,163 @@
+[
+ {
+  "file": "obj_00.png",
+  "w": 76,
+  "h": 19,
+  "px": 1079,
+  "anchor_y": 19
+ },
+ {
+  "file": "obj_01.png",
+  "w": 76,
+  "h": 20,
+  "px": 1156,
+  "anchor_y": 20
+ },
+ {
+  "file": "obj_02.png",
+  "w": 76,
+  "h": 21,
+  "px": 1149,
+  "anchor_y": 21
+ },
+ {
+  "file": "obj_03.png",
+  "w": 76,
+  "h": 21,
+  "px": 1131,
+  "anchor_y": 21
+ },
+ {
+  "file": "obj_04.png",
+  "w": 76,
+  "h": 22,
+  "px": 1241,
+  "anchor_y": 22
+ },
+ {
+  "file": "obj_05.png",
+  "w": 16,
+  "h": 20,
+  "px": 217,
+  "anchor_y": 20
+ },
+ {
+  "file": "obj_06.png",
+  "w": 81,
+  "h": 19,
+  "px": 1124,
+  "anchor_y": 19
+ },
+ {
+  "file": "obj_07.png",
+  "w": 81,
+  "h": 19,
+  "px": 1166,
+  "anchor_y": 19
+ },
+ {
+  "file": "obj_08.png",
+  "w": 81,
+  "h": 21,
+  "px": 1193,
+  "anchor_y": 21
+ },
+ {
+  "file": "obj_09.png",
+  "w": 81,
+  "h": 18,
+  "px": 1032,
+  "anchor_y": 18
+ },
+ {
+  "file": "obj_10.png",
+  "w": 81,
+  "h": 22,
+  "px": 1291,
+  "anchor_y": 22
+ },
+ {
+  "file": "obj_11.png",
+  "w": 81,
+  "h": 19,
+  "px": 1221,
+  "anchor_y": 19
+ },
+ {
+  "file": "obj_12.png",
+  "w": 23,
+  "h": 21,
+  "px": 308,
+  "anchor_y": 21
+ },
+ {
+  "file": "obj_13.png",
+  "w": 22,
+  "h": 21,
+  "px": 301,
+  "anchor_y": 21
+ },
+ {
+  "file": "obj_14.png",
+  "w": 21,
+  "h": 20,
+  "px": 254,
+  "anchor_y": 20
+ },
+ {
+  "file": "obj_15.png",
+  "w": 25,
+  "h": 21,
+  "px": 307,
+  "anchor_y": 21
+ },
+ {
+  "file": "obj_16.png",
+  "w": 20,
+  "h": 22,
+  "px": 318,
+  "anchor_y": 22
+ },
+ {
+  "file": "obj_17.png",
+  "w": 16,
+  "h": 17,
+  "px": 115,
+  "anchor_y": 17
+ },
+ {
+  "file": "obj_18.png",
+  "w": 20,
+  "h": 21,
+  "px": 261,
+  "anchor_y": 21
+ },
+ {
+  "file": "obj_19.png",
+  "w": 17,
+  "h": 22,
+  "px": 264,
+  "anchor_y": 22
+ },
+ {
+  "file": "obj_20.png",
+  "w": 23,
+  "h": 21,
+  "px": 303,
+  "anchor_y": 21
+ },
+ {
+  "file": "obj_21.png",
+  "w": 22,
+  "h": 21,
+  "px": 329,
+  "anchor_y": 21
+ },
+ {
+  "file": "obj_22.png",
+  "w": 21,
+  "h": 22,
+  "px": 295,
+  "anchor_y": 22
+ }
+]

@@ -25,6 +25,7 @@ from forge.water_pmd import water_layer, preuve as preuve_eau
 from forge.water_halcyon import (water_layer as water_layer_hal,
                                  preuve as preuve_eau_hal)
 from forge import calques_halcyon as CH
+from forge import fringe as FR
 from forge.compose import (W, H, N, MS, load_terrain, hsv_mask,
                            load_objects, shear_sway, alpha_paste, contact_shadow,
                            apply_light, LIGHT_GRADES, enrich_terrain)
@@ -195,8 +196,12 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
     vig = C.frame_falloff(H, W, 0.15)
     # Structure de calques de Palika : Base / River / Cliffs / Shadows /
     # Objects Under / Objects / Objects Over / Fringe, dans cet ordre.
+    import shutil
     for sub in (list(CH.DOSSIERS.values())
-                + ["frames", "01_water", "02_props", "03_canopy"]):
+                + ["frames", "frames_tiles", "01_water", "02_props", "03_canopy"]):
+        # on vide : sinon un calque qu'une zone n'utilise plus garde les images
+        # du rendu precedent et fausse le comptage.
+        shutil.rmtree(f"{out_dir}/{sub}", ignore_errors=True)
         os.makedirs(f"{out_dir}/{sub}", exist_ok=True)
     Image.fromarray(terrain_g, "RGB").save(
         f"{out_dir}/{CH.DOSSIERS['Base']}/f00.png")
@@ -206,19 +211,55 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
     seaux = {"Cliffs": [], "Objects Under": [], "Objects": []}
     for p_ in placed:
         seaux[CH.calque_de(p_[5])].append(p_)
-    # Fringe : le liseré de raccord entre terrains, dessine PAR-DESSUS tout.
+    # --- 7 Fringe : les vrais debords, pas un contour d'un pixel ----------- #
+    # Chez lui Fringe pose 2 075 tuiles de raccords dessines a la main. On pose
+    # des bandes de debord le long du BORD BAS de chaque terrain : l'herbe
+    # retombe sur ce qui est en dessous, la roche a une levre, la rive un liseré.
     fringe = np.zeros((H, W, 4), np.uint8)
-    bord = C.dilate(ground, 1) & ~ground
+    lots = {}
+    for nom in ("herbe", "roche", "rive", "feuillage"):
+        d = f"layers/cut/fringe_{nom}_sheet"
+        lots[nom] = load_objects(d) if os.path.isdir(d) else []
+    poses_fr = []
+    interdit = C.dilate(water_mask, 3) if water_mask is not None else None
+    poses_fr += FR.poser(grass, lots["herbe"], rng, mini=5, recouvrement=0.62,
+                         interdit=interdit)
+    poses_fr += FR.poser(grey | sand, lots["roche"], rng, mini=6,
+                         recouvrement=0.66, interdit=interdit)
+    # Pas de bande de rive sur l'eau : le calque River pose deja le liseré de
+    # berge de Palika (4 px, trois valeurs). Empiler une bande de sable dessus
+    # faisait un banc opaque en travers de la nappe. Fringe reste ce qu'il est
+    # chez lui : des raccords de TERRAIN.
+    for y, x, o in poses_fr:
+        alpha_paste(fringe, o["img"], y, x)
+    # le liseré de contact d'origine reste dessous, il ferme les raccords
+    bordure = C.dilate(ground, 1) & ~ground
     if water_mask is not None:
-        bord |= C.dilate(water_mask, 1) & ~water_mask
-    fringe[bord] = (0, 0, 0, 70)
+        bordure |= C.dilate(water_mask, 1) & ~water_mask
+    sous = np.zeros((H, W, 4), np.uint8)
+    sous[bordure] = (0, 0, 0, 70)
+    alpha_paste(sous, fringe, 0, 0)
+    fringe = sous
     Image.fromarray(fringe, "RGBA").save(f"{out_dir}/{CH.DOSSIERS['Fringe']}/f00.png")
+
+    # Feuillage suspendu -> Objects Over. Chez lui ce calque ne pose que 150
+    # tuiles : c'est ponctuel. Et on ne suspend des feuilles que la ou il y a
+    # des arbres — pas au milieu d'une prairie.
+    if lots["feuillage"] and canopy:
+        for y, x, o in FR.poser_surplomb(ground, lots["feuillage"], rng, nombre=8):
+            canopy_placed.append((y, x, o, 1, float(rng.random() * 2 * np.pi),
+                                  ("canopy",)))
 
     # Nombre de dessins distincts par calque anime, comme chez lui.
     d_river, _ = CH.dessins(N, 4)
     d_under, _ = CH.dessins(N, 4)
     d_obj, _ = CH.dessins(N, 4)
+    d_obj8, r8 = CH.dessins(N, 8)     # son sous-lot a 8 frames (160 tuiles)
     d_over, _ = CH.dessins(N, 3)
+    # les props les plus mobiles prennent 8 dessins, les autres 4 : c'est le
+    # partage qu'on lit sur son calque Objects (432 tuiles a 4, 160 a 8).
+    seaux["Objects8"] = [p_ for p_ in seaux["Objects"] if p_[3] >= 2]
+    seaux["Objects"] = [p_ for p_ in seaux["Objects"] if p_[3] < 2]
     cache = {}
 
     # Eau : palette cycling a la maniere d'Explorers of Sky. Le champ d'indices
@@ -274,7 +315,8 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
 
         # --- 2 Cliffs, 4 Objects Under, 5 Objects
         lp = np.zeros((H, W, 4), np.uint8)
-        for nom, dsn in (("Cliffs", None), ("Objects Under", d_under), ("Objects", d_obj)):
+        for nom, dsn in (("Cliffs", None), ("Objects Under", d_under),
+                         ("Objects", d_obj), ("Objects8", d_obj8)):
             lot = seaux[nom]
             if not lot:
                 continue
@@ -290,8 +332,18 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
                 b = _bucket(nom, lot, dsn)
             alpha_paste(frame, b, 0, 0)
             alpha_paste(lp, b, 0, 0)
-            Image.fromarray(b, "RGBA").save(
-                f"{out_dir}/{CH.DOSSIERS[nom]}/f{t:02d}.png")
+            if nom != "Objects8":
+                Image.fromarray(b, "RGBA").save(
+                    f"{out_dir}/{CH.DOSSIERS[nom]}/f{t:02d}.png")
+        # Objects et Objects8 partagent le calque Objects, comme chez lui ou
+        # deux sheets cohabitent dessus. Le calque a donc 8 dessins distincts.
+        fus = np.zeros((H, W, 4), np.uint8)
+        for nom in ("Objects", "Objects8"):
+            cle = (nom, (d_obj if nom == "Objects" else d_obj8)[t])
+            if cle in cache:
+                alpha_paste(fus, cache[cle], 0, 0)
+        Image.fromarray(fus, "RGBA").save(
+            f"{out_dir}/{CH.DOSSIERS['Objects']}/f{t:02d}.png")
         Image.fromarray(lp, "RGBA").save(f"{out_dir}/02_props/f{t:02d}.png")
 
         # --- 6 Objects Over : 3 dessins, sa valeur pour ce calque

@@ -126,6 +126,19 @@ def write_tags():
 def export_tools(zone):
     src = f"layers/rendu/{zone}"
     man = json.load(open(f"{src}/manifest.json"))
+    # Les calques exportes sont ceux de Palika : Base / River / Cliffs /
+    # Shadows / Objects Under / Objects / Objects Over / Fringe. Aseprite et
+    # Tiled recoivent donc la meme pile, avec ses noms.
+    ch = man.get("calques_halcyon")
+    if ch:
+        man = dict(man, layers=[
+            dict(order=c["ordre"], name=c["nom"], dir=c["dossier"],
+                 animated=bool(c["tuiles_animees"]),
+                 technique=(f"{c['frames']} dessin(s), tenue {c['tenue_frames']} frames, "
+                            f"{c['tuiles_posees']} tuiles 8px dont {c['tuiles_animees']} animees"))
+            for c in ch
+            if os.path.isdir(f"{src}/{c['dossier']}")
+            and glob.glob(f"{src}/{c['dossier']}/*.png")])
     # ---- Tiled ---------------------------------------------------------- #
     tout = f"tiled/{zone}"
     os.makedirs(f"{tout}/calques", exist_ok=True)

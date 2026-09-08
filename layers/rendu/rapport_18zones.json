@@ -1,92 +1,20 @@
 {
- "banquise_glacier": {
+ "bassin_sentier": {
   "compo": {
-   "props": 84,
+   "props": 91,
    "canopy": 0,
-   "water_px": 11446
+   "water_px": 34426
   },
-  "palette": 62,
-  "objets_catalogue": 22,
+  "palette": 64,
+  "objets_catalogue": 45,
   "tiled": {
-   "tuiles": 681,
-   "animees": 84,
-   "cases_animees": 84
+   "tuiles": 1748,
+   "animees": 234,
+   "cases_animees": 234
   },
   "aseprite": {
    "calques": 3,
-   "cels": 36
-  }
- },
- "caverne_lave": {
-  "compo": {
-   "props": 57,
-   "canopy": 0,
-   "water_px": 39035
-  },
-  "palette": 64,
-  "objets_catalogue": 16,
-  "tiled": {
-   "tuiles": 739,
-   "animees": 86,
-   "cases_animees": 86
-  },
-  "aseprite": {
-   "calques": 3,
-   "cels": 36
-  }
- },
- "temple_dore": {
-  "compo": {
-   "props": 53,
-   "canopy": 0,
-   "water_px": 0
-  },
-  "palette": 64,
-  "objets_catalogue": 23,
-  "tiled": {
-   "tuiles": 397,
-   "animees": 0,
-   "cases_animees": 0
-  },
-  "aseprite": {
-   "calques": 2,
-   "cels": 24
-  }
- },
- "ruines_englouties": {
-  "compo": {
-   "props": 73,
-   "canopy": 0,
-   "water_px": 54671
-  },
-  "palette": 64,
-  "objets_catalogue": 41,
-  "tiled": {
-   "tuiles": 812,
-   "animees": 107,
-   "cases_animees": 107
-  },
-  "aseprite": {
-   "calques": 3,
-   "cels": 36
-  }
- },
- "grottes_marines": {
-  "compo": {
-   "props": 63,
-   "canopy": 0,
-   "water_px": 28074
-  },
-  "palette": 64,
-  "objets_catalogue": 22,
-  "tiled": {
-   "tuiles": 665,
-   "animees": 73,
-   "cases_animees": 73
-  },
-  "aseprite": {
-   "calques": 3,
-   "cels": 36
+   "cels": 72
   }
  }
 }

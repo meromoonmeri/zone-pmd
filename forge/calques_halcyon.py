@@ -41,7 +41,7 @@ CALQUES = [
     ("Cliffs",        2, 1),
     ("Shadows",       3, 1),
     ("Objects Under", 4, 4),
-    ("Objects",       5, 4),
+    ("Objects",       5, 8),   # 4 et 8 chez lui : deux sheets cohabitent
     ("Objects Over",  6, 3),
     ("Fringe",        7, 1),
 ]

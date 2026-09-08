@@ -22,7 +22,8 @@ from . import core as C
 from .animate import fbm, build_lut, palette_of, snap
 
 W, H = 21 * 24, 19 * 24
-N = 12
+N = 24   # 24 et non 12 : Palika a des calques a 3, 4 et 8 dessins ;
+         # seul 24 les divise tous (8, 6, 3 frames de tenue).
 MS = 110
 MAGENTA = None   # détecté dynamiquement
 

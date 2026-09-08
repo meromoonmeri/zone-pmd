@@ -18,7 +18,7 @@ python3 pmdo/export_pmdo.py "$@" 2>&1 | tail -n $#
 
 rm -rf aseprite tiled
 for z in "$@"; do
-  rm -rf "layers/rendu/$z" "pmdo/$z/calques" "layers/src/${z}_terrain.png"
+  rm -rf "layers/rendu/$z" "pmdo/$z" "layers/src/${z}_terrain.png"
 done
 rm -rf __pycache__ */__pycache__ /home/user/build
 du -sh .

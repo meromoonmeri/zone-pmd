@@ -1,0 +1,114 @@
+[
+ {
+  "file": "obj_00.png",
+  "w": 55,
+  "h": 29,
+  "px": 949,
+  "anchor_y": 29
+ },
+ {
+  "file": "obj_01.png",
+  "w": 55,
+  "h": 29,
+  "px": 1008,
+  "anchor_y": 29
+ },
+ {
+  "file": "obj_02.png",
+  "w": 54,
+  "h": 28,
+  "px": 988,
+  "anchor_y": 28
+ },
+ {
+  "file": "obj_03.png",
+  "w": 55,
+  "h": 27,
+  "px": 911,
+  "anchor_y": 27
+ },
+ {
+  "file": "obj_04.png",
+  "w": 54,
+  "h": 27,
+  "px": 832,
+  "anchor_y": 27
+ },
+ {
+  "file": "obj_05.png",
+  "w": 37,
+  "h": 27,
+  "px": 577,
+  "anchor_y": 27
+ },
+ {
+  "file": "obj_06.png",
+  "w": 53,
+  "h": 60,
+  "px": 1324,
+  "anchor_y": 60
+ },
+ {
+  "file": "obj_07.png",
+  "w": 19,
+  "h": 20,
+  "px": 211,
+  "anchor_y": 20
+ },
+ {
+  "file": "obj_08.png",
+  "w": 55,
+  "h": 27,
+  "px": 851,
+  "anchor_y": 27
+ },
+ {
+  "file": "obj_09.png",
+  "w": 55,
+  "h": 29,
+  "px": 998,
+  "anchor_y": 29
+ },
+ {
+  "file": "obj_10.png",
+  "w": 54,
+  "h": 26,
+  "px": 874,
+  "anchor_y": 26
+ },
+ {
+  "file": "obj_11.png",
+  "w": 32,
+  "h": 24,
+  "px": 433,
+  "anchor_y": 24
+ },
+ {
+  "file": "obj_12.png",
+  "w": 54,
+  "h": 27,
+  "px": 849,
+  "anchor_y": 27
+ },
+ {
+  "file": "obj_13.png",
+  "w": 54,
+  "h": 26,
+  "px": 495,
+  "anchor_y": 26
+ },
+ {
+  "file": "obj_14.png",
+  "w": 22,
+  "h": 56,
+  "px": 691,
+  "anchor_y": 56
+ },
+ {
+  "file": "obj_15.png",
+  "w": 18,
+  "h": 56,
+  "px": 264,
+  "anchor_y": 56
+ }
+]

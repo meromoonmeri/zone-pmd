@@ -22,7 +22,7 @@
  "fond": "fond.png",
  "frames": "fond_frames.png",
  "frame_ms": 110,
- "nb_frames": 12,
+ "nb_frames": 24,
  "palette": 64,
  "calques": [
   {
@@ -38,7 +38,7 @@
    "nom": "water",
    "chemin": "calques/01_water.png",
    "anime": true,
-   "frames": 12,
+   "frames": 24,
    "technique": "palette cycling EoS : indices figes, 16 entrees (3 nuances plates + 12 reflets cycles + ecume), tramage ordonne 4x4, un pas toutes les 330 ms"
   },
   {
@@ -46,7 +46,7 @@
    "nom": "props",
    "chemin": "calques/02_props.png",
    "anime": true,
-   "frames": 12,
+   "frames": 24,
    "technique": "cisaillement vertical, base fixe"
   }
  ],
@@ -157,7 +157,7 @@
    "tuiles_posees": 3591,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -167,9 +167,9 @@
    "sheet": "bassin_sentier_River.png",
    "periode_px": 504,
    "tuiles_posees": 588,
-   "tuiles_animees": 401,
+   "tuiles_animees": 361,
    "frames": 4,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -181,7 +181,7 @@
    "tuiles_posees": 0,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -193,7 +193,7 @@
    "tuiles_posees": 654,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -205,7 +205,7 @@
    "tuiles_posees": 107,
    "tuiles_animees": 60,
    "frames": 4,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -215,8 +215,8 @@
    "sheet": "bassin_sentier_Objects.png",
    "periode_px": 504,
    "tuiles_posees": 1401,
-   "tuiles_animees": 898,
-   "frames": 4,
+   "tuiles_animees": 932,
+   "frames": 8,
    "tenue_frames": 3,
    "tenue_reguliere": true
   },
@@ -229,7 +229,7 @@
    "tuiles_posees": 0,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 4,
+   "tenue_frames": 8,
    "tenue_reguliere": true
   },
   {
@@ -238,10 +238,10 @@
    "dossier": "07_fringe",
    "sheet": "bassin_sentier_Fringe.png",
    "periode_px": 504,
-   "tuiles_posees": 102,
+   "tuiles_posees": 262,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   }
  ],
