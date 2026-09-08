@@ -1,0 +1,7 @@
+{
+  "layer": "clairiere_lumiere_foret_overlay",
+  "blend_mode": "screen",
+  "opacity": 0.42,
+  "purpose": "eclairage translucide ciblant le decor derriere sans le masquer",
+  "frame_count": 8
+}
