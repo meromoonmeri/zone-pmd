@@ -7,6 +7,21 @@
  "tile": 24,
  "frames": 24,
  "frame_ms": 110,
+ "colorimetrie": "halcyon",
+ "mesures_couleur": {
+  "couleurs": 242,
+  "L_p5": 54.608,
+  "L_p50": 158.832,
+  "L_p95": 212.88000000000002,
+  "S_p50": 0.32,
+  "sur_grille_8": 1.0,
+  "couleurs_par_tuile_med": 8.0,
+  "tuiles_sous_16": 1.0
+ },
+ "ecart_palette_halcyon": {
+  "ecart_moyen": 0.0,
+  "ecart_p95": 0.0
+ },
  "calques_halcyon": [
   {
    "ordre": 0,
@@ -105,7 +120,7 @@
    "tenue_reguliere": true
   }
  ],
- "palette": 64,
+ "palette": 324,
  "grade": "jour",
  "layers": [
   {

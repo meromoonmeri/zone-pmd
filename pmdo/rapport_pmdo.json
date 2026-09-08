@@ -1,5 +1,5 @@
 {
- "cascade_foret": {
+ "entree_grotte": {
   "cellules": [
    63,
    57
@@ -11,9 +11,9 @@
   "collision": {
    "fichier": "obstacles.json",
    "masque": "collision.png",
-   "libres": 1440,
-   "bloquees": 2151,
-   "eau": 884
+   "libres": 3418,
+   "bloquees": 173,
+   "eau": 0
   },
   "tmx": {
    "tmx": "collision.tmx",
@@ -35,7 +35,7 @@
    "est"
   ]
  },
- "entree_source": {
+ "entree_arbre": {
   "cellules": [
    63,
    57
@@ -47,9 +47,9 @@
   "collision": {
    "fichier": "obstacles.json",
    "masque": "collision.png",
-   "libres": 3251,
-   "bloquees": 340,
-   "eau": 212
+   "libres": 3419,
+   "bloquees": 172,
+   "eau": 0
   },
   "tmx": {
    "tmx": "collision.tmx",
@@ -71,7 +71,7 @@
    "est"
   ]
  },
- "pied_montagne": {
+ "entree_ruines": {
   "cellules": [
    63,
    57
@@ -83,9 +83,9 @@
   "collision": {
    "fichier": "obstacles.json",
    "masque": "collision.png",
-   "libres": 3013,
-   "bloquees": 578,
-   "eau": 417
+   "libres": 3428,
+   "bloquees": 163,
+   "eau": 0
   },
   "tmx": {
    "tmx": "collision.tmx",

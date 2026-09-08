@@ -1,56 +1,56 @@
 {
- "cascade_foret": {
+ "entree_grotte": {
   "compo": {
-   "props": 54,
-   "canopy": 58,
-   "water_px": 57150
-  },
-  "palette": 285,
-  "objets_catalogue": 35,
-  "tiled": {
-   "tuiles": 1641,
-   "animees": 287,
-   "cases_animees": 287
-  },
-  "aseprite": {
-   "calques": 8,
-   "cels": 192
-  }
- },
- "entree_source": {
-  "compo": {
-   "props": 65,
+   "props": 125,
    "canopy": 0,
-   "water_px": 13887
+   "water_px": 0
   },
-  "palette": 405,
-  "objets_catalogue": 68,
+  "palette": 324,
+  "objets_catalogue": 40,
   "tiled": {
-   "tuiles": 1039,
-   "animees": 104,
-   "cases_animees": 104
-  },
-  "aseprite": {
-   "calques": 7,
-   "cels": 168
-  }
- },
- "pied_montagne": {
-  "compo": {
-   "props": 108,
-   "canopy": 0,
-   "water_px": 27974
-  },
-  "palette": 350,
-  "objets_catalogue": 51,
-  "tiled": {
-   "tuiles": 2203,
-   "animees": 353,
-   "cases_animees": 353
+   "tuiles": 1103,
+   "animees": 118,
+   "cases_animees": 118
   },
   "aseprite": {
    "calques": 6,
    "cels": 144
+  }
+ },
+ "entree_arbre": {
+  "compo": {
+   "props": 100,
+   "canopy": 0,
+   "water_px": 0
+  },
+  "palette": 508,
+  "objets_catalogue": 42,
+  "tiled": {
+   "tuiles": 1724,
+   "animees": 373,
+   "cases_animees": 373
+  },
+  "aseprite": {
+   "calques": 5,
+   "cels": 120
+  }
+ },
+ "entree_ruines": {
+  "compo": {
+   "props": 70,
+   "canopy": 0,
+   "water_px": 0
+  },
+  "palette": 418,
+  "objets_catalogue": 59,
+  "tiled": {
+   "tuiles": 714,
+   "animees": 55,
+   "cases_animees": 55
+  },
+  "aseprite": {
+   "calques": 5,
+   "cels": 120
   }
  }
 }
