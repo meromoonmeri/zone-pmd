@@ -1,0 +1,36 @@
+{
+ "toile": [
+  552,
+  480
+ ],
+ "cases": [
+  23,
+  20
+ ],
+ "cellules": [
+  69,
+  60
+ ],
+ "echelle": {
+  "px": [
+   552,
+   480
+  ],
+  "cases": [
+   23.0,
+   20.0
+  ],
+  "cellules_8px": [
+   69,
+   60
+  ],
+  "multiple_de_8": true,
+  "multiple_de_24": true,
+  "largeur_locale_mediane": 10.54,
+  "plus_grand_vide": 25.73,
+  "occupation_decor": 20.5,
+  "part_eau": 5.9,
+  "ecrans": 3.45
+ },
+ "note": "Variante qui ne rogne que 16 px de large et rien en hauteur : 1104x960 -> /2 -> 552x480, 23x20 cases."
+}

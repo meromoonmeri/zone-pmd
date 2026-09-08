@@ -1,0 +1,173 @@
+{
+ "nom": "clairiere",
+ "moteur": "RogueEssence / PMDO",
+ "source": "masters natifs 1120x960 (branche arena/01a08169, commit 0f9805e), copies integres dans layers/src/clairiere_master",
+ "taille_px": [
+  504,
+  456
+ ],
+ "cellules_8px": [
+  63,
+  57
+ ],
+ "cases_24px": [
+  21,
+  19
+ ],
+ "cellule": 8,
+ "case": 24,
+ "viewport": [
+  320,
+  240
+ ],
+ "mise_a_l_echelle": {
+  "methode": "crop centre au multiple de 48 puis division par 2 au plus proche voisin",
+  "master": [
+   1120,
+   960
+  ],
+  "crop": [
+   56,
+   24,
+   1064,
+   936
+  ],
+  "recadre": [
+   1008,
+   912
+  ],
+  "sortie": [
+   504,
+   456
+  ],
+  "pixels_inventes": 0,
+  "verifie": "chaque pixel de sortie == pixel du master : True"
+ },
+ "fond": "fond.png",
+ "frame_ms": 110,
+ "nb_frames": 8,
+ "palette": 110013,
+ "calques": [
+  {
+   "ordre": 0,
+   "nom": "Base",
+   "chemin": "calques/Base.png",
+   "anime": false,
+   "frames": 1,
+   "technique": "master scalé, intact"
+  },
+  {
+   "ordre": 1,
+   "nom": "Water",
+   "chemin": "calques/Water_f01.png",
+   "anime": true,
+   "frames": 8,
+   "technique": "frames redessinées du master"
+  },
+  {
+   "ordre": 2,
+   "nom": "Light",
+   "chemin": "calques/Light_f01.png",
+   "anime": true,
+   "frames": 8,
+   "technique": "lumiere_simple, leur choix final"
+  }
+ ],
+ "collision": {
+  "fichier": "obstacles.json",
+  "masque": "collision.png",
+  "libres": 2788,
+  "bloquees": 803,
+  "eau": 248,
+  "derive": "bassin.png -> eau (alpha >= 55 %/cellule 8 px) ; arbres.png -> bloque (alpha >= 30 %/cellule)"
+ },
+ "entrees": {
+  "nord": {
+   "cellule": [
+    31,
+    25
+   ],
+   "px": [
+    252,
+    204
+   ],
+   "profondeur_cellules": 25,
+   "sur_bordure": false
+  },
+  "sud": {
+   "cellule": [
+    31,
+    56
+   ],
+   "px": [
+    252,
+    452
+   ],
+   "profondeur_cellules": 0,
+   "sur_bordure": true
+  },
+  "ouest": {
+   "cellule": [
+    0,
+    28
+   ],
+   "px": [
+    4,
+    228
+   ],
+   "profondeur_cellules": 0,
+   "sur_bordure": true
+  },
+  "est": {
+   "cellule": [
+    62,
+    28
+   ],
+   "px": [
+    500,
+    228
+   ],
+   "profondeur_cellules": 0,
+   "sur_bordure": true
+  }
+ },
+ "bordure_fermee": [
+  "nord"
+ ],
+ "echelle": {
+  "px": [
+   504,
+   456
+  ],
+  "cases": [
+   21.0,
+   19.0
+  ],
+  "cellules_8px": [
+   63,
+   57
+  ],
+  "multiple_de_8": true,
+  "multiple_de_24": true,
+  "largeur_locale_mediane": 9.33,
+  "plus_grand_vide": 23.57,
+  "occupation_decor": 22.4,
+  "part_eau": 6.9,
+  "ecrans": 2.99
+ },
+ "collision_tiled": {
+  "tmx": "collision.tmx",
+  "tsx": "brosse_collision.tsx",
+  "cellules": [
+   63,
+   57
+  ],
+  "pinceaux": [
+   "libre",
+   "bloque",
+   "eau"
+  ]
+ },
+ "audit_planche": "audit_echelle.png",
+ "note": "Toile multiple de 8 et de 24 : la grille de collision tombe sur l'art sans reechantillonnage fractionnaire. Le master est rogne au centre (1120->1008, 960->912) puis divise par 2 au plus proche voisin : aucun pixel invente, aucune couleur modifiee."
+}

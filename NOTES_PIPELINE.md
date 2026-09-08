@@ -266,3 +266,48 @@ largeur 3,33 — l'étage d'entrée le plus ouvert), B2F Clairière Sacrée
 (entrées relevées sur la grille 8 px, lien sud → étage suivant, variantes
 d'arène bosquet référencées). `planche_clairiere.html` : référence vs v3 vs
 corrigé, les trois étages et leurs collisions, les chiffres de l'audit.
+
+## La clairière de l'utilisateur, au scale PMDO — intacte
+
+**La demande, corrigée après un impair.** Une première livraison a repeint
+l'image au style Explorers of Sky : rejetée (« retire j'ai pas demandé que
+tu modifies mon image ») — revert propre, puis reprise depuis les masters
+natifs 1120 × 960 de la branche `arena/01a08169` (commit 0f9805e), recopiés
+intégralement dans `layers/src/clairiere_master/`. Cette fois l'image est
+mise au scale **telle quelle** : ni filtre, ni recoloration, ni snap DS.
+
+**La géométrie.** 1120 × 960 n'est pas un multiple de 24 → aucun facteur
+entier. Méthode : rognage centré au multiple de 48 (1008 × 912 : −112 px
+de large, −48 px de haut), puis division par 2 au plus proche voisin →
+504 × 456 = 21 × 19 cases = 63 × 57 cellules de 8 px, 2,99 écrans.
+
+**Deux pièges corrigés en route.**
+1. Le plus proche voisin de PIL échantillonne les indices *impairs*
+   (2x+1) : la formule documentée (master en 2x+56, 2y+24) était fausse.
+   La division est refaite à la main en numpy (`[::2, ::2]`) pour que la
+   preuve soit littérale — les 39 fichiers sont vérifiés pixel par pixel,
+   et la palette de sortie est un sous-ensemble strict de celle du master
+   (102 675 couleurs conservées, 0 inventée).
+2. Les exports PMDO de la branche voisine sont resamplés en flou
+   (base 1088 × 976, calques 504 × 456 non alignés, aucune collision) :
+   remplacés par le pack recalculé, même structure (Base/Water/Light,
+   Light = `lumiere_simple` — 93 % de recouvrement après scale, leur
+   choix final).
+
+**La collision vient de leurs calques décomposés.** `render_layers/bassin.png`
+→ eau (≥ 55 %/cellule), `render_layers/arbres.png` → bloqué
+(≥ 30 %/cellule). `arbres.png` et `vegetation.png` sont identiques (un
+seul compte). La canopée couvre 43,8 % de la moitié haute du master : la
+bande bloquée du haut de la grille est fidèle à leur art. Occupation
+22,4 %, eau 6,9 %, largeur locale 9,3 cases — l'image est plus ouverte
+que les cibles du générateur, c'est la leur.
+
+**Livrables.** `pmdo/clairiere/` (fond composite Base + Water f01 +
+Light f01 dans l'ordre de leur tmx, calques animés, les trois jeux de
+lumière scalés, obstacles.json/.txt, collision.tmx 8 px + brosse,
+clairiere.tmx 3 imagelayers, audit_echelle.png, ground.json, README.md,
+entrée `clairiere` ajoutée au rapport — 14 zones),
+`tiled/clairiere/` (calques + carte 21 × 19 @24 + render_layers scalés),
+et la variante `variant_552x480/` (1104 × 960 → 552 × 480 = 23 × 20
+cases) qui ne rogne que 16 px de large : 98,6 % de l'image conservée.
+Tout est produit par `scale_pmdo.py`, rejouable.

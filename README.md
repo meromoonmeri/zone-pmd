@@ -553,6 +553,43 @@ python3 build_clairiere.py --terrain  # seulement repeindre les terrains
 
 ---
 
+## La clairière du dépôt voisin, au scale PMDO — l'image intacte
+
+L'autre clairière (masters natifs **1120 × 960**, branche
+`arena/01a08169`, recopiés dans `layers/src/clairiere_master/`) mise au
+scale PMDO **sans être modifiée** : ni repeinte, ni filtrée, ni recolorée.
+
+**La géométrie du scale.** 1120 × 960 n'est pas un multiple de 24 : aucun
+facteur entier n'en fait une toile PMDO. On rogne donc au centre au multiple
+de 48 (**1008 × 912**, −112 px de large, −48 px de haut) puis on divise par
+2 **au plus proche voisin** → **504 × 456 = 21 × 19 cases = 63 × 57 cellules
+de 8 px**. La grille de collision tombe pile sur l'art.
+
+**La preuve que rien n'est inventé.** La division est faite à la main
+(pixel 2x, 2y) : chaque pixel de sortie est **égal** au pixel du master en
+(2x+56, 2y+24) — vérifié pixel par pixel sur les 39 fichiers, et la palette
+de la sortie est un sous-ensemble strict de celle du master
+(102 675 couleurs conservées, **0 inventée**).
+
+**La collision vient de leurs propres calques décomposés** :
+`render_layers/bassin.png` → eau (`~`, ≥ 55 %/cellule),
+`render_layers/arbres.png` → bloqué (`#`, ≥ 30 %/cellule). La canopée
+couvre toute la moitié haute chez eux (43,8 % d'alpha) : la bande bloquée
+du haut est fidèle à leur art, pas un artefact.
+
+Pack complet dans `pmdo/clairiere/` (fond, calques Base/Water_f01-08/
+Light_f01-08 — Light = `lumiere_simple`, leur choix final —, les deux
+autres jeux de lumière scalés aussi, obstacles, `collision.tmx` 8 px éditable
+à la brosse, `clairiere.tmx` 3 imagelayers, `audit_echelle.png`,
+`ground.json`, `README.md`), calques + carte côté `tiled/clairiere/`, et la
+**variante 552 × 480** (23 × 20 cases) qui ne rogne que 16 px de large
+(98,6 % de l'image conservée) dans `pmdo/clairiere/variant_552x480/`.
+
+Audit : occupation 22,4 %, eau 6,9 %, largeur locale 9,3 cases, 2,99 écrans.
+Entrées ouvertes : sud, ouest, est.
+
+---
+
 ## Zones livrées
 
 | Zone | Toile | Cases | Cellules 8 px | Calques | Frames |
@@ -586,5 +623,6 @@ pip install pillow numpy scipy pytmx
 python3 rebuild_pic.py        # Pic Fleuri
 python3 build_zones4.py       # plage, prairie, marais, cristal + exports
 python3 pmdo/export_pmdo.py   # pack PMDO
+python3 scale_pmdo.py         # la clairiere 1120x960 au scale PMDO, intacte
 python3 planche_4zones.py     # galerie
 ```

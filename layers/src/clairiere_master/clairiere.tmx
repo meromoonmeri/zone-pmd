@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="140" height="120" tilewidth="8" tileheight="8" infinite="0" nextlayerid="6" nextobjectid="1">
+ <properties><property name="native_canvas" value="1120x960"/><property name="resampling" value="none"/><property name="pixel_art_filter" value="nearest"/></properties>
+ <imagelayer id="1" name="Base"><image source="layers/base.png" width="1120" height="960"/></imagelayer>
+ <imagelayer id="2" name="Eau frame 01"><image source="layers/eau/f01.png" width="1120" height="960"/></imagelayer>
+ <imagelayer id="3" name="Lumiere simple frame 01"><image source="layers/lumiere_simple/f01.png" width="1120" height="960"/></imagelayer>
+ <imagelayer id="4" name="Lumiere evolution frame 01"><image source="layers/lumiere_evolution/f01.png" width="1120" height="960"/></imagelayer>
+ <imagelayer id="5" name="Lumiere validee frame 01"><image source="layers/lumiere_validee/f01.png" width="1120" height="960"/></imagelayer>
+</map>

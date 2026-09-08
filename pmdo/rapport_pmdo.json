@@ -466,5 +466,54 @@
    "ouest",
    "est"
   ]
+ },
+ "clairiere": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 2788,
+   "bloquees": 803,
+   "eau": 248
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "sud",
+   "ouest",
+   "est"
+  ],
+  "echelle": {
+   "master": [
+    1120,
+    960
+   ],
+   "methode": "crop 1008x912 centre puis /2 plus proche voisin",
+   "sortie": [
+    504,
+    456
+   ],
+   "pixels_inventes": 0,
+   "pixels_exacts": true,
+   "variante": "variant_552x480/ (552x480, 23x20 cases)"
+  }
  }
 }
