@@ -164,6 +164,70 @@ ms_par_pas        : 330
 
 ---
 
+## La colorimetrie stricte de Halcyon
+
+Relevee sur 5 de ses banques `.tile` (Altere Pond Base, Objects, Cliffs,
+Fringe, Metano Town Objects), soit **36 326 cases de 8 px** :
+
+| Critere | Halcyon | Mon rendu avant | Mon rendu apres |
+|---|---|---|---|
+| Grille de couleur | **multiples de 8** (`v>>3<<3`), 70,9 % des pixels | `(v>>3)*8+7` — **7 crans trop clair** | multiples de 8, 100 % |
+| Couleurs par tuile 8x8 | mediane **7**, 97,1 % a 16 ou moins | non contraint | mediane **8**, 100 % |
+| Luminance p50 | **158** | 97 | **147** |
+| Saturation p50 | **0,63** | 0,58 | 0,57 |
+| Ecart Lab a sa palette | — | 11,8 | **0,00** |
+
+Trois choses en sont sorties.
+
+**1. Mon quantificateur DS etait faux.** `core.ds_quant` faisait `(v>>3)*8+7`.
+Lui est sur les multiples de 8. Chaque composante de chaque pixel etait donc
+**7 niveaux trop claire**, systematiquement. `palette_halcyon.ds8()` corrige.
+
+**2. Il respecte la contrainte DS des 16 couleurs par tuile de 8 px** — celle
+que documente le wiki SkyTemple pour Tilequant. Sa mediane est meme a 7.
+`contraindre_tuiles()` la force ; a 8 couleurs par tuile la difference avec 16
+est invisible au zoom x2 (voir `comparaison_tuiles.png`).
+
+**3. Sa direction artistique est bien plus claire que la mienne** : L p50 158
+contre 97. `exposer()` recale p5, p50 et p95 sur les siens par une courbe
+monotone, sans toucher aux teintes.
+
+Sa palette : **746 couleurs couvrent 99 % de ses pixels**, ramenees a **654**
+apres alignement sur la grille de 8. Elles sont dans
+`assets/palette_halcyon.json`, le nuancier dans `palette_halcyon.png`.
+
+`COLORIMETRIE = "halcyon"` en tete de `build_zones18.py` ; `"libre"` revient au
+median-cut a 64 couleurs.
+
+### Ce que sa palette ne couvre pas
+
+Elle vient d'une ville, d'une mare et d'une caverne de gres : riche en verts,
+ocres et bruns, **pauvre en bleus profonds, violets et tons de glace**.
+`couverture()` mesure l'ecart Lab avant contrainte :
+
+| Terrain nu | Ecart moyen | Verdict |
+|---|---|---|
+| `foret_automne` | 7,09 | entre dans sa colorimetrie |
+| `bassin_sentier` | 11,83 | limite |
+| `banquise_glacier` | 12,97 | limite |
+| `caverne_lave` | 17,69 | **hors de sa palette** |
+
+Contraindre une banquise ou une coulee de lave a ses 654 couleurs deplace
+fortement les teintes. Pour ces biomes il faudrait relever une palette sur un
+de ses lieux froids ou volcaniques, s'il en a.
+
+### Sur le reemploi de tuiles
+
+Son `Metano_Town_Base` reemploie 9,07x, mais son `Crooked_Cavern_Base` seulement
+1,41x. Le premier est une ville a grandes pelouses plates, le second un ecran
+peint. Mes zones sont a 1,04x : **en ligne avec sa carte peinte, pas avec sa
+ville**. Serrer les couleurs par tuile n'y change rien (verifie de 16 a 6
+couleurs : le reemploi reste a 1,04x) — il faudrait un motif de sol repetitif,
+pas un bruit continu.
+
+
+---
+
 ## Les zones montees sur sa structure de calques
 
 Releve sur `Data/Ground/altere_pond.rsground` : son ground map compte **huit
