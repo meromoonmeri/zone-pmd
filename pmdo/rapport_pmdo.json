@@ -1,5 +1,5 @@
 {
- "entree_grotte": {
+ "foret_bambous": {
   "cellules": [
    63,
    57
@@ -11,8 +11,8 @@
   "collision": {
    "fichier": "obstacles.json",
    "masque": "collision.png",
-   "libres": 3418,
-   "bloquees": 173,
+   "libres": 3437,
+   "bloquees": 154,
    "eau": 0
   },
   "tmx": {
@@ -35,7 +35,7 @@
    "est"
   ]
  },
- "entree_arbre": {
+ "canyon_desert": {
   "cellules": [
    63,
    57
@@ -47,8 +47,8 @@
   "collision": {
    "fichier": "obstacles.json",
    "masque": "collision.png",
-   "libres": 3419,
-   "bloquees": 172,
+   "libres": 3422,
+   "bloquees": 169,
    "eau": 0
   },
   "tmx": {
@@ -71,7 +71,7 @@
    "est"
   ]
  },
- "entree_ruines": {
+ "grotte_moussue": {
   "cellules": [
    63,
    57
@@ -83,9 +83,9 @@
   "collision": {
    "fichier": "obstacles.json",
    "masque": "collision.png",
-   "libres": 3428,
-   "bloquees": 163,
-   "eau": 0
+   "libres": 3182,
+   "bloquees": 409,
+   "eau": 242
   },
   "tmx": {
    "tmx": "collision.tmx",
@@ -107,7 +107,7 @@
    "est"
   ]
  },
- "foret_automne": {
+ "banquise_glacier": {
   "cellules": [
    63,
    57
@@ -119,9 +119,9 @@
   "collision": {
    "fichier": "obstacles.json",
    "masque": "collision.png",
-   "libres": 2211,
-   "bloquees": 1380,
-   "eau": 0
+   "libres": 3269,
+   "bloquees": 322,
+   "eau": 175
   },
   "tmx": {
    "tmx": "collision.tmx",
