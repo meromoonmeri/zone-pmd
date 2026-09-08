@@ -1,0 +1,99 @@
+{
+ "zone": "clairiere_arbre",
+ "moteur": "PMDO / RogueEssence",
+ "taille_px": [
+  576,
+  504
+ ],
+ "cellules_8px": [
+  72,
+  63
+ ],
+ "cases_24px": [
+  24,
+  21
+ ],
+ "viewport": [
+  320,
+  240
+ ],
+ "viewports": [
+  1.8,
+  2.1
+ ],
+ "frames": 8,
+ "frame_ms": 165,
+ "eau": {
+  "technique": "4 dessins redessines, methode Palika (Altere_Pond_River_Animations)",
+  "dessins": 4,
+  "maintien_frames": 2,
+  "ms_par_dessin": 330,
+  "corps": "pixels peints d'origine conserves ; seuls les reflets sont redessines d'un dessin a l'autre",
+  "px": 16447,
+  "rampe": [
+   "#4787b7",
+   "#679fb7",
+   "#77afbf",
+   "#7fb7bf",
+   "#87bfc7",
+   "#a7efef"
+  ]
+ },
+ "ombres": {
+  "technique": "ombre portee tramee Bayer 4x4, pas d'alpha lisse",
+  "masses_traitees": 1
+ },
+ "collision": {
+  "libres": 2091,
+  "bloquees": 2445,
+  "eau": 251,
+  "entree_sud_continue": true
+ },
+ "tiles": [
+  {
+   "calque": "Base",
+   "dessins": 1,
+   "entrees": 4536,
+   "positions": 4536,
+   "vides_omises": 0,
+   "uniques": 4504,
+   "reemploi": 1.01,
+   "planche": [
+    576,
+    504
+   ],
+   "tuile": 8,
+   "octets": 1080064
+  },
+  {
+   "calque": "River",
+   "dessins": 4,
+   "entrees": 292,
+   "positions": 4536,
+   "vides_omises": 4244,
+   "uniques": 292,
+   "reemploi": 1.0,
+   "planche": [
+    576,
+    504
+   ],
+   "tuile": 8,
+   "octets": 72517
+  },
+  {
+   "calque": "Shadows",
+   "dessins": 1,
+   "entrees": 263,
+   "positions": 4536,
+   "vides_omises": 4273,
+   "uniques": 263,
+   "reemploi": 1.0,
+   "planche": [
+    576,
+    504
+   ],
+   "tuile": 8,
+   "octets": 34321
+  }
+ ]
+}
