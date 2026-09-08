@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="21" height="19" tilewidth="24" tileheight="24" infinite="0" nextlayerid="4" nextobjectid="1">
+ <properties><property name="zone" value="clairiere"/><property name="cellule_collision" type="int" value="8"/><property name="viewport" value="320x240"/><property name="resampling" value="none_at_runtime"/></properties>
+ <imagelayer id="1" name="0_Base"><image source="calques/Base.png" width="504" height="456"/></imagelayer>
+ <imagelayer id="2" name="1_Water"><image source="calques/Water_f01.png" width="504" height="456"/></imagelayer>
+ <imagelayer id="3" name="2_Light"><image source="calques/Light_f01.png" width="504" height="456"/></imagelayer>
+</map>
