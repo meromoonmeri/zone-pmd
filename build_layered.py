@@ -131,7 +131,7 @@ def grade_terrain(rgb, tint_hex, strength=0.55, pad=0.20):
 
 def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
            rules=None, water_ramp=None, foam=None, calm=1.0, eau_emissive=False,
-           style_eau="sky", colorimetrie="libre",
+           style_eau="sky", colorimetrie="libre", couloir=None,
            terrain_tint="#0a1c14", terrain_strength=0.55,
            seed=1, grade="jour"):
     rng = np.random.default_rng(seed)
@@ -155,6 +155,16 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
         "grass": grass & (fall > 0.42),
         "sand": sand & (fall > 0.45),
     }
+    # Entree sud : on retire la chaussee de TOUTES les surfaces de pose, sinon
+    # un rocher tombe au milieu et coupe l'acces.
+    if couloir is not None:
+        xa, xb = int(couloir[0] * W) - 6, int(couloir[1] * W) + 6
+        libre = np.zeros((H, W), bool)
+        libre[int(H * 0.42):, max(0, xa):min(W, xb)] = True
+        for k in list(surfaces):
+            surfaces[k] = surfaces[k] & ~libre
+        ground = ground & ~libre
+
     if water_mask is not None:
         surfaces["water"] = C.erode(water_mask, 6)
         surfaces["shore"] = C.dilate(water_mask, 8) & ~water_mask & ground
@@ -401,12 +411,25 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
     # SA palette (654 couleurs relevees sur ses .tile), puis on force sa
     # contrainte de 16 couleurs par tuile de 8 px.
     hal = (colorimetrie == "halcyon")
+    pal_hal = None
+    if hal:
+        # Sa palette seule rend ROSE une caldeira : il n'a jamais peint de
+        # basalte ni de rouge profond, et le plus proche voisin part dans les
+        # pierres de Metano. On garde donc ses REGLES (grille des multiples de
+        # 8, 8 couleurs par tuile, son exposition) et on lui adjoint les
+        # teintes du biome, elles aussi calees sur sa grille.
+        base_teintes = [terrain.reshape(-1, 3)]
+        if wl is not None:
+            base_teintes.append(
+                np.concatenate([f[..., :3][f[..., 3] > 0] for f in wl], 0))
+        pal_hal = PH.palette_etendue(
+            np.concatenate(base_teintes, 0).reshape(1, -1, 3), 64)
+        tab_hal = PH.table_vers(pal_hal)
 
     def _rendu(f):
         if hal:
-            # 1. on remonte l'exposition sur la sienne, 2. on tombe sur sa
-            # palette, 3. on force ses 16 couleurs par tuile.
-            return PH.contraindre_tuiles(PH.snap(PH.exposer(f[..., :3])), maxi=8)
+            return PH.contraindre_tuiles(
+                PH.snap_vers(PH.exposer(f[..., :3]), tab_hal), maxi=8)
         return snap(f, pal, lut).astype(np.uint8)
 
     imgs = []
@@ -468,6 +491,7 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
                colorimetrie=colorimetrie,
                mesures_couleur=PH.mesures(np.array(imgs[0])),
                ecart_palette_halcyon=PH.couverture(np.array(imgs[0])),
+               palette_etendue=(int(len(pal_hal)) if pal_hal is not None else None),
                calques_halcyon=CH.table(compte, animes, planches, N),
                palette=int(len(pal)), grade=grade,
                layers=[

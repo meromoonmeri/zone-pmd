@@ -359,7 +359,8 @@ def construire(zone):
                  grade=spec.get("grade", "jour"), seed=spec["seed"],
                  eau_emissive=spec.get("emissive", False),
                  style_eau=spec.get("style_eau", STYLE_EAU),
-                 colorimetrie=spec.get("colorimetrie", COLORIMETRIE))
+                 colorimetrie=spec.get("colorimetrie", COLORIMETRIE),
+                 couloir=spec.get("couloir"))
     tr, av = export_tools(zone)
     return dict(compo=m["counts"], palette=m["palette"], objets_catalogue=n,
                 tiled=dict(tuiles=tr["tuiles_uniques"], animees=tr["tuiles_animees"],

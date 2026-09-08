@@ -168,3 +168,55 @@ def exposer(img, cible=CIBLE_L):
     Lc = np.interp(L, xs, ys)
     gain = np.where(L > 1.0, Lc / np.maximum(L, 1.0), 1.0)[..., None]
     return np.clip(a * gain, 0, 255).astype(np.uint8)
+
+
+def palette_etendue(source, n_extra=64):
+    """Sa palette, plus ce qu'il faut pour un biome qu'il n'a jamais peint.
+
+    Sa palette vient d'une ville, d'une mare et d'une caverne de gres. Y forcer
+    une caldeira donne du ROSE : il n'a ni gris basaltique ni rouge profond, et
+    le plus proche voisin part dans les tons de pierre de Metano.
+
+    On garde donc ses REGLES — grille des multiples de 8, 16 couleurs par
+    tuile, son exposition, sa saturation — et on ajoute au plus `n_extra`
+    teintes tirees de la peinture du biome elle-meme, elles aussi calees sur sa
+    grille. La discipline est la sienne ; les teintes restent celles du lieu.
+    """
+    from PIL import Image
+    a = np.asarray(source)[..., :3]
+    im = Image.fromarray(a.astype(np.uint8), "RGB").quantize(
+        colors=int(n_extra), method=Image.MEDIANCUT, dither=Image.Dither.NONE)
+    extra = ds8(np.array(im.convert("RGB")).reshape(-1, 3))
+    extra = np.unique(extra, axis=0).astype(np.int16)
+    return np.unique(np.concatenate([PALETTE, extra], 0), axis=0)
+
+
+def table_vers(pal):
+    """Table 32x32x32 -> couleur de `pal`. Une fois par zone, pas par frame.
+
+    Le calcul au plus proche voisin en force brute coutait ~150 s par zone :
+    230 000 pixels x 700 couleurs x 24 frames. La table ramene ca a une
+    indexation.
+    """
+    g = np.arange(32, dtype=np.int16) << 3
+    cube = np.stack(np.meshgrid(g, g, g, indexing="ij"), -1).reshape(-1, 3)
+    a, b = _lab(cube), _lab(pal)
+    idx = np.empty(len(a), np.int32)
+    pas = 4096
+    for i in range(0, len(a), pas):
+        d = ((a[i:i + pas, None, :] - b[None, :, :]) ** 2).sum(-1)
+        idx[i:i + pas] = d.argmin(1)
+    return np.asarray(pal, np.uint8)[idx].reshape(32, 32, 32, 3)
+
+
+def snap_vers(img, pal_ou_table):
+    """Comme `snap`, mais sur une palette fournie ou sa table (`table_vers`)."""
+    t = pal_ou_table
+    if not (isinstance(t, np.ndarray) and t.ndim == 4):
+        t = table_vers(t)
+    a = np.asarray(img)
+    q = a[..., :3].astype(np.int16) >> 3
+    out = t[q[..., 0], q[..., 1], q[..., 2]]
+    if a.shape[-1] == 4:
+        return np.dstack([out, a[..., 3]])
+    return out
