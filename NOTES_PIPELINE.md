@@ -266,3 +266,32 @@ largeur 3,33 — l'étage d'entrée le plus ouvert), B2F Clairière Sacrée
 (entrées relevées sur la grille 8 px, lien sud → étage suivant, variantes
 d'arène bosquet référencées). `planche_clairiere.html` : référence vs v3 vs
 corrigé, les trois étages et leurs collisions, les chiffres de l'audit.
+
+---
+
+## La méthode d'échelle appliquée à la lettre (refonte de l'export PMDO de la clairière)
+
+Une branche parallèle (`arena/01a08169-zone-pmd`, commit `0f9805e`, « Reconstruit
+la clairiere au format PMDO Tiled ») a été passée au contrôle au pixel. Six des
+huit règles de la méthode d'échelle étaient violées : `base.png` en 1088×976
+(pas même 21×19 cases), calques 504×456 **rééchantillonnés** depuis un master
+1120×960 (facteur 0,45 — 0 % des pixels sur la grille DS, 2,7 % de contours
+durs, ~21 000 couleurs), tmx réduit à 3 imagelayers (aucune collision 8 px,
+aucun tileset, aucune animation câblée), et aucun audit. Le README du pack
+annonçait « lossless sans rééchantillonnage » — contredit par ses propres
+fichiers. `METHODE_ECHELLE_PMDO.md` documente l'autopsie complète et
+`comparaison_pmdo.png` la montre (zoom ×4 : flou vs contours durs 1 px).
+
+Refonte sur cette branche : la zone **`clairiere`** est LA carte définitive,
+peinte **nativement en 504×456** — jamais passée par un master. Le pack
+`pmdo/clairiere/` est complet (fond, 24 frames, calques Halcyon, sheets,
+obstacles.json + collision.tmx 8 px + brosse, ground.json), `tiled/clairiere/`
+sort en tuiles 24 px animées natives, et `pmdo/audit/clairiere_echelle.png`
+pose les sprites étalon à 1:1 avec le viewport 320×240. Audit 5/5 : emprise
+2,99 écrans, largeur locale 2,4 cases, occupation 33,9 %, grilles 8/24 exactes,
+entrée sud ouverte au bord (profondeur 0).
+
+Note d'accès : `guilde-treehouse-pmd` (où vit `ANALYSE_ECHELLE.md`, l'origine
+de la méthode) reste privé et inaccessible au token de cette session — la
+méthode appliquée est celle rejouée dans ce dépôt (`README.md` § Échelle PMDO,
+`pmdo/audit_echelle.py`), identique règle pour règle.

@@ -525,6 +525,22 @@ référence — les rampes sont **extraites de ses pixels**, pas choisies :
 `build_clairiere.py` produit tout : terrains, découpe et pose de la bordure
 feuillue du commit précédent (conservée et utilisée), composition, exports.
 
+### LA carte : `clairiere`, au format PMDO complet
+
+La zone **`clairiere`** est la carte définitive, **peinte nativement en
+504×456** (aucun master rééchantillonné) : pack `pmdo/clairiere/` complet —
+collision 8 px (`obstacles.json`, `collision.tmx`, brosse), calques Halcyon,
+sheets, `ground.json` — plus `tiled/clairiere/` en tuiles 24 px **animées
+natives**, et `pmdo/audit/clairiere_echelle.png` (sprites étalon 1:1, viewport,
+grilles). Audit **5/5** : emprise 2,99 écrans, largeur 2,4 cases, occupation
+33,9 %, grilles exactes, entrée sud au bord.
+
+> Une branche parallèle (`arena/01a08169-zone-pmd`, commit `0f9805e`) avait
+> livré un « export PMDO » rééchantillonné depuis un master 1120×960, sans
+> collision ni audit. L'autopsie chiffrée et la comparaison pixel sont dans
+> **`METHODE_ECHELLE_PMDO.md`** et `comparaison_pmdo.png` ; la méthode
+> d'échelle elle-même y est expliquée règle par règle.
+
 ### Décomposition en layouts : 3 étages chaînés
 
 | Étage | Titre | Lumière | Eau | Occupation | Largeur locale |

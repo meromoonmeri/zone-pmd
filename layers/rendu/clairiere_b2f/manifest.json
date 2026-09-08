@@ -9,20 +9,20 @@
  "frame_ms": 110,
  "colorimetrie": "halcyon",
  "mesures_couleur": {
-  "couleurs": 345,
+  "couleurs": 342,
   "L_p5": 54.608,
-  "L_p50": 144.792,
-  "L_p95": 204.864,
+  "L_p50": 145.79199999999997,
+  "L_p95": 204.32,
   "S_p50": 0.48,
   "sur_grille_8": 1.0,
   "couleurs_par_tuile_med": 8.0,
   "tuiles_sous_16": 1.0
  },
  "ecart_palette_halcyon": {
-  "ecart_moyen": 1.63,
-  "ecart_p95": 9.9
+  "ecart_moyen": 2.25,
+  "ecart_p95": 10.51
  },
- "palette_etendue": 713,
+ "palette_etendue": 715,
  "calques_halcyon": [
   {
    "ordre": 0,

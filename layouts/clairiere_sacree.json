@@ -97,9 +97,9 @@
    },
    "props": 106,
    "tuiles": {
-    "tuiles": 2710,
+    "tuiles": 2747,
     "animees": null,
-    "cases_animees": 379
+    "cases_animees": 382
    },
    "packs": {
     "rendu": "layers/rendu/clairiere_b1f",
@@ -192,9 +192,9 @@
    },
    "props": 106,
    "tuiles": {
-    "tuiles": 2757,
+    "tuiles": 2345,
     "animees": null,
-    "cases_animees": 358
+    "cases_animees": 357
    },
    "packs": {
     "rendu": "layers/rendu/clairiere_b2f",
@@ -287,9 +287,9 @@
    },
    "props": 105,
    "tuiles": {
-    "tuiles": 1961,
+    "tuiles": 2195,
     "animees": null,
-    "cases_animees": 314
+    "cases_animees": 343
    },
    "packs": {
     "rendu": "layers/rendu/clairiere_b3f",
