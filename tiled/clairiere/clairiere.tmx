@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="21" height="19" tilewidth="24" tileheight="24" infinite="0" nextlayerid="6" nextobjectid="1">
+ <properties>
+  <property name="zone" value="clairiere"/>
+  <property name="cellule_collision" type="int" value="8"/>
+  <property name="viewport" value="320x240"/>
+  <property name="mise_a_l_echelle" value="crop_1008x912_centre puis /2 plus proche voisin"/>
+ </properties>
+ <imagelayer id="1" name="Base">
+  <image source="base.png" width="504" height="456"/>
+ </imagelayer>
+ <imagelayer id="2" name="Eau frame 01">
+  <image source="eau/f01.png" width="504" height="456"/>
+ </imagelayer>
+ <imagelayer id="3" name="Lumiere simple frame 01">
+  <image source="lumiere_simple/f01.png" width="504" height="456"/>
+ </imagelayer>
+ <imagelayer id="4" name="Lumiere validee frame 01">
+  <image source="lumiere_validee/f01.png" width="504" height="456"/>
+ </imagelayer>
+ <imagelayer id="5" name="Lumiere evolution frame 01">
+  <image source="lumiere_evolution/f01.png" width="504" height="456"/>
+ </imagelayer>
+</map>

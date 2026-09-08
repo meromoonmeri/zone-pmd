@@ -218,6 +218,102 @@ objet et une amplitude de cisaillement.
 `planche_4zones.html` — les quatre zones animées, leurs calques frame 0 (fond magenta
 visible : c'est la couleur-clé), rampes d'eau, catégories détourées et compteurs.
 
+---
+
+## La clairière corrigée, décomposée en 3 étages (Le Bosquet Sacré)
+
+Reprise du travail interrompu du commit « plaques de base de la clairière avec
+bordures feuillues, sans rayon ». Rien n'a été supprimé : les essais
+`recup_clairiere_v1..v3`, les plaques `clairiere_base_a/b` et la planche
+`bordure_feuillue_sheet` sont conservés — la bordure est même découpée et posée.
+
+**Le défaut, mesuré.** La référence (423×400, 182 couleurs) a un profil radial
+net : anneau externe vert moyen L≈110 (#53853e), transition L≈161, cœur sable
+L≈215 (#f0d794). Les trois essais précédents sortaient un centre gris-vert
+(L=148/177/173) : la clairière n'était jamais sableuse. Écart moyen du meilleur
+essai : 17,7.
+
+**La correction.** Le terrain est repeint au code, 504×456, dans la grammaire
+relevée : cadre organique (frame_falloff + wobble fbm) → bande d'herbe →
+clairière sableuse en blob fbm + sentier sud en sinus garé dans le couloir.
+Les rampes sont extraites de la référence par classe hue/luminance (p22/p50/p80,
+4 tons pour le sable). Trame 0,70 Bayer + 0,30 aléatoire, contours durs 1 px
+(levre sombre du sable, ligne de tenebre du cadre). Contrôle après peinture :
+anneau L=110-114 (réf 110), cœur L=185-193.
+
+**La bordure feuillue « sans rayon ».** La planche est un kit : 15 morceaux,
+dont 12 de 200-440 px. Trop sombres (L=24-62) pour l'anneau L≈110 : leur
+luminance est remontée (gain borné 1,15-2,3, cible L≈95) sans toucher aux
+teintes, puis les gros morceaux sont posés le long des bords (haut, flancs,
+coins bas — le couloir sud reste dégagé), mis à l'échelle 0,46, miroités.
+Les 5 petits deviennent un catalogue de props « bordure » pour le pipeline.
+
+**Trois layouts = trois étages.** B1F Lisière (jour, ouverte, arbres épars,
+largeur 3,33 — l'étage d'entrée le plus ouvert), B2F Clairière Sacrée
+(crépuscule, mare + roseaux + nénuphars, couronne d'arbres), B3F Cœur
+(nuit, mare centrale + ruisseau qui sort à l'est, futaie dense). Occupation
+34,6-35,4 % (cible 18-45), largeur locale 2,00-3,33 (cible 1-3).
+
+**Deux pièges corrigés en route.**
+1. La canopée pose en anneau sans connaître le couloir : elle refermait
+   l'entrée sud (profondeur 4-5). `build_clairiere` filtre les morceaux du bas
+   qui chevauchent le couloir — les trois entrées sud tombent au bord (prof 0).
+2. Sans canopée, B2F n'avait que 4,8 % de cellules bloquées et une largeur
+   locale de 5,7 : la canopée est un calque « bloc » chez PMDO, c'est elle qui
+   ferme la lisière. B2F l'a récupérée (35,4 % / 2,67).
+
+**Descripteur de donjon.** `layouts/clairiere_sacree.json` chaîne les étages
+(entrées relevées sur la grille 8 px, lien sud → étage suivant, variantes
+d'arène bosquet référencées). `planche_clairiere.html` : référence vs v3 vs
+corrigé, les trois étages et leurs collisions, les chiffres de l'audit.
+
+## La clairière de l'utilisateur, au scale PMDO — intacte
+
+**La demande, corrigée après un impair.** Une première livraison a repeint
+l'image au style Explorers of Sky : rejetée (« retire j'ai pas demandé que
+tu modifies mon image ») — revert propre, puis reprise depuis les masters
+natifs 1120 × 960 de la branche `arena/01a08169` (commit 0f9805e), recopiés
+intégralement dans `layers/src/clairiere_master/`. Cette fois l'image est
+mise au scale **telle quelle** : ni filtre, ni recoloration, ni snap DS.
+
+**La géométrie.** 1120 × 960 n'est pas un multiple de 24 → aucun facteur
+entier. Méthode : rognage centré au multiple de 48 (1008 × 912 : −112 px
+de large, −48 px de haut), puis division par 2 au plus proche voisin →
+504 × 456 = 21 × 19 cases = 63 × 57 cellules de 8 px, 2,99 écrans.
+
+**Deux pièges corrigés en route.**
+1. Le plus proche voisin de PIL échantillonne les indices *impairs*
+   (2x+1) : la formule documentée (master en 2x+56, 2y+24) était fausse.
+   La division est refaite à la main en numpy (`[::2, ::2]`) pour que la
+   preuve soit littérale — les 39 fichiers sont vérifiés pixel par pixel,
+   et la palette de sortie est un sous-ensemble strict de celle du master
+   (102 675 couleurs conservées, 0 inventée).
+2. Les exports PMDO de la branche voisine sont resamplés en flou
+   (base 1088 × 976, calques 504 × 456 non alignés, aucune collision) :
+   remplacés par le pack recalculé, même structure (Base/Water/Light,
+   Light = `lumiere_simple` — 93 % de recouvrement après scale, leur
+   choix final).
+
+**La collision vient de leurs calques décomposés.** `render_layers/bassin.png`
+→ eau (≥ 55 %/cellule), `render_layers/arbres.png` → bloqué
+(≥ 30 %/cellule). `arbres.png` et `vegetation.png` sont identiques (un
+seul compte). La canopée couvre 43,8 % de la moitié haute du master : la
+bande bloquée du haut de la grille est fidèle à leur art. Occupation
+22,4 %, eau 6,9 %, largeur locale 9,3 cases — l'image est plus ouverte
+que les cibles du générateur, c'est la leur.
+
+**Livrables.** `pmdo/clairiere/` (fond composite Base + Water f01 +
+Light f01 dans l'ordre de leur tmx, calques animés, les trois jeux de
+lumière scalés, obstacles.json/.txt, collision.tmx 8 px + brosse,
+clairiere.tmx 3 imagelayers, audit_echelle.png, ground.json, README.md,
+entrée `clairiere` ajoutée au rapport — 14 zones),
+`tiled/clairiere/` (calques + carte 21 × 19 @24 + render_layers scalés),
+et la variante `variant_552x480/` (1104 × 960 → 552 × 480 = 23 × 20
+cases) qui ne rogne que 16 px de large : 98,6 % de l'image conservée.
+Tout est produit par `scale_pmdo.py`, rejouable.
+
+---
+
 ## Le ground PMDO de la clairière à l'arbre ancien — critères Luminous Spring
 
 **La demande.** La zone en frames 1/2/3/4/5/6/7/8, aux mêmes critères

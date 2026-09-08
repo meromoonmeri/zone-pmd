@@ -24,6 +24,7 @@ Zones originales pour fan game **Pokémon Donjon Mystère**, dessinées dans le 
 | `aseprite/` | `.aseprite` natifs (calques × frames) + importeurs Lua |
 | `assets/` | 22 zones de la première passe, encore aplaties (en cours de reprise) |
 | `forge/` | la bibliothèque : palettes, matières, props, eau, lumière, exports |
+| `layouts/` | descripteurs de donjons multi-étages (zones chaînées en layouts) |
 
 ---
 
@@ -507,6 +508,88 @@ canopée. Le correctif est un réglage, pas une reprise : monter les `count` dan
 
 ---
 
+## La clairière corrigée — Le Bosquet Sacré, 3 étages
+
+La map demandée sur `recup_reference.png` avait un défaut mesuré : la référence
+montre un centre **sable chaud** (#d3c688, L=195), les trois essais précédents
+(`recup_clairiere_v1..v3`) sortaient un centre **gris-vert** (#879d85 → #a2b3a6,
+L=148-177). La correction repeint le terrain dans la grammaire exacte de la
+référence — les rampes sont **extraites de ses pixels**, pas choisies :
+
+| Profil radial | Référence | Corrigé |
+|---|---|---|
+| Anneau externe (0-25 % du bord) | vert moyen **L≈110** (#53853f) | **L=110-114** |
+| Cœur de clairière | sable **L≈215** (#f0d794) | **L=185-193** avant grade |
+| Bordure feuillue « sans rayon » (L=24-62) | — | remontée à L≈95, posée sur le cadre |
+
+`build_clairiere.py` produit tout : terrains, découpe et pose de la bordure
+feuillue du commit précédent (conservée et utilisée), composition, exports.
+
+### Décomposition en layouts : 3 étages chaînés
+
+| Étage | Titre | Lumière | Eau | Occupation | Largeur locale |
+|---|---|---|---|---|---|
+| `clairiere_b1f` | Lisière du Bosquet | jour | – | 34,6 % | 3,33 cases* |
+| `clairiere_b2f` | Clairière Sacrée | crépuscule | mare, 4,7 % | 35,4 % | 2,67 |
+| `clairiere_b3f` | Cœur du Bosquet | nuit | mare + ruisseau, 11,2 % | 34,9 % | 2,00 |
+
+\* l'étage d'entrée est volontairement le plus ouvert ; les cibles de la
+méthode sont 18-45 % et 1-3 cases.
+
+Chaque étage est un pack complet et indépendant (`layers/rendu/`, `tiled/`,
+`aseprite/`, `pmdo/` avec collision 8 px et `ground.json`), et les trois sont
+chaînés en donjon par **`layouts/clairiere_sacree.json`** : étages, entrées
+relevées sur la grille, liens sud → étage suivant, variantes d'arène bosquet
+existantes référencées. Les entrées sud sont ouvertes au bord (profondeur 0) :
+la canopée est filtrée sur le couloir d'entrée pour ne pas le refermer.
+
+`planche_clairiere.html` — la planche de contrôle : référence vs essai v3 vs
+corrigé, les trois étages, leurs collisions, les chiffres.
+
+```bash
+python3 build_clairiere.py            # les 3 étages + planche + descripteur
+python3 build_clairiere.py --terrain  # seulement repeindre les terrains
+```
+
+---
+
+## La clairière du dépôt voisin, au scale PMDO — l'image intacte
+
+L'autre clairière (masters natifs **1120 × 960**, branche
+`arena/01a08169`, recopiés dans `layers/src/clairiere_master/`) mise au
+scale PMDO **sans être modifiée** : ni repeinte, ni filtrée, ni recolorée.
+
+**La géométrie du scale.** 1120 × 960 n'est pas un multiple de 24 : aucun
+facteur entier n'en fait une toile PMDO. On rogne donc au centre au multiple
+de 48 (**1008 × 912**, −112 px de large, −48 px de haut) puis on divise par
+2 **au plus proche voisin** → **504 × 456 = 21 × 19 cases = 63 × 57 cellules
+de 8 px**. La grille de collision tombe pile sur l'art.
+
+**La preuve que rien n'est inventé.** La division est faite à la main
+(pixel 2x, 2y) : chaque pixel de sortie est **égal** au pixel du master en
+(2x+56, 2y+24) — vérifié pixel par pixel sur les 39 fichiers, et la palette
+de la sortie est un sous-ensemble strict de celle du master
+(102 675 couleurs conservées, **0 inventée**).
+
+**La collision vient de leurs propres calques décomposés** :
+`render_layers/bassin.png` → eau (`~`, ≥ 55 %/cellule),
+`render_layers/arbres.png` → bloqué (`#`, ≥ 30 %/cellule). La canopée
+couvre toute la moitié haute chez eux (43,8 % d'alpha) : la bande bloquée
+du haut est fidèle à leur art, pas un artefact.
+
+Pack complet dans `pmdo/clairiere/` (fond, calques Base/Water_f01-08/
+Light_f01-08 — Light = `lumiere_simple`, leur choix final —, les deux
+autres jeux de lumière scalés aussi, obstacles, `collision.tmx` 8 px éditable
+à la brosse, `clairiere.tmx` 3 imagelayers, `audit_echelle.png`,
+`ground.json`, `README.md`), calques + carte côté `tiled/clairiere/`, et la
+**variante 552 × 480** (23 × 20 cases) qui ne rogne que 16 px de large
+(98,6 % de l'image conservée) dans `pmdo/clairiere/variant_552x480/`.
+
+Audit : occupation 22,4 %, eau 6,9 %, largeur locale 9,3 cases, 2,99 écrans.
+Entrées ouvertes : sud, ouest, est.
+
+---
+
 ## Zones livrées
 
 | Zone | Toile | Cases | Cellules 8 px | Calques | Frames |
@@ -540,6 +623,7 @@ pip install pillow numpy scipy pytmx
 python3 rebuild_pic.py        # Pic Fleuri
 python3 build_zones4.py       # plage, prairie, marais, cristal + exports
 python3 pmdo/export_pmdo.py   # pack PMDO
+python3 scale_pmdo.py         # la clairiere 1120x960 au scale PMDO, intacte
 python3 planche_4zones.py     # galerie
 ```
 
