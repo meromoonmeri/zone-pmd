@@ -332,7 +332,7 @@ if __name__ == "__main__":
     if not args or args[0] == "--liste":
         print(f"{len(SPECS)} arenes, {len(BIOMES)} biomes x {len(VARIANTES)} variantes\n")
         for biome, b in BIOMES.items():
-            noms = [f"arene_{biome}_{v[3]}" for v in VARIANTES]
+            noms = [f"arene_{biome}_{v[4]}" for v in VARIANTES]
             print(f"  {b['titre']:22s} {' '.join(n.split('_', 2)[2] for n in noms)}")
             print(f"    {'':22s} {noms[0]} ...")
         sys.exit(0)

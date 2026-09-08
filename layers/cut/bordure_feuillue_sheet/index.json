@@ -1,0 +1,107 @@
+[
+ {
+  "file": "bord_00.png",
+  "w": 230,
+  "h": 440,
+  "px": 64268,
+  "anchor_y": 440
+ },
+ {
+  "file": "bord_01.png",
+  "w": 377,
+  "h": 216,
+  "px": 44901,
+  "anchor_y": 216
+ },
+ {
+  "file": "bord_02.png",
+  "w": 274,
+  "h": 326,
+  "px": 55759,
+  "anchor_y": 326
+ },
+ {
+  "file": "bord_03.png",
+  "w": 227,
+  "h": 211,
+  "px": 28451,
+  "anchor_y": 211
+ },
+ {
+  "file": "bord_04.png",
+  "w": 227,
+  "h": 211,
+  "px": 28553,
+  "anchor_y": 211
+ },
+ {
+  "file": "bord_05.png",
+  "w": 210,
+  "h": 217,
+  "px": 26628,
+  "anchor_y": 217
+ },
+ {
+  "file": "bord_06.png",
+  "w": 261,
+  "h": 214,
+  "px": 41816,
+  "anchor_y": 214
+ },
+ {
+  "file": "bord_07.png",
+  "w": 260,
+  "h": 214,
+  "px": 41519,
+  "anchor_y": 214
+ },
+ {
+  "file": "bord_08.png",
+  "w": 204,
+  "h": 217,
+  "px": 26866,
+  "anchor_y": 217
+ },
+ {
+  "file": "bord_09.png",
+  "w": 233,
+  "h": 200,
+  "px": 29376,
+  "anchor_y": 200
+ },
+ {
+  "file": "bord_10.png",
+  "w": 126,
+  "h": 112,
+  "px": 7258,
+  "anchor_y": 112
+ },
+ {
+  "file": "bord_11.png",
+  "w": 71,
+  "h": 65,
+  "px": 2708,
+  "anchor_y": 65
+ },
+ {
+  "file": "bord_12.png",
+  "w": 101,
+  "h": 90,
+  "px": 5153,
+  "anchor_y": 90
+ },
+ {
+  "file": "bord_13.png",
+  "w": 124,
+  "h": 102,
+  "px": 7901,
+  "anchor_y": 102
+ },
+ {
+  "file": "bord_14.png",
+  "w": 131,
+  "h": 131,
+  "px": 11949,
+  "anchor_y": 131
+ }
+]

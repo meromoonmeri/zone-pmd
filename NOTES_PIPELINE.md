@@ -217,3 +217,52 @@ objet et une amplitude de cisaillement.
 
 `planche_4zones.html` — les quatre zones animées, leurs calques frame 0 (fond magenta
 visible : c'est la couleur-clé), rampes d'eau, catégories détourées et compteurs.
+
+---
+
+## La clairière corrigée, décomposée en 3 étages (Le Bosquet Sacré)
+
+Reprise du travail interrompu du commit « plaques de base de la clairière avec
+bordures feuillues, sans rayon ». Rien n'a été supprimé : les essais
+`recup_clairiere_v1..v3`, les plaques `clairiere_base_a/b` et la planche
+`bordure_feuillue_sheet` sont conservés — la bordure est même découpée et posée.
+
+**Le défaut, mesuré.** La référence (423×400, 182 couleurs) a un profil radial
+net : anneau externe vert moyen L≈110 (#53853e), transition L≈161, cœur sable
+L≈215 (#f0d794). Les trois essais précédents sortaient un centre gris-vert
+(L=148/177/173) : la clairière n'était jamais sableuse. Écart moyen du meilleur
+essai : 17,7.
+
+**La correction.** Le terrain est repeint au code, 504×456, dans la grammaire
+relevée : cadre organique (frame_falloff + wobble fbm) → bande d'herbe →
+clairière sableuse en blob fbm + sentier sud en sinus garé dans le couloir.
+Les rampes sont extraites de la référence par classe hue/luminance (p22/p50/p80,
+4 tons pour le sable). Trame 0,70 Bayer + 0,30 aléatoire, contours durs 1 px
+(levre sombre du sable, ligne de tenebre du cadre). Contrôle après peinture :
+anneau L=110-114 (réf 110), cœur L=185-193.
+
+**La bordure feuillue « sans rayon ».** La planche est un kit : 15 morceaux,
+dont 12 de 200-440 px. Trop sombres (L=24-62) pour l'anneau L≈110 : leur
+luminance est remontée (gain borné 1,15-2,3, cible L≈95) sans toucher aux
+teintes, puis les gros morceaux sont posés le long des bords (haut, flancs,
+coins bas — le couloir sud reste dégagé), mis à l'échelle 0,46, miroités.
+Les 5 petits deviennent un catalogue de props « bordure » pour le pipeline.
+
+**Trois layouts = trois étages.** B1F Lisière (jour, ouverte, arbres épars,
+largeur 3,33 — l'étage d'entrée le plus ouvert), B2F Clairière Sacrée
+(crépuscule, mare + roseaux + nénuphars, couronne d'arbres), B3F Cœur
+(nuit, mare centrale + ruisseau qui sort à l'est, futaie dense). Occupation
+34,6-35,4 % (cible 18-45), largeur locale 2,00-3,33 (cible 1-3).
+
+**Deux pièges corrigés en route.**
+1. La canopée pose en anneau sans connaître le couloir : elle refermait
+   l'entrée sud (profondeur 4-5). `build_clairiere` filtre les morceaux du bas
+   qui chevauchent le couloir — les trois entrées sud tombent au bord (prof 0).
+2. Sans canopée, B2F n'avait que 4,8 % de cellules bloquées et une largeur
+   locale de 5,7 : la canopée est un calque « bloc » chez PMDO, c'est elle qui
+   ferme la lisière. B2F l'a récupérée (35,4 % / 2,67).
+
+**Descripteur de donjon.** `layouts/clairiere_sacree.json` chaîne les étages
+(entrées relevées sur la grille 8 px, lien sud → étage suivant, variantes
+d'arène bosquet référencées). `planche_clairiere.html` : référence vs v3 vs
+corrigé, les trois étages et leurs collisions, les chiffres de l'audit.
