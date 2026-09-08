@@ -1,20 +1,56 @@
 {
- "bassin_sentier": {
+ "lac_foret": {
   "compo": {
-   "props": 91,
-   "canopy": 0,
-   "water_px": 34426
+   "props": 61,
+   "canopy": 58,
+   "water_px": 124340
   },
   "palette": 64,
-  "objets_catalogue": 45,
+  "objets_catalogue": 28,
   "tiled": {
-   "tuiles": 1748,
-   "animees": 234,
-   "cases_animees": 234
+   "tuiles": 1831,
+   "animees": 321,
+   "cases_animees": 321
   },
   "aseprite": {
-   "calques": 3,
-   "cels": 72
+   "calques": 7,
+   "cels": 168
+  }
+ },
+ "cascade_foret": {
+  "compo": {
+   "props": 54,
+   "canopy": 58,
+   "water_px": 57150
+  },
+  "palette": 64,
+  "objets_catalogue": 35,
+  "tiled": {
+   "tuiles": 1660,
+   "animees": 290,
+   "cases_animees": 290
+  },
+  "aseprite": {
+   "calques": 8,
+   "cels": 192
+  }
+ },
+ "entree_source": {
+  "compo": {
+   "props": 65,
+   "canopy": 0,
+   "water_px": 13887
+  },
+  "palette": 64,
+  "objets_catalogue": 68,
+  "tiled": {
+   "tuiles": 1047,
+   "animees": 105,
+   "cases_animees": 105
+  },
+  "aseprite": {
+   "calques": 7,
+   "cels": 168
   }
  }
 }

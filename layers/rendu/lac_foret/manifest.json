@@ -5,7 +5,7 @@
   456
  ],
  "tile": 24,
- "frames": 12,
+ "frames": 24,
  "frame_ms": 110,
  "calques_halcyon": [
   {
@@ -17,7 +17,7 @@
    "tuiles_posees": 3591,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -27,9 +27,9 @@
    "sheet": "lac_foret_River.png",
    "periode_px": 504,
    "tuiles_posees": 2037,
-   "tuiles_animees": 1411,
+   "tuiles_animees": 1080,
    "frames": 4,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -41,7 +41,7 @@
    "tuiles_posees": 0,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -53,7 +53,7 @@
    "tuiles_posees": 454,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -65,7 +65,7 @@
    "tuiles_posees": 197,
    "tuiles_animees": 82,
    "frames": 4,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -75,8 +75,8 @@
    "sheet": "lac_foret_Objects.png",
    "periode_px": 504,
    "tuiles_posees": 991,
-   "tuiles_animees": 524,
-   "frames": 4,
+   "tuiles_animees": 544,
+   "frames": 8,
    "tenue_frames": 3,
    "tenue_reguliere": true
   },
@@ -86,10 +86,10 @@
    "dossier": "06_objects_over",
    "sheet": "lac_foret_Objects_Over.png",
    "periode_px": 504,
-   "tuiles_posees": 1360,
-   "tuiles_animees": 674,
+   "tuiles_posees": 1421,
+   "tuiles_animees": 732,
    "frames": 3,
-   "tenue_frames": 4,
+   "tenue_frames": 8,
    "tenue_reguliere": true
   },
   {
@@ -98,10 +98,10 @@
    "dossier": "07_fringe",
    "sheet": "lac_foret_Fringe.png",
    "periode_px": 504,
-   "tuiles_posees": 231,
+   "tuiles_posees": 689,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   }
  ],
@@ -163,7 +163,7 @@
  ],
  "counts": {
   "props": 61,
-  "canopy": 50,
+  "canopy": 58,
   "water_px": 124340
  }
 }

@@ -5,7 +5,7 @@
   456
  ],
  "tile": 24,
- "frames": 12,
+ "frames": 24,
  "frame_ms": 110,
  "calques_halcyon": [
   {
@@ -17,7 +17,7 @@
    "tuiles_posees": 3591,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -27,9 +27,9 @@
    "sheet": "cascade_foret_River.png",
    "periode_px": 504,
    "tuiles_posees": 970,
-   "tuiles_animees": 743,
+   "tuiles_animees": 641,
    "frames": 4,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -41,7 +41,7 @@
    "tuiles_posees": 158,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -53,7 +53,7 @@
    "tuiles_posees": 427,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -65,7 +65,7 @@
    "tuiles_posees": 227,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -75,8 +75,8 @@
    "sheet": "cascade_foret_Objects.png",
    "periode_px": 504,
    "tuiles_posees": 642,
-   "tuiles_animees": 351,
-   "frames": 4,
+   "tuiles_animees": 381,
+   "frames": 8,
    "tenue_frames": 3,
    "tenue_reguliere": true
   },
@@ -86,10 +86,10 @@
    "dossier": "06_objects_over",
    "sheet": "cascade_foret_Objects_Over.png",
    "periode_px": 504,
-   "tuiles_posees": 1378,
-   "tuiles_animees": 719,
+   "tuiles_posees": 1491,
+   "tuiles_animees": 799,
    "frames": 3,
-   "tenue_frames": 4,
+   "tenue_frames": 8,
    "tenue_reguliere": true
   },
   {
@@ -98,10 +98,10 @@
    "dossier": "07_fringe",
    "sheet": "cascade_foret_Fringe.png",
    "periode_px": 504,
-   "tuiles_posees": 190,
+   "tuiles_posees": 984,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   }
  ],
@@ -163,7 +163,7 @@
  ],
  "counts": {
   "props": 54,
-  "canopy": 50,
+  "canopy": 58,
   "water_px": 57150
  }
 }

@@ -22,7 +22,7 @@
  "fond": "fond.png",
  "frames": "fond_frames.png",
  "frame_ms": 110,
- "nb_frames": 12,
+ "nb_frames": 24,
  "palette": 64,
  "calques": [
   {
@@ -38,7 +38,7 @@
    "nom": "water",
    "chemin": "calques/01_water.png",
    "anime": true,
-   "frames": 12,
+   "frames": 24,
    "technique": "palette cycling EoS : indices figes, 16 entrees (3 nuances plates + 12 reflets cycles + ecume), tramage ordonne 4x4, un pas toutes les 330 ms"
   },
   {
@@ -46,7 +46,7 @@
    "nom": "props",
    "chemin": "calques/02_props.png",
    "anime": true,
-   "frames": 12,
+   "frames": 24,
    "technique": "cisaillement vertical, base fixe"
   },
   {
@@ -54,15 +54,15 @@
    "nom": "canopy",
    "chemin": "calques/03_canopy.png",
    "anime": true,
-   "frames": 12,
+   "frames": 24,
    "technique": "cisaillement lent, phase decalee"
   }
  ],
  "collision": {
   "fichier": "obstacles.json",
   "masque": "collision.png",
-  "libres": 1493,
-  "bloquees": 2098,
+  "libres": 1440,
+  "bloquees": 2151,
   "eau": 884
  },
  "entrees": {
@@ -137,11 +137,11 @@
   ],
   "multiple_de_8": true,
   "multiple_de_24": true,
-  "sol_cases2": 165.9,
-  "sol_par_sprite": 167.0,
+  "sol_cases2": 160.0,
+  "sol_par_sprite": 161.1,
   "largeur_locale_mediane": 1.49,
-  "plus_grand_vide": 5.33,
-  "occupation_decor": 33.8,
+  "plus_grand_vide": 4.67,
+  "occupation_decor": 35.3,
   "part_eau": 24.6,
   "ecrans": 2.99,
   "eau_cellules": 884
@@ -170,7 +170,7 @@
    "tuiles_posees": 3591,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -180,9 +180,9 @@
    "sheet": "cascade_foret_River.png",
    "periode_px": 504,
    "tuiles_posees": 970,
-   "tuiles_animees": 743,
+   "tuiles_animees": 641,
    "frames": 4,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -194,7 +194,7 @@
    "tuiles_posees": 158,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -206,7 +206,7 @@
    "tuiles_posees": 427,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -218,7 +218,7 @@
    "tuiles_posees": 227,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -228,8 +228,8 @@
    "sheet": "cascade_foret_Objects.png",
    "periode_px": 504,
    "tuiles_posees": 642,
-   "tuiles_animees": 351,
-   "frames": 4,
+   "tuiles_animees": 381,
+   "frames": 8,
    "tenue_frames": 3,
    "tenue_reguliere": true
   },
@@ -239,10 +239,10 @@
    "dossier": "06_objects_over",
    "sheet": "cascade_foret_Objects_Over.png",
    "periode_px": 504,
-   "tuiles_posees": 1378,
-   "tuiles_animees": 719,
+   "tuiles_posees": 1491,
+   "tuiles_animees": 799,
    "frames": 3,
-   "tenue_frames": 4,
+   "tenue_frames": 8,
    "tenue_reguliere": true
   },
   {
@@ -251,10 +251,10 @@
    "dossier": "07_fringe",
    "sheet": "cascade_foret_Fringe.png",
    "periode_px": 504,
-   "tuiles_posees": 190,
+   "tuiles_posees": 984,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   }
  ],

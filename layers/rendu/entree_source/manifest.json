@@ -5,7 +5,7 @@
   456
  ],
  "tile": 24,
- "frames": 12,
+ "frames": 24,
  "frame_ms": 110,
  "calques_halcyon": [
   {
@@ -17,7 +17,7 @@
    "tuiles_posees": 3591,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -27,9 +27,9 @@
    "sheet": "entree_source_River.png",
    "periode_px": 504,
    "tuiles_posees": 263,
-   "tuiles_animees": 198,
+   "tuiles_animees": 185,
    "frames": 4,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -41,7 +41,7 @@
    "tuiles_posees": 256,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -53,7 +53,7 @@
    "tuiles_posees": 371,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   },
   {
@@ -65,7 +65,7 @@
    "tuiles_posees": 63,
    "tuiles_animees": 35,
    "frames": 4,
-   "tenue_frames": 3,
+   "tenue_frames": 6,
    "tenue_reguliere": true
   },
   {
@@ -75,8 +75,8 @@
    "sheet": "entree_source_Objects.png",
    "periode_px": 504,
    "tuiles_posees": 741,
-   "tuiles_animees": 414,
-   "frames": 4,
+   "tuiles_animees": 428,
+   "frames": 8,
    "tenue_frames": 3,
    "tenue_reguliere": true
   },
@@ -89,7 +89,7 @@
    "tuiles_posees": 0,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 4,
+   "tenue_frames": 8,
    "tenue_reguliere": true
   },
   {
@@ -98,10 +98,10 @@
    "dossier": "07_fringe",
    "sheet": "entree_source_Fringe.png",
    "periode_px": 504,
-   "tuiles_posees": 84,
+   "tuiles_posees": 323,
    "tuiles_animees": 0,
    "frames": 1,
-   "tenue_frames": 12,
+   "tenue_frames": 24,
    "tenue_reguliere": true
   }
  ],
