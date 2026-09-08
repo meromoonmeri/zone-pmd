@@ -1,56 +1,56 @@
 {
- "bassin_sentier": {
+ "cascade_foret": {
   "compo": {
-   "props": 91,
+   "props": 54,
+   "canopy": 58,
+   "water_px": 57150
+  },
+  "palette": 285,
+  "objets_catalogue": 35,
+  "tiled": {
+   "tuiles": 1641,
+   "animees": 287,
+   "cases_animees": 287
+  },
+  "aseprite": {
+   "calques": 8,
+   "cels": 192
+  }
+ },
+ "entree_source": {
+  "compo": {
+   "props": 65,
    "canopy": 0,
-   "water_px": 34426
+   "water_px": 13887
   },
-  "palette": 416,
-  "objets_catalogue": 45,
+  "palette": 405,
+  "objets_catalogue": 68,
   "tiled": {
-   "tuiles": 2149,
-   "animees": 337,
-   "cases_animees": 337
-  },
-  "aseprite": {
-   "calques": 6,
-   "cels": 144
-  }
- },
- "foret_automne": {
-  "compo": {
-   "props": 74,
-   "canopy": 58,
-   "water_px": 0
-  },
-  "palette": 245,
-  "objets_catalogue": 19,
-  "tiled": {
-   "tuiles": 2337,
-   "animees": 344,
-   "cases_animees": 344
-  },
-  "aseprite": {
-   "calques": 6,
-   "cels": 144
-  }
- },
- "lac_foret": {
-  "compo": {
-   "props": 61,
-   "canopy": 58,
-   "water_px": 124340
-  },
-  "palette": 407,
-  "objets_catalogue": 28,
-  "tiled": {
-   "tuiles": 2468,
-   "animees": 343,
-   "cases_animees": 343
+   "tuiles": 1039,
+   "animees": 104,
+   "cases_animees": 104
   },
   "aseprite": {
    "calques": 7,
    "cels": 168
+  }
+ },
+ "pied_montagne": {
+  "compo": {
+   "props": 108,
+   "canopy": 0,
+   "water_px": 27974
+  },
+  "palette": 350,
+  "objets_catalogue": 51,
+  "tiled": {
+   "tuiles": 2203,
+   "animees": 353,
+   "cases_animees": 353
+  },
+  "aseprite": {
+   "calques": 6,
+   "cels": 144
   }
  }
 }
