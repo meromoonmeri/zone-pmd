@@ -1,0 +1,77 @@
+[
+ {
+  "calque": "Base",
+  "banque": "arene_desert_nu_Base.tile",
+  "dessins": 1,
+  "entrees": 3591,
+  "positions": 3591,
+  "vides_omises": 0,
+  "uniques": 2019,
+  "reemploi": 1.78,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 536659
+ },
+ {
+  "calque": "River",
+  "banque": "arene_desert_nu_River.tile",
+  "dessins": 4,
+  "entrees": 2406,
+  "positions": 3591,
+  "vides_omises": 1185,
+  "uniques": 1130,
+  "reemploi": 2.13,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 293786
+ },
+ {
+  "calque": "Shadows",
+  "banque": "arene_desert_nu_Shadows.tile",
+  "dessins": 1,
+  "entrees": 0,
+  "positions": 3591,
+  "vides_omises": 3591,
+  "uniques": 0,
+  "reemploi": 0.0,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 8
+ },
+ {
+  "calque": "Objects",
+  "banque": "arene_desert_nu_Objects.tile",
+  "dessins": 1,
+  "entrees": 0,
+  "positions": 3591,
+  "vides_omises": 3591,
+  "uniques": 0,
+  "reemploi": 0.0,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 8
+ },
+ {
+  "calque": "Fringe",
+  "banque": "arene_desert_nu_Fringe.tile",
+  "dessins": 1,
+  "entrees": 547,
+  "positions": 3591,
+  "vides_omises": 3044,
+  "uniques": 397,
+  "reemploi": 1.38,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 61349
+ }
+]

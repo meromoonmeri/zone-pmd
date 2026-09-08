@@ -1,0 +1,77 @@
+[
+ {
+  "calque": "Base",
+  "banque": "arene_banquise_nu_Base.tile",
+  "dessins": 1,
+  "entrees": 3591,
+  "positions": 3591,
+  "vides_omises": 0,
+  "uniques": 1460,
+  "reemploi": 2.46,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 477124
+ },
+ {
+  "calque": "River",
+  "banque": "arene_banquise_nu_River.tile",
+  "dessins": 4,
+  "entrees": 2209,
+  "positions": 3591,
+  "vides_omises": 1382,
+  "uniques": 708,
+  "reemploi": 3.12,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 251357
+ },
+ {
+  "calque": "Shadows",
+  "banque": "arene_banquise_nu_Shadows.tile",
+  "dessins": 1,
+  "entrees": 0,
+  "positions": 3591,
+  "vides_omises": 3591,
+  "uniques": 0,
+  "reemploi": 0.0,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 8
+ },
+ {
+  "calque": "Objects",
+  "banque": "arene_banquise_nu_Objects.tile",
+  "dessins": 1,
+  "entrees": 0,
+  "positions": 3591,
+  "vides_omises": 3591,
+  "uniques": 0,
+  "reemploi": 0.0,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 8
+ },
+ {
+  "calque": "Fringe",
+  "banque": "arene_banquise_nu_Fringe.tile",
+  "dessins": 1,
+  "entrees": 241,
+  "positions": 3591,
+  "vides_omises": 3350,
+  "uniques": 113,
+  "reemploi": 2.13,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 25184
+ }
+]

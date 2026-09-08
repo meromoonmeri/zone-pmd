@@ -1,0 +1,77 @@
+[
+ {
+  "calque": "Base",
+  "banque": "arene_volcan_nu_Base.tile",
+  "dessins": 1,
+  "entrees": 3591,
+  "positions": 3591,
+  "vides_omises": 0,
+  "uniques": 1500,
+  "reemploi": 2.39,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 496701
+ },
+ {
+  "calque": "River",
+  "banque": "arene_volcan_nu_River.tile",
+  "dessins": 4,
+  "entrees": 2396,
+  "positions": 3591,
+  "vides_omises": 1195,
+  "uniques": 781,
+  "reemploi": 3.07,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 270780
+ },
+ {
+  "calque": "Shadows",
+  "banque": "arene_volcan_nu_Shadows.tile",
+  "dessins": 1,
+  "entrees": 0,
+  "positions": 3591,
+  "vides_omises": 3591,
+  "uniques": 0,
+  "reemploi": 0.0,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 8
+ },
+ {
+  "calque": "Objects",
+  "banque": "arene_volcan_nu_Objects.tile",
+  "dessins": 1,
+  "entrees": 0,
+  "positions": 3591,
+  "vides_omises": 3591,
+  "uniques": 0,
+  "reemploi": 0.0,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 8
+ },
+ {
+  "calque": "Fringe",
+  "banque": "arene_volcan_nu_Fringe.tile",
+  "dessins": 1,
+  "entrees": 247,
+  "positions": 3591,
+  "vides_omises": 3344,
+  "uniques": 166,
+  "reemploi": 1.49,
+  "planche": [
+   504,
+   456
+  ],
+  "octets": 26179
+ }
+]

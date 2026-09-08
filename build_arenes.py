@@ -186,12 +186,20 @@ def _chaussee(im, bornes=COULOIR):
     mag = (a[..., 0] > 200) & (a[..., 2] > 200) & (a[..., 1] < 60)
     xa, xb = int(bornes[0] * w), int(bornes[1] * w)
     bande = mag[:, xa:xb]
-    if not bande.any():
-        return im, False           # deja continu, rien a tailler
+    if bande[-1].mean() < 0.10:
+        return im, False           # le sud est deja ouvert           # deja continu, rien a tailler
     plein = ~bande
     if not plein.any():
         return im, False
-    lignes = np.flatnonzero(plein.any(1))
+    # On cherche la derniere ligne REELLEMENT pleine, pas celle ou traine un
+    # pixel d'antialiasing : sur l'arene celeste, un seul pixel en bas de bande
+    # faisait croire que la chaussee existait deja, et l'acces restait ferme.
+    frac = plein.mean(1)
+    lignes = np.flatnonzero(frac >= 0.60)
+    if len(lignes) == 0:
+        lignes = np.flatnonzero(frac >= 0.25)
+    if len(lignes) == 0:
+        return im, False
     y_bas = int(lignes.max())      # bord bas de la plateforme dans la bande
     k = max(8, min(56, y_bas))
     motif = a[y_bas - k + 1:y_bas + 1, xa:xb].copy()
@@ -272,7 +280,31 @@ def construire_specs():
     return specs
 
 
+def construire_specs_nues():
+    """Les memes arenes, mais VIDES : aucun prop pose par moi.
+
+    Demande explicite : c'est l'utilisateur qui posera les roches, l'herbe et
+    les fleurs. On ne garde donc que ce qui est du TERRAIN — le sol, ses murs,
+    la douve animee et l'entree sud — plus les ombres, qui n'existent que s'il
+    y a des props, donc vides elles aussi.
+    """
+    specs = {}
+    for bi, (biome, b) in enumerate(BIOMES.items()):
+        nom = f"arene_{biome}_nu"
+        specs[nom] = dict(
+            sheets=b["sheets"], canopy=None, eau=b["eau"],
+            tint=b["tint"], strength=b["strength"], grade="jour",
+            emissive=b["emissive"], seed=9000 + bi * 13,
+            rules=[],                      # <- aucun prop
+            _terrain=_terrain(biome, "34", "identite"),
+            _vue="vue 3/4", couloir=COULOIR, fringe_props=False,
+            _titre=f"{b['titre']} — nu",
+        )
+    return specs
+
+
 SPECS = construire_specs()
+SPECS.update(construire_specs_nues())
 BZ.ZONES.update(SPECS)
 
 # `construire` cherche layers/src/<zone>_terrain.png ; on pointe le fichier

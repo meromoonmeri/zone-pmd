@@ -132,6 +132,7 @@ def grade_terrain(rgb, tint_hex, strength=0.55, pad=0.20):
 def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
            rules=None, water_ramp=None, foam=None, calm=1.0, eau_emissive=False,
            style_eau="sky", colorimetrie="libre", couloir=None,
+           fringe_props=True,
            terrain_tint="#0a1c14", terrain_strength=0.55,
            seed=1, grade="jour"):
     rng = np.random.default_rng(seed)
@@ -233,6 +234,11 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
         lots[nom] = load_objects(d) if os.path.isdir(d) else []
     poses_fr = []
     interdit = C.dilate(water_mask, 3) if water_mask is not None else None
+    if not fringe_props:
+        # Mode nu : les bandes de debord sont de l'HERBE et de la ROCHE. Si
+        # l'utilisateur pose lui-meme sa vegetation, on ne lui en met pas non
+        # plus au bord. Il ne reste que le liseré de contact d'un pixel.
+        lots = {k: [] for k in lots}
     poses_fr += FR.poser(grass, lots["herbe"], rng, mini=5, recouvrement=0.62,
                          interdit=interdit)
     poses_fr += FR.poser(grey | sand, lots["roche"], rng, mini=6,

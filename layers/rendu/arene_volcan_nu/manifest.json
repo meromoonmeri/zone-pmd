@@ -1,0 +1,185 @@
+{
+ "zone": "arene_volcan_nu",
+ "size": [
+  504,
+  456
+ ],
+ "tile": 24,
+ "frames": 24,
+ "frame_ms": 110,
+ "colorimetrie": "halcyon",
+ "mesures_couleur": {
+  "couleurs": 117,
+  "L_p5": 52.784,
+  "L_p50": 152.84799999999998,
+  "L_p95": 152.84799999999998,
+  "S_p50": 0.86,
+  "sur_grille_8": 1.0,
+  "couleurs_par_tuile_med": 2.0,
+  "tuiles_sous_16": 1.0
+ },
+ "ecart_palette_halcyon": {
+  "ecart_moyen": 1.31,
+  "ecart_p95": 7.97
+ },
+ "palette_etendue": 710,
+ "calques_halcyon": [
+  {
+   "ordre": 0,
+   "nom": "Base",
+   "dossier": "00_base",
+   "sheet": "arene_volcan_nu_Base.png",
+   "periode_px": 504,
+   "tuiles_posees": 3591,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 24,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 1,
+   "nom": "River",
+   "dossier": "01_river",
+   "sheet": "arene_volcan_nu_River.png",
+   "periode_px": 504,
+   "tuiles_posees": 2396,
+   "tuiles_animees": 1188,
+   "frames": 4,
+   "tenue_frames": 6,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 2,
+   "nom": "Cliffs",
+   "dossier": "02_cliffs",
+   "sheet": null,
+   "periode_px": null,
+   "tuiles_posees": 0,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 24,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 3,
+   "nom": "Shadows",
+   "dossier": "03_shadows",
+   "sheet": "arene_volcan_nu_Shadows.png",
+   "periode_px": 504,
+   "tuiles_posees": 0,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 24,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 4,
+   "nom": "Objects Under",
+   "dossier": "04_objects_under",
+   "sheet": null,
+   "periode_px": null,
+   "tuiles_posees": 0,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 6,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 5,
+   "nom": "Objects",
+   "dossier": "05_objects",
+   "sheet": "arene_volcan_nu_Objects.png",
+   "periode_px": 504,
+   "tuiles_posees": 0,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 3,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 6,
+   "nom": "Objects Over",
+   "dossier": "06_objects_over",
+   "sheet": null,
+   "periode_px": null,
+   "tuiles_posees": 0,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 8,
+   "tenue_reguliere": true
+  },
+  {
+   "ordre": 7,
+   "nom": "Fringe",
+   "dossier": "07_fringe",
+   "sheet": "arene_volcan_nu_Fringe.png",
+   "periode_px": 504,
+   "tuiles_posees": 247,
+   "tuiles_animees": 0,
+   "frames": 1,
+   "tenue_frames": 24,
+   "tenue_reguliere": true
+  }
+ ],
+ "palette": 182,
+ "grade": "jour",
+ "layers": [
+  {
+   "order": 0,
+   "name": "terrain",
+   "file": "00_terrain.png",
+   "animated": false
+  },
+  {
+   "order": 1,
+   "name": "water",
+   "dir": "01_water",
+   "animated": true,
+   "technique": "palette cycling EoS : indices figes, 16 entrees (3 nuances plates + 12 reflets cycles + ecume), tramage ordonne 4x4, un pas toutes les 330 ms",
+   "palette_animee": {
+    "methode": "frames redessinees (Palika / Halcyon)",
+    "frames_du_cycle": 4,
+    "dessins_distincts": 4,
+    "couleurs_totales": 8,
+    "part_de_l_aplat": 0.923,
+    "px_changes_par_frame": [
+     7981,
+     7876,
+     7884
+    ],
+    "liser\u00e9_px": 4,
+    "ms_par_dessin": null
+   }
+  },
+  {
+   "order": 2,
+   "name": "props",
+   "dir": "02_props",
+   "animated": true,
+   "technique": "cisaillement vertical, base fixe"
+  },
+  {
+   "order": 3,
+   "name": "canopy",
+   "dir": "03_canopy",
+   "animated": false,
+   "technique": "cisaillement lent, phase decalee"
+  },
+  {
+   "order": 4,
+   "name": "light",
+   "animated": true,
+   "technique": "taches de bruit derivantes + vignette",
+   "grades": [
+    "jour",
+    "crepuscule",
+    "nuit"
+   ]
+  }
+ ],
+ "counts": {
+  "props": 0,
+  "canopy": 0,
+  "water_px": 148427
+ }
+}

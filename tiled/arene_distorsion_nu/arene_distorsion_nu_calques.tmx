@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="21" height="19" tilewidth="24" tileheight="24" infinite="0" nextlayerid="6" nextobjectid="1">
+ <imagelayer id="1" name="0_Base">
+  <properties>
+   <property name="anime" value="non"/>
+   <property name="technique" value="1 dessin(s), tenue 24 frames, 3591 tuiles 8px dont 0 animees"/>
+  </properties>
+  <image source="calques/Base.png" width="504" height="456"/>
+ </imagelayer>
+ <imagelayer id="2" name="1_River">
+  <properties>
+   <property name="anime" value="oui"/>
+   <property name="technique" value="4 dessin(s), tenue 6 frames, 1309 tuiles 8px dont 692 animees"/>
+  </properties>
+  <image source="calques/River.png" width="504" height="456"/>
+ </imagelayer>
+ <imagelayer id="3" name="3_Shadows">
+  <properties>
+   <property name="anime" value="non"/>
+   <property name="technique" value="1 dessin(s), tenue 24 frames, 0 tuiles 8px dont 0 animees"/>
+  </properties>
+  <image source="calques/Shadows.png" width="504" height="456"/>
+ </imagelayer>
+ <imagelayer id="4" name="5_Objects">
+  <properties>
+   <property name="anime" value="non"/>
+   <property name="technique" value="1 dessin(s), tenue 3 frames, 0 tuiles 8px dont 0 animees"/>
+  </properties>
+  <image source="calques/Objects.png" width="504" height="456"/>
+ </imagelayer>
+ <imagelayer id="5" name="7_Fringe">
+  <properties>
+   <property name="anime" value="non"/>
+   <property name="technique" value="1 dessin(s), tenue 24 frames, 193 tuiles 8px dont 0 animees"/>
+  </properties>
+  <image source="calques/Fringe.png" width="504" height="456"/>
+ </imagelayer>
+</map>

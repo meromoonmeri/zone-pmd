@@ -360,7 +360,8 @@ def construire(zone):
                  eau_emissive=spec.get("emissive", False),
                  style_eau=spec.get("style_eau", STYLE_EAU),
                  colorimetrie=spec.get("colorimetrie", COLORIMETRIE),
-                 couloir=spec.get("couloir"))
+                 couloir=spec.get("couloir"),
+                 fringe_props=spec.get("fringe_props", True))
     tr, av = export_tools(zone)
     return dict(compo=m["counts"], palette=m["palette"], objets_catalogue=n,
                 tiled=dict(tuiles=tr["tuiles_uniques"], animees=tr["tuiles_animees"],

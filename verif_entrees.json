@@ -1,0 +1,112 @@
+{
+ "arene_volcan_nu": {
+  "entree_sud": true,
+  "grille": [
+   63,
+   57
+  ],
+  "cases24": [
+   21,
+   19
+  ]
+ },
+ "arene_banquise_nu": {
+  "entree_sud": true,
+  "grille": [
+   63,
+   57
+  ],
+  "cases24": [
+   21,
+   19
+  ]
+ },
+ "arene_ciel_nu": {
+  "entree_sud": false,
+  "grille": [
+   63,
+   57
+  ],
+  "cases24": [
+   21,
+   19
+  ]
+ },
+ "arene_abysse_nu": {
+  "entree_sud": true,
+  "grille": [
+   63,
+   57
+  ],
+  "cases24": [
+   21,
+   19
+  ]
+ },
+ "arene_cristal_nu": {
+  "entree_sud": true,
+  "grille": [
+   63,
+   57
+  ],
+  "cases24": [
+   21,
+   19
+  ]
+ },
+ "arene_temple_nu": {
+  "entree_sud": true,
+  "grille": [
+   63,
+   57
+  ],
+  "cases24": [
+   21,
+   19
+  ]
+ },
+ "arene_bosquet_nu": {
+  "entree_sud": true,
+  "grille": [
+   63,
+   57
+  ],
+  "cases24": [
+   21,
+   19
+  ]
+ },
+ "arene_desert_nu": {
+  "entree_sud": true,
+  "grille": [
+   63,
+   57
+  ],
+  "cases24": [
+   21,
+   19
+  ]
+ },
+ "arene_distorsion_nu": {
+  "entree_sud": true,
+  "grille": [
+   63,
+   57
+  ],
+  "cases24": [
+   21,
+   19
+  ]
+ },
+ "arene_orage_nu": {
+  "entree_sud": true,
+  "grille": [
+   63,
+   57
+  ],
+  "cases24": [
+   21,
+   19
+  ]
+ }
+}
