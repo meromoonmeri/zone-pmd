@@ -21,12 +21,12 @@
   1.8,
   2.1
  ],
- "frames": 8,
- "frame_ms": 165,
+ "frames": 12,
+ "frame_ms": 110,
  "eau": {
   "technique": "4 dessins redessines, methode Palika (Altere_Pond_River_Animations)",
   "dessins": 4,
-  "maintien_frames": 2,
+  "maintien_frames": 3,
   "ms_par_dessin": 330,
   "corps": "pixels peints d'origine conserves ; seuls les reflets sont redessines d'un dessin a l'autre",
   "px": 16447,
@@ -42,6 +42,17 @@
  "ombres": {
   "technique": "ombre portee tramee Bayer 4x4, pas d'alpha lisse",
   "masses_traitees": 1
+ },
+ "lumiere": {
+  "technique": "palette cycling : le champ d'indices est fige, seules les couleurs des bandes changent",
+  "bandes": 12,
+  "palettes_distinctes": 12,
+  "frames": 12,
+  "pixels_du_faisceau": 40122,
+  "tramage": "Bayer 4x4 module par l'intensite, pas d'alpha lisse",
+  "calque": "08_lumiere",
+  "ordre": "dessine en dernier, par-dessus l'arbre",
+  "transparence": "tramage Bayer 4x4 : le tronc reste visible entre les pixels allumes"
  },
  "collision": {
   "libres": 2091,

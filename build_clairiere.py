@@ -32,11 +32,13 @@ from forge import core as C
 from forge import calques_halcyon as CH
 from forge import tile_rogue as TR
 from forge.water_halcyon import _traits, LISERE
+from forge import rayon as RY
 
 SRC = "layers/src/clairiere_ref.png"
 ZONE = "clairiere_arbre"
 W, H = 576, 504            # 72x63 cellules de 8 px, 24x21 cases de 24 px
-N, MS, MAINTIEN = 8, 165, 2   # 4 dessins d'eau, 330 ms chacun (cadence EoS)
+N, MS, MAINTIEN = 12, 110, 3   # eau : 4 dessins x 330 ms (cadence EoS)
+                               # lumiere : 12 teintes, tour complet en 1,32 s
 SORTIE = f"layers/rendu/{ZONE}"
 
 BAYER4 = np.array([[0, 8, 2, 10],
@@ -276,6 +278,32 @@ def main():
         Image.fromarray(wl[t], "RGBA").save(
             f"{SORTIE}/{CH.DOSSIERS['River']}/f{t:02d}.png")
 
+    # --- calque LUMIERE : le rayon arc-en-ciel ----------------------------- #
+    # Il est dessine EN DERNIER, par-dessus l'arbre. La transparence est faite
+    # au tramage Bayer : le tronc reste visible entre les pixels allumes, ce
+    # qui donne l'illusion d'un voile lumineux et non d'un bandeau opaque.
+    ys_b, xs_b = np.nonzero(bassin)
+    bx, by = float(xs_b.mean()), float(ys_b.mean())
+    larg_bas = (xs_b.max() - xs_b.min()) * 0.62
+    inten, idx, axe = RY.champ(H, W, x_centre=bx, y_haut=0, y_bas=by + larg_bas * 0.10,
+                          large_haut=larg_bas * 0.86, large_bas=larg_bas * 1.22,
+                          seed=7, flou=0.34)
+    # la flaque de lumiere au fond du bassin
+    fl = RY.flaque(H, W, bx, by, larg_bas * 0.46, larg_bas * 0.26)
+    inten = np.clip(inten + fl * 0.80, 0, 1.10)
+    idx = np.where(fl > 0.25, (RY.BANDES // 2), idx).astype(np.uint8)
+    axe = np.clip(axe + fl * 0.75, 0, 1)
+    print(f"rayon : {int((inten > 0.06).sum())} px, centre du bassin "
+          f"({bx:.0f}, {by:.0f}), largeur au sol {larg_bas:.0f} px")
+
+    os.makedirs(f"{SORTIE}/08_lumiere", exist_ok=True)
+    noir = np.zeros((H, W, 3), np.int16)
+    for t in range(N):
+        seul = RY.poser(noir, inten, idx, phase=t / N, force=1.0, axe=axe)
+        rgba = np.dstack([seul.astype(np.uint8),
+                          (seul.max(-1) > 4).astype(np.uint8) * 255])
+        Image.fromarray(rgba, "RGBA").save(f"{SORTIE}/08_lumiere/f{t:02d}.png")
+
     # --- frames finales ---------------------------------------------------- #
     frames = []
     for t in range(N):
@@ -283,6 +311,7 @@ def main():
                        np.full((H, W, 1), 255, np.uint8)])
         al = wl[t][..., 3:4].astype(np.float32) / 255.0
         f[..., :3] = (f[..., :3] * (1 - al) + wl[t][..., :3] * al).astype(np.uint8)
+        f[..., :3] = RY.poser(f[..., :3], inten, idx, phase=t / N, force=0.88, axe=axe)
         im = Image.fromarray(f[..., :3], "RGB")
         im.save(f"{SORTIE}/frames/f{t:02d}.png")
         frames.append(im)
@@ -350,6 +379,10 @@ def main():
                  px=int(bassin.sum()), rampe=rampe),
         ombres=dict(technique="ombre portee tramee Bayer 4x4, pas d'alpha lisse",
                     masses_traitees=ngros),
+        lumiere=RY.preuve(inten, idx, N) | dict(
+            calque="08_lumiere", ordre="dessine en dernier, par-dessus l'arbre",
+            transparence="tramage Bayer 4x4 : le tronc reste visible entre les "
+                         "pixels allumes"),
         collision=dict(libres=int(libre.sum()), bloquees=int(bloque.sum()),
                        eau=int(bloc_eau.sum()), entree_sud_continue=entree),
         tiles=rap,
