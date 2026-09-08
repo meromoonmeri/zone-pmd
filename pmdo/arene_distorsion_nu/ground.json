@@ -23,7 +23,7 @@
  "frames": "fond_frames.png",
  "frame_ms": 110,
  "nb_frames": 24,
- "palette": 155,
+ "palette": 147,
  "calques": [
   {
    "ordre": 0,

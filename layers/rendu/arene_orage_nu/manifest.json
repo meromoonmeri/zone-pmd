@@ -9,7 +9,7 @@
  "frame_ms": 110,
  "colorimetrie": "halcyon",
  "mesures_couleur": {
-  "couleurs": 88,
+  "couleurs": 96,
   "L_p5": 54.52,
   "L_p50": 143.99200000000002,
   "L_p95": 208.99200000000002,
@@ -19,7 +19,7 @@
   "tuiles_sous_16": 1.0
  },
  "ecart_palette_halcyon": {
-  "ecart_moyen": 10.23,
+  "ecart_moyen": 10.18,
   "ecart_p95": 18.55
  },
  "palette_etendue": 712,
@@ -121,7 +121,7 @@
    "tenue_reguliere": true
   }
  ],
- "palette": 108,
+ "palette": 116,
  "grade": "jour",
  "layers": [
   {

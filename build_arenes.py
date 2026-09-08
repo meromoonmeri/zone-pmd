@@ -161,9 +161,15 @@ def _nettoyer_magenta(im):
         return im
     lab, n = ndimage.label(mag)
     if n > 1:
-        t = ndimage.sum(mag, lab, range(1, n + 1))
-        garde = int(np.argmax(t)) + 1
-        perdus = mag & (lab != garde)
+        t = np.array(ndimage.sum(mag, lab, range(1, n + 1)))
+        # On ne supprime que les PETITES taches parasites (un trait en travers
+        # du sol). Une douve peut tres bien etre coupee en deux par un mur qui
+        # touche les bords : sur l'arene de distorsion, garder la seule plus
+        # grande region laissait un anneau magenta non converti de 41 277 px.
+        seuil = 0.01 * mag.size
+        garde = {i + 1 for i, v in enumerate(t) if v >= seuil}
+        garde.add(int(np.argmax(t)) + 1)
+        perdus = mag & ~np.isin(lab, list(garde))
         if perdus.any():
             # on rebouche avec la couleur voisine la plus proche
             ind = ndimage.distance_transform_edt(

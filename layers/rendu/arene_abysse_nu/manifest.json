@@ -9,7 +9,7 @@
  "frame_ms": 110,
  "colorimetrie": "halcyon",
  "mesures_couleur": {
-  "couleurs": 76,
+  "couleurs": 84,
   "L_p5": 61.86399999999999,
   "L_p50": 152.424,
   "L_p95": 213.26399999999998,
@@ -19,8 +19,8 @@
   "tuiles_sous_16": 1.0
  },
  "ecart_palette_halcyon": {
-  "ecart_moyen": 3.8,
-  "ecart_p95": 12.54
+  "ecart_moyen": 3.96,
+  "ecart_p95": 12.98
  },
  "palette_etendue": 715,
  "calques_halcyon": [
@@ -121,7 +121,7 @@
    "tenue_reguliere": true
   }
  ],
- "palette": 90,
+ "palette": 94,
  "grade": "jour",
  "layers": [
   {

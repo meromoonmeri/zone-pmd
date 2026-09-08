@@ -9,20 +9,20 @@
  "frame_ms": 110,
  "colorimetrie": "halcyon",
  "mesures_couleur": {
-  "couleurs": 152,
-  "L_p5": 56.832,
+  "couleurs": 162,
+  "L_p5": 54.528,
   "L_p50": 154.296,
   "L_p95": 191.62399999999997,
   "S_p50": 0.62,
   "sur_grille_8": 1.0,
-  "couleurs_par_tuile_med": 3.0,
+  "couleurs_par_tuile_med": 2.0,
   "tuiles_sous_16": 1.0
  },
  "ecart_palette_halcyon": {
-  "ecart_moyen": 13.43,
+  "ecart_moyen": 13.02,
   "ecart_p95": 19.36
  },
- "palette_etendue": 718,
+ "palette_etendue": 716,
  "calques_halcyon": [
   {
    "ordre": 0,
@@ -42,8 +42,8 @@
    "dossier": "01_river",
    "sheet": "arene_desert_nu_River.png",
    "periode_px": 504,
-   "tuiles_posees": 2406,
-   "tuiles_animees": 1208,
+   "tuiles_posees": 2369,
+   "tuiles_animees": 1122,
    "frames": 4,
    "tenue_frames": 6,
    "tenue_reguliere": true
@@ -114,14 +114,14 @@
    "dossier": "07_fringe",
    "sheet": "arene_desert_nu_Fringe.png",
    "periode_px": 504,
-   "tuiles_posees": 547,
+   "tuiles_posees": 281,
    "tuiles_animees": 0,
    "frames": 1,
    "tenue_frames": 24,
    "tenue_reguliere": true
   }
  ],
- "palette": 201,
+ "palette": 206,
  "grade": "jour",
  "layers": [
   {
@@ -141,11 +141,11 @@
     "frames_du_cycle": 4,
     "dessins_distincts": 4,
     "couleurs_totales": 8,
-    "part_de_l_aplat": 0.818,
+    "part_de_l_aplat": 0.918,
     "px_changes_par_frame": [
-     8756,
-     8675,
-     8608
+     7994,
+     7979,
+     7661
     ],
     "liser\u00e9_px": 4,
     "ms_par_dessin": null
@@ -180,6 +180,6 @@
  "counts": {
   "props": 0,
   "canopy": 0,
-  "water_px": 141828
+  "water_px": 144879
  }
 }

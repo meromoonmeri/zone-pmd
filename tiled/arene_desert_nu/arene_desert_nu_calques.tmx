@@ -10,7 +10,7 @@
  <imagelayer id="2" name="1_River">
   <properties>
    <property name="anime" value="oui"/>
-   <property name="technique" value="4 dessin(s), tenue 6 frames, 2406 tuiles 8px dont 1208 animees"/>
+   <property name="technique" value="4 dessin(s), tenue 6 frames, 2369 tuiles 8px dont 1122 animees"/>
   </properties>
   <image source="calques/River.png" width="504" height="456"/>
  </imagelayer>
@@ -31,7 +31,7 @@
  <imagelayer id="5" name="7_Fringe">
   <properties>
    <property name="anime" value="non"/>
-   <property name="technique" value="1 dessin(s), tenue 24 frames, 547 tuiles 8px dont 0 animees"/>
+   <property name="technique" value="1 dessin(s), tenue 24 frames, 281 tuiles 8px dont 0 animees"/>
   </properties>
   <image source="calques/Fringe.png" width="504" height="456"/>
  </imagelayer>

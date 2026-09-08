@@ -19,10 +19,10 @@
   "tuiles_sous_16": 1.0
  },
  "ecart_palette_halcyon": {
-  "ecart_moyen": 1.31,
-  "ecart_p95": 7.97
+  "ecart_moyen": 1.21,
+  "ecart_p95": 7.48
  },
- "palette_etendue": 710,
+ "palette_etendue": 708,
  "calques_halcyon": [
   {
    "ordre": 0,
@@ -121,7 +121,7 @@
    "tenue_reguliere": true
   }
  ],
- "palette": 182,
+ "palette": 180,
  "grade": "jour",
  "layers": [
   {

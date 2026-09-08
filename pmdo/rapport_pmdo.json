@@ -1,4 +1,76 @@
 {
+ "arene_volcan_nu": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 1269,
+   "bloquees": 2322,
+   "eau": 2322
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
+ "arene_banquise_nu": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 1479,
+   "bloquees": 2112,
+   "eau": 2112
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
  "arene_ciel_nu": {
   "cellules": [
    63,
@@ -14,6 +86,258 @@
    "libres": 1304,
    "bloquees": 2287,
    "eau": 2287
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
+ "arene_abysse_nu": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 1505,
+   "bloquees": 2086,
+   "eau": 2086
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
+ "arene_cristal_nu": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 1694,
+   "bloquees": 1897,
+   "eau": 1897
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
+ "arene_temple_nu": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 1571,
+   "bloquees": 2020,
+   "eau": 2020
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
+ "arene_bosquet_nu": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 1133,
+   "bloquees": 2458,
+   "eau": 2458
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
+ "arene_desert_nu": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 1329,
+   "bloquees": 2262,
+   "eau": 2262
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
+ "arene_distorsion_nu": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 2282,
+   "bloquees": 1309,
+   "eau": 1309
+  },
+  "tmx": {
+   "tmx": "collision.tmx",
+   "tsx": "brosse_collision.tsx",
+   "cellules": [
+    63,
+    57
+   ],
+   "pinceaux": [
+    "libre",
+    "bloque",
+    "eau"
+   ]
+  },
+  "entrees": [
+   "nord",
+   "sud",
+   "ouest",
+   "est"
+  ]
+ },
+ "arene_orage_nu": {
+  "cellules": [
+   63,
+   57
+  ],
+  "cases": [
+   21,
+   19
+  ],
+  "collision": {
+   "fichier": "obstacles.json",
+   "masque": "collision.png",
+   "libres": 1031,
+   "bloquees": 2560,
+   "eau": 2560
   },
   "tmx": {
    "tmx": "collision.tmx",

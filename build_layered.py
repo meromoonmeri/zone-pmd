@@ -424,7 +424,14 @@ def render(zone, terrain_src, cut_dir, tag_file=None, canopy_dir=None,
         # pierres de Metano. On garde donc ses REGLES (grille des multiples de
         # 8, 8 couleurs par tuile, son exposition) et on lui adjoint les
         # teintes du biome, elles aussi calees sur sa grille.
-        base_teintes = [terrain.reshape(-1, 3)]
+        # Le terrain contient encore le MAGENTA du placeholder. Le laisser
+        # entrer dans la palette etendue creait une entree rose (#b820a0) sur
+        # laquelle la pierre violette de l'arene de distorsion venait
+        # s'accrocher : 41 271 px de magenta dans le rendu final.
+        if water_mask is not None:
+            base_teintes = [terrain[~C.dilate(water_mask, 2)].reshape(-1, 3)]
+        else:
+            base_teintes = [terrain.reshape(-1, 3)]
         if wl is not None:
             base_teintes.append(
                 np.concatenate([f[..., :3][f[..., 3] > 0] for f in wl], 0))
